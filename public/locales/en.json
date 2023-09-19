@@ -1,0 +1,28 @@
+{
+  "_common": {
+    "app_name": "Khofly"
+  },
+
+  "header": {
+    "sign_in": "Sign in",
+
+    "avatar": {
+      "label_1": "Resources",
+      "settings": "Settings",
+
+      "label_2": "Actions",
+
+      "switch_acc": "Switch accounts",
+      "sign_out": "Sign out"
+    }
+  },
+  "pages": {
+    "index": {
+      "search_placeholder": "Search for anything..."
+    },
+
+    "search": {
+      "search_placeholder": "Search for anything..."
+    }
+  }
+}

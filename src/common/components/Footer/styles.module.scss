@@ -1,0 +1,12 @@
+@use "variables" as vars;
+
+.after_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+}

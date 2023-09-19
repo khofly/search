@@ -1,0 +1,8 @@
+.dialog {
+  border-radius: var(--mantine-radius-lg) !important;
+
+  .dialog_inner {
+    background-color: var(--mantine-color-dark-9);
+    border-radius: var(--mantine-radius-lg);
+  }
+}

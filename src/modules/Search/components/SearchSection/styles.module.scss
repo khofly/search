@@ -1,0 +1,11 @@
+.flex {
+  width: 100%;
+
+  .search_bar {
+    width: 100%;
+  }
+
+  .tab_list::before {
+    border: none !important;
+  }
+}

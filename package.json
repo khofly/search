@@ -1,5 +1,5 @@
 {
-  "name": "search",
+  "name": "@khofly/search",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,14 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.5.6",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
+    "@mantine/core": "^7.0.0",
+    "@mantine/hooks": "^7.0.0",
+    "@mantine/notifications": "^7.0.0",
+    "@mantine/nprogress": "^7.0.0",
+    "@supabase/auth-helpers-nextjs": "^0.8.1",
+    "@supabase/supabase-js": "^2.33.2",
+    "@tabler/icons-react": "^2.34.0",
+    "@tsuvah/core": "^1.8.4",
+    "clsx": "^2.0.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.6.2",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.4.19",
+    "postcss": "^8.4.30",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
+    "sass": "1.67.0",
     "typescript": "5.2.2"
   }
 }

@@ -1,0 +1,10 @@
+@use "functions" as func;
+
+.stack {
+  width: func.to-rem(650px);
+
+  // header padding + logo size + group gap ( SearchSection )
+  margin-left: calc(
+    func.to-rem(100px) + func.to-rem(42px) + var(--mantine-spacing-md)
+  );
+}
