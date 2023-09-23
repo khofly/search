@@ -3,11 +3,11 @@ import React from "react";
 
 import classes from "./styles.module.scss";
 import { IconFileChart } from "@tabler/icons-react";
-import { ITsuvahApp } from "@tsuvah/core";
+import { IKhoflyApp } from "@khofly/core";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import Link from "next/link";
 
-const AppIcon: React.FC<ITsuvahApp> = ({ icon, name, url }) => {
+const AppIcon: React.FC<IKhoflyApp> = ({ icon, name, url }) => {
   return (
     <UnstyledButton className={classes.app_icon}>
       <Link href={url} target="_blank">

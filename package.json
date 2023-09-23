@@ -9,16 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@khofly/core": "^1.8.5",
     "@mantine/core": "^7.0.0",
     "@mantine/hooks": "^7.0.0",
     "@mantine/notifications": "^7.0.0",
     "@mantine/nprogress": "^7.0.0",
     "@supabase/auth-helpers-nextjs": "^0.8.1",
-    "@supabase/supabase-js": "^2.33.2",
-    "@tabler/icons-react": "^2.34.0",
-    "@tsuvah/core": "^1.8.4",
+    "@supabase/supabase-js": "^2.36.0",
+    "@tabler/icons-react": "^2.35.0",
     "clsx": "^2.0.0",
-    "next": "13.4.19",
+    "next": "13.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zustand": "^4.4.1"

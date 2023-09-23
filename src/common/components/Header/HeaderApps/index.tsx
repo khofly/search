@@ -13,7 +13,7 @@ import React from "react";
 import AppIcon from "./components/AppIcon";
 
 import classes from "./styles.module.scss";
-import { TSUVAH_APPS } from "@tsuvah/core";
+import { KHOFLY_APPS } from "@khofly/core";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 const HeaderApps = () => {
@@ -42,7 +42,7 @@ const HeaderApps = () => {
           p="sm"
           spacing="xs"
         >
-          {TSUVAH_APPS.map((app, i) => (
+          {KHOFLY_APPS.map((app, i) => (
             <AppIcon key={i} {...app} />
           ))}
         </SimpleGrid>

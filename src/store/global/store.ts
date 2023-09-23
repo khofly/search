@@ -2,7 +2,7 @@ import { create } from "zustand";
 import contentJson from "public/locales/en.json";
 import { DotNestedKeys } from "@ts/global.types";
 import { getValueByString } from "./translations";
-import { IProfile } from "@tsuvah/core";
+import { IProfile } from "@khofly/core";
 
 export type ITranslations = typeof contentJson;
 

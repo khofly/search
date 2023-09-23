@@ -1,4 +1,4 @@
-<a href="https://docs.fossly.tech">
+<a href="https://docs.khofly.com">
 <p align="center">
     <img height="80" src="./assets/logo.png"/>
 </p>

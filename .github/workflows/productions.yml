@@ -18,6 +18,5 @@
 #           vercel-org-id: ${{ secrets.ORG_ID }}
 #           vercel-project-id: ${{ secrets.PROJECT_ID }}
 #           vercel-project-name: khofly-search
-#           working-directory: ./web
 #           alias-domains: khofly.com
 #           vercel-args: --prod
