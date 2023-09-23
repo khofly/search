@@ -57,6 +57,7 @@ export const metadata: Metadata = {
     "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
   keywords:
     "Khofly, Search, Khofly Search, SearXNG, FOSS, open source, meta search engine",
+  metadataBase: new URL("https://khofly.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
