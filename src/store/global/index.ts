@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import contentJson from "public/locales/en.json";
-import { DotNestedKeys } from "@ts/global.types";
-import { getValueByString } from "./translations";
 import { IProfile } from "@khofly/core";
 
 export type ITranslations = typeof contentJson;
@@ -28,22 +26,4 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
     }),
 }));
 
-export const useTranslations = () => {
-  const content = useGlobalStore((state) => state.content);
-
-  const t = (keysString: DotNestedKeys<ITranslations>, ...args: string[]) => {
-    const label = getValueByString(content, keysString);
-
-    if (args.length) {
-      const formattedContent = label?.replace(/{(\d+)}/g, (match) => {
-        return args[parseInt(match.substring(1, 2))];
-      });
-
-      return formattedContent || "<-- untranslated -->";
-    }
-
-    return label || "<-- untranslated -->";
-  };
-
-  return t;
-};
+export * from "./translations";

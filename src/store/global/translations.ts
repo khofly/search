@@ -1,7 +1,7 @@
 import { DotNestedKeys } from "@ts/global.types";
-import { ITranslations } from "./store";
+import { ITranslations, useGlobalStore } from ".";
 
-export const getValueByString = (
+const getValueByString = (
   obj: ITranslations,
   keyString: DotNestedKeys<ITranslations>
 ): string => {
@@ -18,4 +18,24 @@ export const getValueByString = (
   }
 
   return result;
+};
+
+export const useTranslations = () => {
+  const content = useGlobalStore((state) => state.content);
+
+  const t = (keysString: DotNestedKeys<ITranslations>, ...args: string[]) => {
+    const label = getValueByString(content, keysString);
+
+    if (args.length) {
+      const formattedContent = label?.replace(/{(\d+)}/g, (match) => {
+        return args[parseInt(match.substring(1, 2))];
+      });
+
+      return formattedContent || "<-- untranslated -->";
+    }
+
+    return label || "<-- untranslated -->";
+  };
+
+  return t;
 };

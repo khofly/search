@@ -23,7 +23,7 @@ const HeaderApps = () => {
 
   return (
     <>
-      <ActionIcon onClick={toggle} variant="subtle" size={rem(36)}>
+      <ActionIcon onClick={toggle} variant="subtle" size={rem(36)} mr="md">
         <IconApps style={getIconStyle(28)} />
       </ActionIcon>
 

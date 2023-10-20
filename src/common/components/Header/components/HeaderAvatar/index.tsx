@@ -11,7 +11,7 @@ import {
 } from "@tabler/icons-react";
 
 import Link from "next/link";
-import { useGlobalStore, useTranslations } from "src/store/global/store";
+import { useGlobalStore, useTranslations } from "src/store/global";
 import { useApiAuth } from "src/api/auth/use-api-auth";
 import { getIconStyle } from "@utils/functions/iconStyle";
 

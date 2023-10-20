@@ -1,6 +1,6 @@
 "use client";
 
-import { ActionIcon, TextInput, rem } from "@mantine/core";
+import { ActionIcon, Flex, TextInput, rem } from "@mantine/core";
 import { IconArrowRight, IconKeyboard, IconSearch } from "@tabler/icons-react";
 import React, { useState } from "react";
 
@@ -8,7 +8,7 @@ import classes from "./styles.module.scss";
 import { useDisclosure } from "@mantine/hooks";
 import VirtualKeyboard from "../VirtualKeyboard";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "src/store/global/store";
+import { useTranslations } from "src/store/global";
 import { PRON_SITES } from "@utils/resources/haramData";
 
 import { showNotification } from "@mantine/notifications";
@@ -50,8 +50,9 @@ const SearchBar = () => {
           if (e.code === "Enter") handleSearch();
         }}
         leftSection={<IconSearch style={getIconStyle(24)} stroke={1.5} />}
+        // leftSectionWidth="auto"
         rightSection={
-          <>
+          <Flex align="center" justify="flex-end">
             <ActionIcon
               size={"xl"}
               mr={6}
@@ -69,7 +70,6 @@ const SearchBar = () => {
 
             <ActionIcon
               size={38}
-              mr={6}
               radius="xl"
               color={"blue"}
               variant="filled"
@@ -77,9 +77,9 @@ const SearchBar = () => {
             >
               <IconArrowRight style={getIconStyle(22)} stroke={1.5} />
             </ActionIcon>
-          </>
+          </Flex>
         }
-        rightSectionWidth="auto"
+        rightSectionWidth={100}
       />
 
       {openKeyboard && (

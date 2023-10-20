@@ -6,6 +6,7 @@ import "@styles/base.css";
 
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import AppLayout from "@layout/AppLayout";
 import { THEME_MANTINE } from "@utils/resources/theme";
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_HOST,
+    url: new URL("https://khofly.com"),
     siteName: "Khofly",
     title: "Khofly",
     description:

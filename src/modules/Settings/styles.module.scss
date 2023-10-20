@@ -1,0 +1,20 @@
+@use "variables" as vars;
+
+.settings_page {
+  height: 100%;
+}
+
+.settings_footer {
+  border-top: light-dark(
+    1px solid var(--mantine-color-gray-3),
+    1px solid var(--mantine-color-dark-4)
+  );
+}
+
+.settings_input {
+  width: 40%;
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    width: 100%;
+  }
+}

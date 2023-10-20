@@ -2,7 +2,7 @@
 
 import React from "react";
 import TabSearchResults from "./components/TabSearchResults";
-import { useSearchStore } from "src/store/search/store";
+import { useSearchStore } from "src/store/search";
 import TabMaps from "./components/TabMaps";
 
 const PageSearch = () => {

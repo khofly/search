@@ -11,8 +11,8 @@ const Footer = () => {
       </Text>
 
       <Group gap="sm" justify="flex-end">
-        <Link href="/" target="_blank">
-          <Text>wiki.</Text>
+        <Link href="/wiki">
+          <Text>Wiki</Text>
         </Link>
 
         <Link href="/rewards">

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "src/store/global/store";
+import { useTranslations } from "src/store/global";
 import {
   IconMapPin,
   IconNews,
@@ -16,7 +16,8 @@ import {
   IconWind,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { ISearchTabs, useSearchStore } from "src/store/search/store";
+import { ISearchTabs, useSearchStore } from "src/store/search";
+import Link from "next/link";
 
 const SearchSection = () => {
   const t = useTranslations();
@@ -48,7 +49,9 @@ const SearchSection = () => {
 
   return (
     <Group align="flex-start" h="100%" gap="md">
-      <IconTriangleFilled style={getIconStyle(42)} />
+      <Link href="/">
+        <IconTriangleFilled style={getIconStyle(42)} />
+      </Link>
 
       <Flex
         className={classes.flex}
@@ -87,7 +90,6 @@ const SearchSection = () => {
               </ActionIcon>
             </>
           }
-          rightSectionWidth="auto"
         />
         <Tabs
           classNames={{
@@ -95,7 +97,7 @@ const SearchSection = () => {
           }}
           defaultValue="general"
           value={selectedTab}
-          onChange={(tab: ISearchTabs) => handleChangeTab(tab)}
+          onChange={(tab) => handleChangeTab(tab as ISearchTabs)}
           variant="default"
           w="fit-content"
         >

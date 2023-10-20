@@ -5,7 +5,7 @@ import React from "react";
 import SearchBar from "./components/SearchBar";
 
 import classes from "./styles.module.scss";
-import { useTranslations } from "src/store/global/store";
+import { useTranslations } from "src/store/global";
 
 const PageIndex = () => {
   const t = useTranslations();
