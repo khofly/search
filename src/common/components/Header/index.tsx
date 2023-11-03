@@ -1,7 +1,7 @@
 "use client";
 
 import classes from "./styles.module.scss";
-import { Burger, Button, Flex, Group } from "@mantine/core";
+import { Button, Group } from "@mantine/core";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,8 +10,6 @@ import SearchSection from "@module/Search/components/SearchSection";
 import clsx from "clsx";
 import HeaderApps from "./components/HeaderApps";
 import { useTranslations } from "src/store/global";
-import { IconTriangleFilled } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import HeaderLogo from "./components/HeaderLogo";
 
 interface Props {
@@ -27,12 +25,11 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const isSearch = pathname.startsWith("/search");
   const isWiki = pathname.startsWith("/wiki");
 
-  const currentLocation =
-    typeof window !== "undefined" && window.location.origin;
-
   const authUrl = `${process.env.NEXT_PUBLIC_AUTH_URL}/auth/login?redirectTo=${
-    currentLocation + pathname
-  }${process.env.NODE_ENV === "development" && "&cookieDomain=localhost"}`;
+    process.env.NEXT_PUBLIC_HOST
+  }${pathname}${
+    process.env.NODE_ENV === "development" ? "&cookieDomain=localhost" : ""
+  }`;
 
   return (
     <Group
@@ -61,7 +58,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       <HeaderApps />
 
-      <Link href={authUrl} target="_self">
+      <Link className={classes.auth_button} href={authUrl} target="_self">
         <Button size="sm">{t("header.sign_in")}</Button>
       </Link>
     </Group>

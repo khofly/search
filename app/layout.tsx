@@ -7,13 +7,8 @@ import "@styles/base.css";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
-import AppLayout from "@layout/AppLayout";
-import { THEME_MANTINE } from "@utils/resources/theme";
-import { Notifications } from "@mantine/notifications";
-// import NProgress from "@module/NProgress/NProgress";
-// import { Suspense } from "react";
-// import { NavigationProgress } from "@mantine/nprogress";
+import { ColorSchemeScript } from "@mantine/core";
+import AppLayout from "@layout/index";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -35,17 +30,7 @@ export default function RootLayout({
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body>
-        <MantineProvider theme={THEME_MANTINE} defaultColorScheme="dark">
-          <Notifications />
-
-          {/* <NavigationProgress />
-
-          <Suspense fallback={null}>
-            <NProgress />
-          </Suspense> */}
-
-          <AppLayout>{children}</AppLayout>
-        </MantineProvider>
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   );

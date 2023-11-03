@@ -1,11 +1,8 @@
-import { DotNestedKeys } from "@ts/global.types";
-import { ITranslations, useGlobalStore } from ".";
+import { DotNestedKeys } from '@ts/global.types';
+import { ITranslations, useGlobalStore } from '../index';
 
-const getValueByString = (
-  obj: ITranslations,
-  keyString: DotNestedKeys<ITranslations>
-): string => {
-  const keys = keyString.split(".") as any[];
+const getValueByString = (obj: ITranslations, keyString: DotNestedKeys<ITranslations>): string => {
+  const keys = keyString.split('.') as any[];
 
   let loopObj = obj;
   let result;
@@ -31,10 +28,10 @@ export const useTranslations = () => {
         return args[parseInt(match.substring(1, 2))];
       });
 
-      return formattedContent || "<-- untranslated -->";
+      return formattedContent || '<-- untranslated -->';
     }
 
-    return label || "<-- untranslated -->";
+    return label || '<-- untranslated -->';
   };
 
   return t;

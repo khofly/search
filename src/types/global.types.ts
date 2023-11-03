@@ -2,7 +2,9 @@ export interface IFC {
   children?: React.ReactNode;
 }
 
-export type ILocales = "en" | "de";
+export type ILanguage = "en";
+
+export type IAppTheme = "Mantine" | "Catppuccin-Mocha" | "Rose-Pine" | "Custom";
 
 // For translations
 

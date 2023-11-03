@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 // import useFetch from "../use-fetch";
 // import useAuthCtx from "src/store/auth/use-auth-ctx";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createBrowserClient } from "@supabase/ssr";
 
 export interface AuthDTO {
   email: string;
@@ -31,7 +31,10 @@ export const useApiAuth = () => {
   // const { redirectTo } = useAuthCtx();
 
   // const { fetchData } = useFetch();
-  const supabaseClient = createClientComponentClient();
+  const supabaseClient = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
   const router = useRouter();
 
   const [isLoading, setLoading] = useState(false);

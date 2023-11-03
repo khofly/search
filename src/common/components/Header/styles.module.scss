@@ -1,4 +1,5 @@
 @use "functions" as func;
+@use "variables" as vars;
 
 .header {
   width: 100%;
@@ -13,5 +14,15 @@
   &.header_search {
     align-items: flex-start;
     padding-left: func.to-rem(100px) !important;
+
+    @media (max-width: vars.$mantine-breakpoint-md) {
+      padding-left: var(--mantine-spacing-md) !important;
+    }
+  }
+
+  .auth_button {
+    @media (max-width: vars.$mantine-breakpoint-md) {
+      display: none;
+    }
   }
 }

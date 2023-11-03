@@ -3,11 +3,13 @@ import { IconBrandInstagram, IconBrandLinkedin } from "@tabler/icons-react";
 import Link from "next/link";
 import classes from "./styles.module.scss";
 
+import packageJson from "package.json";
+
 const Footer = () => {
   return (
     <Container size="lg" py="sm" className={classes.after_footer}>
       <Text c="dimmed" size="sm">
-        Copyright something etc.
+        Version {packageJson.version} beta, powered by SearXNG
       </Text>
 
       <Group gap="sm" justify="flex-end">
@@ -17,6 +19,10 @@ const Footer = () => {
 
         <Link href="/rewards">
           <Text>Rewards</Text>
+        </Link>
+
+        <Link href="/changelog">
+          <Text>Changelog</Text>
         </Link>
 
         <Link href="/settings">

@@ -1,3 +1,11 @@
+@use "variables" as vars;
+
+.action_icon {
+  @media (max-width: vars.$mantine-breakpoint-md) {
+    display: none;
+  }
+}
+
 .dialog {
   border-radius: var(--mantine-radius-lg) !important;
 

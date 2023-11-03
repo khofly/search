@@ -23,7 +23,13 @@ const HeaderApps = () => {
 
   return (
     <>
-      <ActionIcon onClick={toggle} variant="subtle" size={rem(36)} mr="md">
+      <ActionIcon
+        className={classes.action_icon}
+        onClick={toggle}
+        variant="subtle"
+        size={rem(36)}
+        mr="md"
+      >
         <IconApps style={getIconStyle(28)} />
       </ActionIcon>
 

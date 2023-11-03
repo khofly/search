@@ -51,6 +51,7 @@ const VirtualKeyboard: React.FC<Props> = ({ value, onChange, toggle }) => {
   const divH = 250;
   const keyGap = 6;
   const keySize = 30;
+  console.log("Rerender");
 
   const pos = useDrag(divRef, divW, divH);
 
@@ -65,7 +66,6 @@ const VirtualKeyboard: React.FC<Props> = ({ value, onChange, toggle }) => {
     if (letter === "space" && isFN) {
       const rgbOpts = ["off", "red", "green", "blue", "auto"] as TypeRGB[];
       const current = rgbOpts.findIndex((v) => v === isRGB);
-      console.log(current);
 
       setFN(false);
       return setRGB(rgbOpts[current === rgbOpts.length - 1 ? 0 : current + 1]);

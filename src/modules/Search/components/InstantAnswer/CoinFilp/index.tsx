@@ -8,38 +8,23 @@ import classes from "./styles.module.scss";
 import { IconCampfireFilled, IconMoodSmileFilled } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import clsx from "clsx";
+import { cryptoRandomNumber } from "@utils/functions/cryptoRandomNumber";
+import { useNonInitialEffect } from "@hooks/use-non-initial-effect";
 
 const CoinFlip = () => {
   const [side, setSide] = useState<"heads" | "tails" | "">("");
   const [counter, setCounter] = useState(1);
 
   const handleToss = () => {
-    // if (spinning) return;
-
     setSide("");
     setCounter(counter + 1);
-
-    // setSide("");
-
-    // setSpinning(true);
-    // const landedOn = Math.round(Math.random());
-    // setSide(landedOn === 0 ? "heads" : "tails");
-
-    // setTimeout(() => {
-    //   setSpinning(false);
-    // }, 3000);
   };
 
-  useEffect(() => {
-    // setSpinning(true);
-    const landedOn = Math.round(Math.random());
+  useNonInitialEffect(() => {
+    if (counter === 1) return;
+
+    const landedOn = cryptoRandomNumber(0, 1);
     setSide(landedOn === 0 ? "heads" : "tails");
-
-    // const timeout = setTimeout(() => {
-    //   setSpinning(false);
-    // }, 3000);
-
-    // return () => clearTimeout(timeout);
   }, [counter]);
 
   return (

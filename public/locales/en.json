@@ -23,6 +23,62 @@
 
     "search": {
       "search_placeholder": "Search for anything..."
+    },
+
+    "changelog": {
+      "title": "Changelog"
+    },
+
+    "settings": {
+      "general": {
+        "title": "General settings",
+
+        "selectLang": "Language select",
+        "selectLangOptions": {
+          "en": "English",
+          "fr": "French",
+          "de": "German"
+        },
+
+        "selectTheme": "Theme select",
+        "selectThemeOptions": {
+          "mantine": "Mantine",
+          "material": "Material",
+          "catppuccin": "Catppuccin",
+          "rosepine": "Rosé Pine",
+          "custom": "Custom"
+        },
+
+        "selectPrimaryColor": "Primary color",
+        "selectPrimaryColorOptions": {
+          "blue": "Blue",
+          "red": "Red",
+          "green": "Green",
+          "yellow": "Yellow",
+          "pink": "Pink",
+          "teal": "Teal"
+        },
+
+        "selectFont": "Font select",
+        "selectFontOptions": {
+          "inter": "Inter",
+          "roboto": "Roboto",
+          "montserrat": "Montserrat",
+          "sourceCodePro": "Source Code Pro"
+        },
+
+        "selectColor": "Color scheme",
+        "selectColorOptions": {
+          "light": "Light",
+          "dark": "Dark"
+        }
+      },
+
+      "theme": {
+        "title": "Customize theme",
+        "description": "Apply current theme changes",
+        "button": "Apply"
+      }
     }
   }
 }

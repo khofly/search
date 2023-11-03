@@ -1,15 +1,15 @@
 "use client";
 
 import { Button, Flex, Group, Paper, Text, TextInput } from "@mantine/core";
-import { IconLink, IconSettings } from "@tabler/icons-react";
-import React, { useState } from "react";
+import { IconLink } from "@tabler/icons-react";
+import React from "react";
 
-import classes from "../styles.module.scss";
+import classes from "../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useSearXNGStore } from "src/store/searxng";
 import { useForm } from "@mantine/form";
 
-const SettingsSearXNGDomain = () => {
+const SettingsSearXNG = () => {
   const { domain, setDomain } = useSearXNGStore((state) => ({
     domain: state.domain,
     setDomain: state.setDomain,
@@ -68,4 +68,4 @@ const SettingsSearXNGDomain = () => {
   );
 };
 
-export default SettingsSearXNGDomain;
+export default SettingsSearXNG;

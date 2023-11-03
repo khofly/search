@@ -1,6 +1,6 @@
 "use client";
 
-import { ActionIcon, Flex, Group, Tabs, TextInput, rem } from "@mantine/core";
+import { ActionIcon, Flex, Group, Image, Tabs, TextInput } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
@@ -13,7 +13,6 @@ import {
   IconPlayerPlay,
   IconSearch,
   IconTriangleFilled,
-  IconWind,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { ISearchTabs, useSearchStore } from "src/store/search";
@@ -26,7 +25,7 @@ const SearchSection = () => {
 
   const { selectedTab, setSelectedTab } = useSearchStore();
 
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState(searchParams.get("q") || "");
 
   const iconSize = 16;
 
@@ -48,14 +47,28 @@ const SearchSection = () => {
   }, [searchParams]);
 
   return (
-    <Group align="flex-start" h="100%" gap="md">
-      <Link href="/">
-        <IconTriangleFilled style={getIconStyle(42)} />
+    <Group
+      className={classes.search_section}
+      align="flex-start"
+      h="100%"
+      gap="md"
+    >
+      <Link className={classes.app_logo} href="/">
+        {searchParams.get("q")?.includes("doge") ? (
+          <Image
+            w={42}
+            h={42}
+            src={"/assets/doge.svg"}
+            alt="Doge image"
+            fit="contain"
+          />
+        ) : (
+          <IconTriangleFilled style={getIconStyle(42)} />
+        )}
       </Link>
 
       <Flex
         className={classes.flex}
-        w={rem(650)}
         direction="column"
         justify="space-between"
         h="100%"
@@ -93,6 +106,7 @@ const SearchSection = () => {
         />
         <Tabs
           classNames={{
+            root: classes.tab_root,
             list: classes.tab_list,
           }}
           defaultValue="general"

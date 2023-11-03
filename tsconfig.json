@@ -12,6 +12,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
       "@icons/*": ["src/icons/*"],
+      "@store/*": ["src/store/*"],
       "@ts/*": ["src/types/*"]
     },
     "allowJs": true,
