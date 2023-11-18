@@ -1,4 +1,4 @@
-<a href="https://docs.khofly.com">
+<a href="https://khofly.com">
 <p align="center">
     <img height="80" src="./assets/logo.png"/>
 </p>
@@ -23,7 +23,7 @@
     <span> · </span>
     <a href="https://discord.gg/mQ68HppVbt">Community</a>
     <span> · </span>
-    <a href="https://wiki.khofly.com">Documentation</a>
+    <a href="https://khofly.com/wiki">Documentation</a>
 </h3>
 
 ## Branches

@@ -41,9 +41,9 @@ const WikiAuthOverview = () => {
         >
           https://auth.khofly.com
         </Text>{" "}
-        ) so that the auth code isn't repeated for every app. To make this work
+        ) so that the auth code isn&apos;t repeated for every app. To make this work
         supabaseClient <Code>cookieOptions.domain</Code> option has to be set to
-        a top level domain, otherwise the session wouldn't be shared.
+        a top level domain, otherwise the session wouldn&apos;t be shared.
       </Text>
 
       <Text mt="md">

@@ -1,11 +1,13 @@
-import { Divider, Flex, Paper, Stack, Text } from "@mantine/core";
+import { Divider, Flex, Paper, Stack, Text, Tooltip } from "@mantine/core";
 
 import LanguageSelect from "./LanguageSelect/LanguageSelect";
 import ThemeSelect from "./ThemeSelect/ThemeSelect";
 import ColorSchemeSwitch from "./ColorThemeSwitch/ColorThemeSwitch";
 
-import { IconSettings } from "@tabler/icons-react";
+import { IconInfoCircle, IconSettings } from "@tabler/icons-react";
 import { useTranslations } from "@store/global";
+import FaviconSwitch from "./FaviconSwitch";
+import { getIconStyle } from "@utils/functions/iconStyle";
 
 const SettingsGeneral = () => {
   const translate = useTranslations();
@@ -28,7 +30,7 @@ const SettingsGeneral = () => {
           align="center"
           justify="space-between"
         >
-          <Text size="md" fw={400} mb={6}>
+          <Text size="md" fw={400}>
             {translate("pages.settings.general.selectLang")}
           </Text>
 
@@ -43,7 +45,7 @@ const SettingsGeneral = () => {
           align="center"
           justify="space-between"
         >
-          <Text size="md" fw={400} mb={6}>
+          <Text size="md" fw={400}>
             {translate("pages.settings.general.selectTheme")}
           </Text>
           <ThemeSelect />
@@ -57,10 +59,31 @@ const SettingsGeneral = () => {
           align="center"
           justify="space-between"
         >
-          <Text size="md" fw={400} mb={6}>
+          <Text size="md" fw={400}>
             {translate("pages.settings.general.selectColor")}
           </Text>
           <ColorSchemeSwitch />
+        </Flex>
+
+        <Divider my="sm" w="100%" />
+
+        <Flex
+          w="100%"
+          direction={{ base: "column", sm: "row" }}
+          align="center"
+          justify="space-between"
+        >
+          <Flex align="center" gap="sm">
+            <Text size="md" fw={400}>
+              {translate("pages.settings.general.toggleFavicon")}
+            </Text>
+
+            <Tooltip label="This will ping DuckDuckGo's favicon service, a lot">
+              <IconInfoCircle style={getIconStyle(20)} />
+            </Tooltip>
+          </Flex>
+
+          <FaviconSwitch />
         </Flex>
       </Stack>
     </Paper>

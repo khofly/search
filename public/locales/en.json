@@ -71,7 +71,9 @@
         "selectColorOptions": {
           "light": "Light",
           "dark": "Dark"
-        }
+        },
+
+        "toggleFavicon": "Display website favicon"
       },
 
       "theme": {

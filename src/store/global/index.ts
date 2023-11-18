@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import contentJson from "public/locales/en.json";
-import { IProfile } from "@khofly/core";
+import { IProfile, ITiers } from "@khofly/core";
 import { IAppTheme } from "@ts/global.types";
 
 export type ITranslations = typeof contentJson;
@@ -10,12 +10,19 @@ interface GlobalState {
   profile: IProfile | null;
   setProfile: (profile: IProfile | null) => void;
 
-  language: "rs" | "en";
+  tier: ITiers;
+  loadingTier: boolean;
+  setTier: (profile: ITiers) => void;
+
+  language: "en";
   content: ITranslations; // Content fetched from public/locales
   changeLanguage: (locale: "en") => void;
 
   appTheme: IAppTheme;
   setAppTheme: (theme: IAppTheme) => void;
+
+  displayFavicon: boolean;
+  setDisplayFavicon: (next: boolean) => void;
 }
 
 export const useGlobalStore = create<GlobalState>()(
@@ -23,6 +30,10 @@ export const useGlobalStore = create<GlobalState>()(
     (set) => ({
       profile: null,
       setProfile: (profile) => set({ profile }),
+
+      tier: 1,
+      loadingTier: true,
+      setTier: (tier) => set({ tier, loadingTier: false }),
 
       language: "en",
       content: require(`../../../public/locales/en.json`),
@@ -34,6 +45,9 @@ export const useGlobalStore = create<GlobalState>()(
 
       appTheme: "Mantine",
       setAppTheme: (appTheme) => set({ appTheme }),
+
+      displayFavicon: false,
+      setDisplayFavicon: (displayFavicon) => set({ displayFavicon }),
     }),
     {
       name: "global-store", // name of the item in the storage (must be unique)
@@ -41,6 +55,7 @@ export const useGlobalStore = create<GlobalState>()(
         profile: state.profile,
         language: state.language,
         appTheme: state.appTheme,
+        displayFavicon: state.displayFavicon,
       }),
     }
   )

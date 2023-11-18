@@ -4,7 +4,7 @@ import React from "react";
 import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconSearch, IconSettings } from "@tabler/icons-react";
+import { IconLink, IconSearch, IconSettings } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
 import SettingsTheme from "./components/Theme";
@@ -21,10 +21,16 @@ const PageSettings = () => {
             General
           </Tabs.Tab>
           <Tabs.Tab
-            value="searxng"
+            value="instance"
+            leftSection={<IconLink style={getIconStyle(20)} />}
+          >
+            Instance
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="engines"
             leftSection={<IconSearch style={getIconStyle(20)} />}
           >
-            SearXNG
+            Engines
           </Tabs.Tab>
         </Tabs.List>
 
@@ -35,7 +41,13 @@ const PageSettings = () => {
           </>
         </Tabs.Panel>
 
-        <Tabs.Panel value="searxng">
+        <Tabs.Panel value="instance">
+          <>
+            <SettingsSearXNG />
+          </>
+        </Tabs.Panel>
+
+        <Tabs.Panel value="engines">
           <>
             <SettingsSearXNG />
           </>

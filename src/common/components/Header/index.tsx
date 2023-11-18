@@ -1,7 +1,7 @@
 "use client";
 
 import classes from "./styles.module.scss";
-import { Button, Group } from "@mantine/core";
+import { Anchor, Button, Group } from "@mantine/core";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,8 +9,9 @@ import React from "react";
 import SearchSection from "@module/Search/components/SearchSection";
 import clsx from "clsx";
 import HeaderApps from "./components/HeaderApps";
-import { useTranslations } from "src/store/global";
+import { useGlobalStore, useTranslations } from "src/store/global";
 import HeaderLogo from "./components/HeaderLogo";
+import HeaderAvatar from "./components/HeaderAvatar";
 
 interface Props {
   openNavbar: boolean;
@@ -21,14 +22,18 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const t = useTranslations();
   const pathname = usePathname();
 
+  const { profile } = useGlobalStore((state) => ({ profile: state.profile }));
+
+  const isChangelog = pathname.startsWith("/changelog");
   const isSettings = pathname.startsWith("/settings");
+  const isRewards = pathname.startsWith("/rewards");
   const isSearch = pathname.startsWith("/search");
   const isWiki = pathname.startsWith("/wiki");
 
   const authUrl = `${process.env.NEXT_PUBLIC_AUTH_URL}/auth/login?redirectTo=${
     process.env.NEXT_PUBLIC_HOST
-  }${pathname}${
-    process.env.NODE_ENV === "development" ? "&cookieDomain=localhost" : ""
+  }${pathname}&cookieDomain=${
+    process.env.NODE_ENV === "development" ? "127.0.0.1" : "khofly.com"
   }`;
 
   return (
@@ -45,8 +50,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {/* Header: /search?q= */}
       {isSearch && <SearchSection />}
 
-      {/* Header: /wiki, /settings */}
-      {(isWiki || isSettings) && (
+      {/* Header: /wiki, /settings, /rewards, /changelog */}
+      {(isWiki || isSettings || isChangelog || isRewards) && (
         <HeaderLogo
           hasBurger={isWiki}
           openNavbar={openNavbar}
@@ -58,9 +63,13 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       <HeaderApps />
 
-      <Link className={classes.auth_button} href={authUrl} target="_self">
-        <Button size="sm">{t("header.sign_in")}</Button>
-      </Link>
+      {profile ? (
+        <HeaderAvatar />
+      ) : (
+        <Anchor href={authUrl} target="_self">
+          <Button size="sm">{t("header.sign_in")}</Button>
+        </Anchor>
+      )}
     </Group>
   );
 };

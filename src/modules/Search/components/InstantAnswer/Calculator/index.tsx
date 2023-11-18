@@ -119,7 +119,7 @@ const Calculator = () => {
   };
 
   return (
-    <IAWrapper>
+    <>
       <Paper p="xs" w="100%" h={100}>
         <Flex h="100%" justify="flex-end" align="flex-end" direction="column">
           <Text
@@ -163,7 +163,7 @@ const Calculator = () => {
           ))}
         </Grid>
       ))}
-    </IAWrapper>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TabSearchResults from "./components/TabSearchResults";
+import TabGeneral from "./components/TabGeneral";
 import { useSearchStore } from "src/store/search";
 import TabMaps from "./components/TabMaps";
 import TabImages from "./components/TabImages";
@@ -13,7 +13,7 @@ const PageSearch = () => {
 
   // Render tab
   const renderTab = {
-    general: <TabSearchResults />,
+    general: <TabGeneral />,
     images: <TabImages />,
     videos: <TabVideos />,
     news: <TabNews />,

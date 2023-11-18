@@ -16,6 +16,8 @@ import { getMantineTheme } from "@utils/resources/mantineTheme";
 import { useGlobalStore } from "@store/global";
 import { NavigationProgress } from "@mantine/nprogress";
 import NProgress from "@module/NProgress";
+import { useApiProfile } from "src/api/profile/use-api-profile";
+import { useApiTier } from "src/api/tier/use-api-tier";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
@@ -27,13 +29,18 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const pathname = usePathname();
 
   // Adjust layout for pages
-  const isSettings = pathname.startsWith("/settings");
   const isSearch = pathname.startsWith("/search");
   const isWiki = pathname.startsWith("/wiki");
+
+  const isIndex = pathname === "/";
 
   const isFooterOffset = isSearch || isWiki;
 
   const headerHeight = isSearch ? 100 : 70;
+
+  // Updates profile on session change
+  useApiProfile();
+  useApiTier();
 
   return (
     <MantineProvider
@@ -81,7 +88,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           </AppShell.Navbar>
         )}
 
-        {!isSearch && !isWiki && !isSettings && (
+        {isIndex && (
           <AppShell.Footer>
             <Footer />
           </AppShell.Footer>

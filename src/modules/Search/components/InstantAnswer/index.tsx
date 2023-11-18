@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 
 import { Divider, Flex, Stack, Text, Transition } from "@mantine/core";
 import { IFC } from "@ts/global.types";
@@ -11,9 +11,16 @@ import Calculator from "./Calculator";
 import { IconSelector } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
-export const IAWrapper: React.FC<IFC> = ({ children }) => {
-  const [visible, setVisible] = useState(true);
+interface IAProps extends IFC {
+  visible: boolean;
+  setVisible: Dispatch<boolean>;
+}
 
+export const IAWrapper: React.FC<IAProps> = ({
+  visible,
+  setVisible,
+  children,
+}) => {
   return (
     <Stack pt={visible ? "lg" : 0} gap={0}>
       <Transition transition="scale-y" duration={300} mounted={visible}>
@@ -44,16 +51,26 @@ export const IAWrapper: React.FC<IFC> = ({ children }) => {
 };
 
 const InstantAnswer = () => {
+  const [visible, setVisible] = useState(true);
+
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
 
+  let instantAnswer = null;
+
   // Instant answer - Calculator WIP
-  if (query?.toLowerCase().includes("calculator")) return <Calculator />;
+  if (query?.toLowerCase().includes("calculator"))
+    instantAnswer = <Calculator />;
 
   // Instant answer - CoinFlip
-  if (query?.toLowerCase().includes("coin flip")) return <CoinFlip />;
+  if (query?.toLowerCase().includes("coin flip"))
+    instantAnswer = <CoinFlip visible={visible} />;
 
-  return null;
+  return instantAnswer ? (
+    <IAWrapper visible={visible} setVisible={setVisible}>
+      {instantAnswer}
+    </IAWrapper>
+  ) : null;
 };
 
 export default InstantAnswer;

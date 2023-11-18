@@ -1,6 +1,14 @@
 "use client";
 
-import { Button, Flex, Group, Paper, Text, TextInput } from "@mantine/core";
+import {
+  Button,
+  Flex,
+  Group,
+  Paper,
+  Text,
+  TextInput,
+  useMantineTheme,
+} from "@mantine/core";
 import { IconLink } from "@tabler/icons-react";
 import React from "react";
 
@@ -8,6 +16,7 @@ import classes from "../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useSearXNGStore } from "src/store/searxng";
 import { useForm } from "@mantine/form";
+import Link from "next/link";
 
 const SettingsSearXNG = () => {
   const { domain, setDomain } = useSearXNGStore((state) => ({
@@ -24,6 +33,8 @@ const SettingsSearXNG = () => {
         /^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL",
     },
   });
+
+  const theme = useMantineTheme();
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
@@ -58,7 +69,10 @@ const SettingsSearXNG = () => {
         >
           <Text c="dimmed">
             Change this to your own url for better privacy & less load for
-            default instance
+            default instance.{" "}
+            <Link href={"/wiki/search/searxng"} color={theme.colors.blue["6"]}>
+              Read more
+            </Link>
           </Text>
 
           <Button type="submit">Save</Button>

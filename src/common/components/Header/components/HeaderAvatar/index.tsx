@@ -1,7 +1,6 @@
 "use client";
 
 import { Avatar, Flex, Group, Menu, Text } from "@mantine/core";
-import { useRouter } from "next/router";
 
 import {
   IconRefresh,
@@ -14,28 +13,28 @@ import Link from "next/link";
 import { useGlobalStore, useTranslations } from "src/store/global";
 import { useApiAuth } from "src/api/auth/use-api-auth";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { usePathname } from "next/navigation";
 
 const HeaderAvatar = () => {
   const t = useTranslations();
   const { profile } = useGlobalStore();
   const { auth_signOut } = useApiAuth();
-  const router = useRouter();
+  const pathname = usePathname();
 
   const avatarUrl = profile?.avatar_url;
   const username = profile?.display_name;
 
-  const currentLocation =
-    typeof window !== "undefined" && window.location.origin;
-
   const authUrl = `${process.env.NEXT_PUBLIC_AUTH_URL}/auth/login?redirectTo=${
-    currentLocation + router.asPath
-  }${process.env.NODE_ENV === "development" ? "&cookieDomain=localhost" : ""}`;
+    process.env.NEXT_PUBLIC_HOST
+  }${pathname}&cookieDomain=${
+    process.env.NODE_ENV === "development" ? "localhost" : "khofly.com"
+  }`;
 
   const profileUrl = process.env.NEXT_PUBLIC_AUTH_URL + "/user";
 
-  const handleOpenAuth = () => {
-    window.location.replace(authUrl);
-  };
+  // const handleOpenAuth = () => {
+  //   window.location.replace(authUrl);
+  // };
 
   const handleLogOut = () => {
     auth_signOut();

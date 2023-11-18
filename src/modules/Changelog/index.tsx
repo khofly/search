@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 const getChangelogData = async () => {
   const envUrl =
     process.env.NODE_ENV === "production"
-      ? "https://raw.githubusercontent.com/khofly/search/master/web/CHANGELOG.md"
-      : "https://raw.githubusercontent.com/khofly/search/staging/web/CHANGELOG.md";
+      ? "https://raw.githubusercontent.com/khofly/search/master/CHANGELOG.md"
+      : "https://raw.githubusercontent.com/khofly/search/staging/CHANGELOG.md";
 
   const data = await fetch(envUrl);
 
