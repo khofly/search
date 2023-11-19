@@ -4,7 +4,7 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 import { AppShell, MantineProvider } from "@mantine/core";
 import { IFC } from "@ts/global.types";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import { usePathname } from "next/navigation";
@@ -18,12 +18,17 @@ import { NavigationProgress } from "@mantine/nprogress";
 import NProgress from "@module/NProgress";
 import { useApiProfile } from "src/api/profile/use-api-profile";
 import { useApiTier } from "src/api/tier/use-api-tier";
+import { useSearchStore } from "@store/search";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
   const { appTheme } = useGlobalStore((state) => ({
     appTheme: state.appTheme,
+  }));
+
+  const { resetVisitedLinks } = useSearchStore((state) => ({
+    resetVisitedLinks: state.resetVisitedLinks,
   }));
 
   const pathname = usePathname();
@@ -41,6 +46,12 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   // Updates profile on session change
   useApiProfile();
   useApiTier();
+
+  useEffect(() => {
+    if (!["/search"].includes(pathname)) {
+      resetVisitedLinks();
+    }
+  }, [pathname]);
 
   return (
     <MantineProvider

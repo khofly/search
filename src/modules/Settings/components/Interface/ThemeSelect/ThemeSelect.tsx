@@ -13,22 +13,22 @@ interface ILangData {
 
 const THEME_DATA: ILangData[] = [
   {
-    label: "pages.settings.general.selectThemeOptions.mantine",
+    label: "pages.settings.interface.selectThemeOptions.mantine",
     value: "Mantine",
     image: "/assets/mantine.png",
   },
   {
-    label: "pages.settings.general.selectThemeOptions.catppuccin",
+    label: "pages.settings.interface.selectThemeOptions.catppuccin",
     value: "Catppuccin-Mocha",
     image: "/assets/catppuccin.png",
   },
   {
-    label: "pages.settings.general.selectThemeOptions.rosepine",
+    label: "pages.settings.interface.selectThemeOptions.rosepine",
     value: "Rose-Pine",
     image: "/assets/rosepine.png",
   },
   {
-    label: "pages.settings.general.selectThemeOptions.custom",
+    label: "pages.settings.interface.selectThemeOptions.custom",
     value: "Custom",
     image: "/assets/doge.svg",
   },
@@ -59,7 +59,6 @@ const ThemeSelect = () => {
       {translate(item.label)}
     </Combobox.Option>
   ));
-
 
   return (
     <Combobox

@@ -1,3 +1,11 @@
 .search_bar {
-  width: 60%;
+  // width: 60%;
+  max-width: 650px;
+  width: 100%;
+}
+
+.autocomplete_menu {
+  // width: 60%;
+  max-width: 650px;
+  width: calc(100% - 32px) !important;
 }

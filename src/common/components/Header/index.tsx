@@ -12,6 +12,7 @@ import HeaderApps from "./components/HeaderApps";
 import { useGlobalStore, useTranslations } from "src/store/global";
 import HeaderLogo from "./components/HeaderLogo";
 import HeaderAvatar from "./components/HeaderAvatar";
+import HeaderSettings from "./components/HeaderSettings";
 
 interface Props {
   openNavbar: boolean;
@@ -60,6 +61,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       )}
 
       <div className={classes.divider}></div>
+
+      {isSearch && <HeaderSettings />}
 
       <HeaderApps />
 

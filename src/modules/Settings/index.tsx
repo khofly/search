@@ -4,19 +4,33 @@ import React from "react";
 import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconLink, IconSearch, IconSettings } from "@tabler/icons-react";
+import {
+  IconBrush,
+  IconLink,
+  IconSearch,
+  IconSettings2,
+} from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
 import SettingsTheme from "./components/Theme";
+import SettingsInterface from "./components/Interface";
+import SettingsEnginesSearch from "./components/EnginesSearch";
+import SettingsEnginesImages from "./components/EnginesImages";
 
 const PageSettings = () => {
   return (
     <Container className={classes.settings_page} size="lg" py={80}>
-      <Tabs variant="default" defaultValue="general">
+      <Tabs variant="default" defaultValue="interface">
         <Tabs.List mb="lg">
           <Tabs.Tab
+            value="interface"
+            leftSection={<IconBrush style={getIconStyle(20)} />}
+          >
+            Interface
+          </Tabs.Tab>
+          <Tabs.Tab
             value="general"
-            leftSection={<IconSettings style={getIconStyle(20)} />}
+            leftSection={<IconSettings2 style={getIconStyle(20)} />}
           >
             General
           </Tabs.Tab>
@@ -34,10 +48,16 @@ const PageSettings = () => {
           </Tabs.Tab>
         </Tabs.List>
 
+        <Tabs.Panel value="interface">
+          <>
+            <SettingsInterface />
+            <SettingsTheme />
+          </>
+        </Tabs.Panel>
+
         <Tabs.Panel value="general">
           <>
             <SettingsGeneral />
-            <SettingsTheme />
           </>
         </Tabs.Panel>
 
@@ -49,7 +69,8 @@ const PageSettings = () => {
 
         <Tabs.Panel value="engines">
           <>
-            <SettingsSearXNG />
+            <SettingsEnginesSearch />
+            <SettingsEnginesImages />
           </>
         </Tabs.Panel>
       </Tabs>

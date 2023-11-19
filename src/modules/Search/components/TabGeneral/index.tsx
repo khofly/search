@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InstantAnswer from "../InstantAnswer";
 import SearchResultRow from "./components/SearchResultRow";
 import { Stack, Text } from "@mantine/core";
@@ -18,6 +18,8 @@ const TabGeneral = () => {
       searchParams.get("q") || "",
       "general"
     );
+
+  const [page, setPage] = useState(1);
 
   // Trigger search when query changes
   useEffect(() => {

@@ -30,8 +30,8 @@
     },
 
     "settings": {
-      "general": {
-        "title": "General settings",
+      "interface": {
+        "title": "User interface",
 
         "selectLang": "Language select",
         "selectLangOptions": {
@@ -71,15 +71,38 @@
         "selectColorOptions": {
           "light": "Light",
           "dark": "Dark"
-        },
+        }
+      },
 
-        "toggleFavicon": "Display website favicon"
+      "general": {
+        "title": "General settings",
+
+        "toggleFavicon": "Display website favicon",
+
+        "toggleAutocomplete": "Enable search autocomplete",
+        "autocompleteEngineGoogle": "Google",
+        "autocompleteEngineDDG": "DuckDuckGo"
       },
 
       "theme": {
         "title": "Customize theme",
         "description": "Apply current theme changes",
         "button": "Apply"
+      },
+
+      "engines": {
+        "title": "Search engines",
+
+        "engineGoogle": "Google",
+        "engineDDG": "DuckDuckGo",
+        "engineQwant": "Qwant",
+        "engineBrave": "Brave",
+
+        "titleImg": "Image engines",
+
+        "engineGoogleImg": "Google images",
+        "engineDDGImg": "DuckDuckGo images",
+        "engineQwantImg": "Qwant images"
       }
     }
   }

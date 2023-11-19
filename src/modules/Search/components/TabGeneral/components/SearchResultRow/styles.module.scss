@@ -16,6 +16,20 @@
     border-radius: 6px;
   }
 
+  .text_title {
+    color: light-dark(
+      var(--mantine-color-indigo-9),
+      var(--mantine-color-white)
+    );
+
+    &.text_title_visited {
+      color: light-dark(
+        var(--mantine-color-red-9),
+        var(--mantine-color-dark-1)
+      );
+    }
+  }
+
   &:hover {
     .text_title {
       text-decoration: underline;

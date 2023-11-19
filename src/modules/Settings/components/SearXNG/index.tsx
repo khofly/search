@@ -70,9 +70,9 @@ const SettingsSearXNG = () => {
           <Text c="dimmed">
             Change this to your own url for better privacy & less load for
             default instance.{" "}
-            <Link href={"/wiki/search/searxng"} color={theme.colors.blue["6"]}>
-              Read more
-            </Link>
+            <Text component="span" c="blue">
+              <Link href={"/wiki/search/searxng"}>Read more</Link>
+            </Text>
           </Text>
 
           <Button type="submit">Save</Button>

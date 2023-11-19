@@ -23,11 +23,11 @@ interface ILangData {
 
 const LANG_DATA: ILangData[] = [
   {
-    label: "pages.settings.general.selectLangOptions.en",
+    label: "pages.settings.interface.selectLangOptions.en",
     value: "en",
     icon: USFlag,
   },
-  // { label: "pages.settings.general.selectLangOptions.de", value: 'de', icon: DEFlag },
+  // { label: "pages.settings.interface.selectLangOptions.de", value: 'de', icon: DEFlag },
 ];
 
 const LanguageSelect = () => {

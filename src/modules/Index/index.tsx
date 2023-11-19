@@ -21,7 +21,6 @@ const PageIndex = () => {
         >
           <Title size="5.5rem" mb="xl">
             {t("_common.app_name")}
-            {/* Hebrew - khofesh */}
           </Title>
 
           <SearchBar />

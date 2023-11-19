@@ -20,9 +20,6 @@ interface GlobalState {
 
   appTheme: IAppTheme;
   setAppTheme: (theme: IAppTheme) => void;
-
-  displayFavicon: boolean;
-  setDisplayFavicon: (next: boolean) => void;
 }
 
 export const useGlobalStore = create<GlobalState>()(
@@ -45,9 +42,6 @@ export const useGlobalStore = create<GlobalState>()(
 
       appTheme: "Mantine",
       setAppTheme: (appTheme) => set({ appTheme }),
-
-      displayFavicon: false,
-      setDisplayFavicon: (displayFavicon) => set({ displayFavicon }),
     }),
     {
       name: "global-store", // name of the item in the storage (must be unique)
@@ -55,7 +49,6 @@ export const useGlobalStore = create<GlobalState>()(
         profile: state.profile,
         language: state.language,
         appTheme: state.appTheme,
-        displayFavicon: state.displayFavicon,
       }),
     }
   )
