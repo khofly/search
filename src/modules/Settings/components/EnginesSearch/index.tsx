@@ -109,7 +109,12 @@ const SettingsEnginesSearch = () => {
           justify="space-between"
         >
           <Flex align="center" gap="sm">
-            <Image src={"/assets/bi.svg"} w={20} h={20} alt="Bing logo" />
+            <Image
+              src={"/assets/bing-icon.svg"}
+              w={20}
+              h={20}
+              alt="Bing logo"
+            />
 
             <Text size="md" fw={400}>
               {translate("pages.settings.engines.engineBing")}
