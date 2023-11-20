@@ -1,7 +1,7 @@
 @use "variables" as vars;
 
 .action_icon {
-  @media (max-width: vars.$mantine-breakpoint-md) {
+  @media (max-width: calc(vars.$mantine-breakpoint-md + 50px)) {
     display: none;
   }
 }

@@ -5,6 +5,7 @@ import { useTranslations } from "@store/global";
 import FaviconSwitch from "./FaviconSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
+import NewTabSwitch from "./NewTabSwitch";
 
 const SettingsGeneral = () => {
   const translate = useTranslations();
@@ -53,6 +54,21 @@ const SettingsGeneral = () => {
           </Text>
 
           <AutocompleteSwitch />
+        </Flex>
+
+        <Divider my="sm" w="100%" />
+
+        <Flex
+          w="100%"
+          direction={{ base: "column", sm: "row" }}
+          align="center"
+          justify="space-between"
+        >
+          <Text size="md" fw={400}>
+            {translate("pages.settings.general.openInNewTabToggle")}
+          </Text>
+
+          <NewTabSwitch />
         </Flex>
       </Stack>
     </Paper>

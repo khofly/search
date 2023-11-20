@@ -81,7 +81,9 @@
 
         "toggleAutocomplete": "Enable search autocomplete",
         "autocompleteEngineGoogle": "Google",
-        "autocompleteEngineDDG": "DuckDuckGo"
+        "autocompleteEngineDDG": "DuckDuckGo",
+
+        "openInNewTabToggle": "Open links in new tab"
       },
 
       "theme": {
@@ -96,6 +98,7 @@
         "engineGoogle": "Google",
         "engineDDG": "DuckDuckGo",
         "engineQwant": "Qwant",
+        "engineBing": "Bing",
         "engineBrave": "Brave",
 
         "titleImg": "Image engines",

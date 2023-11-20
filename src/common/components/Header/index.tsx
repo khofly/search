@@ -69,7 +69,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {profile ? (
         <HeaderAvatar />
       ) : (
-        <Anchor href={authUrl} target="_self">
+        <Anchor className={classes.auth_button} href={authUrl} target="_self">
           <Button size="sm">{t("header.sign_in")}</Button>
         </Anchor>
       )}

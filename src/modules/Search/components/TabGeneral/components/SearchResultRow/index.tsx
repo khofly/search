@@ -15,20 +15,24 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   url,
   parsed_url,
   content,
+  engines,
 }) => {
   const { displayFavicon } = useSearchStore((state) => ({
     displayFavicon: state.displayFavicon,
   }));
 
-  const { visitedLinks, updateVisitedLinks } = useSearchStore((state) => ({
-    visitedLinks: state.visitedLinks,
-    updateVisitedLinks: state.updateVisitedLinks,
-  }));
+  const { visitedLinks, updateVisitedLinks, openInNewTab } = useSearchStore(
+    (state) => ({
+      visitedLinks: state.visitedLinks,
+      updateVisitedLinks: state.updateVisitedLinks,
+      openInNewTab: state.openInNewTab,
+    })
+  );
 
   return (
     <Anchor
       href={url}
-      target="_self"
+      target={openInNewTab ? "_blank" : "_self"}
       onClick={() => updateVisitedLinks(url)}
       rel="noreferrer noopener"
     >
@@ -44,25 +48,10 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
             />
           )}
 
-          <Flex align="center" gap={2}>
-            <Text size="xs">
-              {parsed_url[0]}://{parsed_url[1]}
-            </Text>
-            {
-              parsed_url[2].split("/").map(
-                (str, i) =>
-                  str.length !== 0 && (
-                    <>
-                      <Text size="xs">{str}</Text>
-                      {parsed_url[2].split("/").length !== i + 1 && (
-                        <IconChevronRight style={getIconStyle(12)} />
-                      )}
-                    </>
-                  )
-              )
-              // parsed_url[2].map((str) => (str))
-            }
-          </Flex>
+          <Text size="xs">
+            {parsed_url[0]}://{parsed_url[1]}
+            {parsed_url[2]}
+          </Text>
         </Flex>
 
         {/* Website title */}
@@ -80,6 +69,10 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
         {/* Website description */}
         <Text size="sm" c="dimmed">
           {content}
+        </Text>
+
+        <Text size="xs" c="dimmed" ta="right">
+          {engines.join(", ")}
         </Text>
       </Flex>
     </Anchor>
