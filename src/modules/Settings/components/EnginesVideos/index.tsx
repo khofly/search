@@ -8,37 +8,37 @@ import {
   Text,
 } from "@mantine/core";
 import { useTranslations } from "@store/global";
-import { IImagesEngines, useSearchStore } from "@store/search";
-import { IconPhoto } from "@tabler/icons-react";
+import { IVideosEngines, useSearchStore } from "@store/search";
+import { IconPlayerPlay } from "@tabler/icons-react";
 import React from "react";
 
-const SettingsEnginesImages = () => {
+const SettingsEnginesVideos = () => {
   const translate = useTranslations();
 
-  const { enginesImages, setEnginesImages } = useSearchStore((state) => ({
-    enginesImages: state.enginesImages,
-    setEnginesImages: state.setEnginesImages,
+  const { enginesVideos, setEnginesVideos } = useSearchStore((state) => ({
+    enginesVideos: state.enginesVideos,
+    setEnginesVideos: state.setEnginesVideos,
   }));
 
-  const handleChangeEngines = (e: IImagesEngines, next: boolean) => {
+  const handleChangeEngines = (e: IVideosEngines, next: boolean) => {
     let newEngines = [];
 
     if (next) {
-      newEngines = [...enginesImages, e];
+      newEngines = [...enginesVideos, e];
     } else {
-      newEngines = enginesImages.filter((eng) => eng !== e);
+      newEngines = enginesVideos.filter((eng) => eng !== e);
     }
 
-    setEnginesImages(newEngines);
+    setEnginesVideos(newEngines);
   };
 
   return (
     <Paper radius="md" mt={60} withBorder>
       <Flex align="center" p="lg" mb={16}>
-        <IconPhoto size={32} />
+        <IconPlayerPlay size={32} />
 
         <Text fz={26} fw={600} ml="sm">
-          {translate("pages.settings.engines.titleImg")}
+          {translate("pages.settings.engines.titleVid")}
         </Text>
       </Flex>
 
@@ -59,12 +59,12 @@ const SettingsEnginesImages = () => {
             />
 
             <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineGoogleImg")}
+              {translate("pages.settings.engines.engineGoogleVid")}
             </Text>
           </Flex>
 
           <Switch
-            checked={!!enginesImages.find((e) => e === "google")}
+            checked={!!enginesVideos.find((e) => e === "google")}
             onChange={(e) =>
               handleChangeEngines("google", e.currentTarget.checked)
             }
@@ -88,12 +88,12 @@ const SettingsEnginesImages = () => {
             />
 
             <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineDDGImg")}
+              {translate("pages.settings.engines.engineDDGVid")}
             </Text>
           </Flex>
 
           <Switch
-            checked={!!enginesImages.find((e) => e === "duckduckgo")}
+            checked={!!enginesVideos.find((e) => e === "duckduckgo")}
             onChange={(e) =>
               handleChangeEngines("duckduckgo", e.currentTarget.checked)
             }
@@ -117,12 +117,12 @@ const SettingsEnginesImages = () => {
             />
 
             <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineQwantImg")}
+              {translate("pages.settings.engines.engineQwantVid")}
             </Text>
           </Flex>
 
           <Switch
-            checked={!!enginesImages.find((e) => e === "qwant")}
+            checked={!!enginesVideos.find((e) => e === "qwant")}
             onChange={(e) =>
               handleChangeEngines("qwant", e.currentTarget.checked)
             }
@@ -133,4 +133,4 @@ const SettingsEnginesImages = () => {
   );
 };
 
-export default SettingsEnginesImages;
+export default SettingsEnginesVideos;

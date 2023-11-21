@@ -105,7 +105,13 @@
 
         "engineGoogleImg": "Google images",
         "engineDDGImg": "DuckDuckGo images",
-        "engineQwantImg": "Qwant images"
+        "engineQwantImg": "Qwant images",
+
+        "titleVid": "Video engines",
+
+        "engineGoogleVid": "Google videos",
+        "engineDDGVid": "DuckDuckGo videos",
+        "engineQwantVid": "Qwant videos"
       }
     }
   }

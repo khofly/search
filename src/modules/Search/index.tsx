@@ -2,14 +2,15 @@
 
 import React from "react";
 import TabGeneral from "./components/TabGeneral";
-import { useSearchStore } from "src/store/search";
 import TabMaps from "./components/TabMaps";
 import TabImages from "./components/TabImages";
 import TabVideos from "./components/TabVideos";
 import TabNews from "./components/TabNews";
+import { useSearchParams } from "next/navigation";
 
 const PageSearch = () => {
-  const { selectedTab } = useSearchStore();
+  const searchParams = useSearchParams();
+  const selectedTab = searchParams.get("tab") || "general";
 
   // Render tab
   const renderTab = {

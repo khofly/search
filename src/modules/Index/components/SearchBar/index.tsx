@@ -51,7 +51,7 @@ const SearchBar = () => {
     // Prevent empty search
     if (!query.length) return;
 
-    router.push(`/search?q=${query}`);
+    router.push(`/search?q=${encodeURIComponent(query)}`);
   };
 
   useEffect(() => {

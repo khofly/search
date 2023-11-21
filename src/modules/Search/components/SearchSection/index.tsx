@@ -32,13 +32,9 @@ const SearchSection = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const { selectedTab, setSelectedTab, useAutocomplete } = useSearchStore(
-    (state) => ({
-      selectedTab: state.selectedTab,
-      setSelectedTab: state.setSelectedTab,
-      useAutocomplete: state.useAutocomplete,
-    })
-  );
+  const { useAutocomplete } = useSearchStore((state) => ({
+    useAutocomplete: state.useAutocomplete,
+  }));
 
   const [q, setQ] = useState(searchParams.get("q") || "");
   const [debouncedQ] = useDebouncedValue(q, 400);
@@ -51,12 +47,15 @@ const SearchSection = () => {
   const handleSearch = (query: string) => {
     // Prevent empty search
     if (!query.length) return;
+    const tab = searchParams.get("tab") || "general";
 
-    router.push(`/search?q=${query}`);
+    router.push(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
 
   const handleChangeTab = (tab: ISearchTabs) => {
-    setSelectedTab(tab);
+    const query = searchParams.get("q") || "";
+
+    router.push(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
 
   useEffect(() => {
@@ -143,7 +142,7 @@ const SearchSection = () => {
             list: classes.tab_list,
           }}
           defaultValue="general"
-          value={selectedTab}
+          value={searchParams.get("tab") || "general"}
           onChange={(tab) => handleChangeTab(tab as ISearchTabs)}
           variant="default"
           w="fit-content"

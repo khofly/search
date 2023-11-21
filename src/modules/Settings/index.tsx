@@ -16,6 +16,7 @@ import SettingsTheme from "./components/Theme";
 import SettingsInterface from "./components/Interface";
 import SettingsEnginesSearch from "./components/EnginesSearch";
 import SettingsEnginesImages from "./components/EnginesImages";
+import SettingsEnginesVideos from "./components/EnginesVideos";
 
 const PageSettings = () => {
   return (
@@ -71,6 +72,7 @@ const PageSettings = () => {
           <>
             <SettingsEnginesSearch />
             <SettingsEnginesImages />
+            <SettingsEnginesVideos />
           </>
         </Tabs.Panel>
       </Tabs>

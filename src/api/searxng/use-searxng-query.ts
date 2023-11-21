@@ -1,50 +1,54 @@
 import useFetch from "../use-fetch";
 import { useSearXNGStore } from "@store/searxng";
-import { useSearchStore } from "@store/search";
+import { ISearchTabs, useSearchStore } from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
-import useSWRMutation from "swr/mutation";
+import { useSearchParams } from "next/navigation";
 
-interface IQueryArgs {
-  q: string;
-  tab: string;
-  page: number;
-}
+const getKey = (pageIndex: number, previousPageData: any, tab: ISearchTabs) => {
+  if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
+  return `/search?categories=${tab}&pageno=${pageIndex + 1}`; // SWR key
+};
 
 // Restart SearXNG
 // sudo systemctl reload nginx
 // sudo service uwsgi restart searxng
-// q: string, tab: string
-const useSearXNGSWR = () => {
+
+const useSearXNGSWR = <IResults>() => {
   const { fetchData } = useFetch();
 
   const { domain: searxngDomain } = useSearXNGStore((state) => ({
     domain: state.domain,
   }));
 
-  const { enginesGeneral, selectedTab } = useSearchStore((state) => ({
+  const { enginesGeneral, enginesImages } = useSearchStore((state) => ({
     enginesGeneral: state.enginesGeneral,
-    selectedTab: state.selectedTab,
+    enginesImages: state.enginesImages,
   }));
 
-  // ----------------------------------------------------------------------------
-  // General search results - default
-  // ----------------------------------------------------------------------------
+  const searchParams = useSearchParams();
+  const q = (searchParams.get("q") as string) || "";
+  const tab = (searchParams.get("tab") as ISearchTabs) || "general";
 
-  const fetcher = (_key: string, { arg }: { arg: IQueryArgs }) => {
-    const { q, tab, page } = arg;
-
-    const engineBangs = getEngineBangs(enginesGeneral, selectedTab);
+  const fetcher = (_key: string) => {
+    const engineBangs = getEngineBangs(tab, enginesGeneral, enginesImages);
 
     return fetchData(
-      `${searxngDomain}/search?q=${engineBangs}${q}&categories=${tab}&format=json&pageno=${page}`,
-      {
-        method: "POST",
-      }
+      `${searxngDomain}${_key}&q=${engineBangs}${q}&format=json`
     );
   };
 
-  return useSWRMutation("searxng-search", fetcher);
+  return useSWRInfinite<IResults>(
+    (idx, prev) => getKey(idx, prev, tab),
+    fetcher,
+    {
+      // populateCache
+      revalidateOnMount: false,
+      revalidateOnFocus: false,
+      revalidateFirstPage: false,
+      // keepPreviousData: false,
+    }
+  );
 };
 
 export default useSearXNGSWR;

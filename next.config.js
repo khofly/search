@@ -11,6 +11,10 @@ const nextConfig = {
   experimental: {
     // typedRoutes: true, // Not supported with turbo
   },
+
+  images: {
+    unoptimized: true,
+  },
 };
 
 module.exports = nextConfig;

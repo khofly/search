@@ -1,4 +1,4 @@
-import { IGeneralEngines, ISearchTabs } from "@store/search";
+import { IGeneralEngines, IImagesEngines, ISearchTabs } from "@store/search";
 
 const GENERAL_BANGS = {
   google: "!go",
@@ -8,15 +8,34 @@ const GENERAL_BANGS = {
   brave: "!br",
 };
 
+const IMAGES_BANGS = {
+  google: "!goi",
+  duckduckgo: "!ddi",
+  qwant: "!qwi",
+};
+
+const VIDEOS_BANGS = {
+  google: "!gov",
+  duckduckgo: "!ddv",
+  qwant: "!qwv",
+};
+
 export const getEngineBangs = (
-  engines: IGeneralEngines[],
-  tab: ISearchTabs
+  tab: ISearchTabs,
+  enginesGeneral: IGeneralEngines[],
+  enginesImages: IImagesEngines[]
 ) => {
   let bangs = "";
 
   if (tab === "general") {
-    engines.map((eng, i) => {
+    enginesGeneral.map((eng, i) => {
       bangs = bangs + `${GENERAL_BANGS[eng]}%20`;
+    });
+  }
+
+  if (tab === "images") {
+    enginesImages.map((eng, i) => {
+      bangs = bangs + `${IMAGES_BANGS[eng]}%20`;
     });
   }
 

@@ -12,12 +12,19 @@ export type IGeneralEngines =
   | "brave"
   | "qwant";
 
-interface SearchState {
-  selectedTab: ISearchTabs;
-  setSelectedTab: (setSelectedTab: ISearchTabs) => void;
+export type IImagesEngines = "google" | "duckduckgo" | "qwant";
 
+export type IVideosEngines = "google" | "duckduckgo" | "qwant";
+
+interface SearchState {
   enginesGeneral: IGeneralEngines[];
   setEnginesGeneral: (next: IGeneralEngines[]) => void;
+
+  enginesImages: IImagesEngines[];
+  setEnginesImages: (next: IImagesEngines[]) => void;
+
+  enginesVideos: IImagesEngines[];
+  setEnginesVideos: (next: IImagesEngines[]) => void;
 
   autocompleteEngine: IAutocompleteEngines;
   setAutocompleteEngine: (next: IAutocompleteEngines) => void;
@@ -39,13 +46,16 @@ interface SearchState {
 export const useSearchStore = create<SearchState>()(
   persist(
     (set) => ({
-      selectedTab: "general",
-      setSelectedTab: (selectedTab) => set({ selectedTab }),
-
       enginesGeneral: ["duckduckgo"],
       setEnginesGeneral: (next) => set({ enginesGeneral: next }),
 
-      autocompleteEngine: "duckduckgo",
+      enginesImages: ["duckduckgo", "qwant"],
+      setEnginesImages: (next) => set({ enginesImages: next }),
+
+      enginesVideos: ["duckduckgo", "qwant"],
+      setEnginesVideos: (next) => set({ enginesImages: next }),
+
+      autocompleteEngine: "google",
       setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
 
       visitedLinks: [],
@@ -67,10 +77,12 @@ export const useSearchStore = create<SearchState>()(
       partialize: (state) => ({
         visitedLinks: state.visitedLinks,
         displayFavicon: state.displayFavicon,
+        openInNewTab: state.openInNewTab,
         useAutocomplete: state.useAutocomplete,
         autocompleteEngine: state.autocompleteEngine,
-        openInNewTab: state.openInNewTab,
         enginesGeneral: state.enginesGeneral,
+        enginesImages: state.enginesImages,
+        enginesVideos: state.enginesVideos,
       }),
     }
   )

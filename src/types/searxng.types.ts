@@ -62,3 +62,31 @@ export interface ISearXNGResultsImages {
   suggestions: Array<any>;
   unresponsive_engines: Array<string[]>;
 }
+
+// Videos tab
+
+export interface ISearXNGResultsVideos {
+  query: string;
+  number_of_results: number;
+  results: Array<{
+    title: string;
+    url: string;
+    template: string;
+    thumbnail: string;
+    iframe_src: string;
+    metadata: string;
+    engine: string;
+    parsed_url: Array<string>;
+    engines: Array<string>;
+    positions: Array<number>;
+    content: string;
+    source: string;
+    score: number;
+    category: string;
+  }>;
+  answers: Array<any>;
+  corrections: Array<any>;
+  infoboxes: Array<any>;
+  suggestions: Array<any>;
+  unresponsive_engines: Array<string[]>;
+}
