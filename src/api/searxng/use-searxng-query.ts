@@ -1,13 +1,40 @@
 import useFetch from "../use-fetch";
 import { useSearXNGStore } from "@store/searxng";
-import { ISearchTabs, useSearchStore } from "@store/search";
+import {
+  IGeneralEngines,
+  IImagesEngines,
+  IVideosEngines,
+  ISearchTabs,
+  useSearchStore,
+  INewsEngines,
+} from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
 import { useSearchParams } from "next/navigation";
 
-const getKey = (pageIndex: number, previousPageData: any, tab: ISearchTabs) => {
+const getKey = (
+  pageIndex: number,
+  previousPageData: any,
+  tab: ISearchTabs,
+  q: string,
+  enginesGeneral: IGeneralEngines[],
+  enginesImages: IImagesEngines[],
+  enginesVideos: IVideosEngines[],
+  enginesNews: INewsEngines[]
+) => {
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
-  return `/search?categories=${tab}&pageno=${pageIndex + 1}`; // SWR key
+
+  const engineBangs = getEngineBangs(
+    tab,
+    enginesGeneral,
+    enginesImages,
+    enginesVideos,
+    enginesNews
+  );
+
+  return `/search?q=${engineBangs}${q}&categories=${tab}&pageno=${
+    pageIndex + 1
+  }`; // SWR key
 };
 
 // Restart SearXNG
@@ -21,31 +48,41 @@ const useSearXNGSWR = <IResults>() => {
     domain: state.domain,
   }));
 
-  const { enginesGeneral, enginesImages } = useSearchStore((state) => ({
-    enginesGeneral: state.enginesGeneral,
-    enginesImages: state.enginesImages,
-  }));
+  const { enginesGeneral, enginesImages, enginesVideos, enginesNews } =
+    useSearchStore((state) => ({
+      enginesGeneral: state.enginesGeneral,
+      enginesImages: state.enginesImages,
+      enginesVideos: state.enginesVideos,
+      enginesNews: state.enginesNews,
+    }));
 
   const searchParams = useSearchParams();
   const q = (searchParams.get("q") as string) || "";
   const tab = (searchParams.get("tab") as ISearchTabs) || "general";
 
   const fetcher = (_key: string) => {
-    const engineBangs = getEngineBangs(tab, enginesGeneral, enginesImages);
-
-    return fetchData(
-      `${searxngDomain}${_key}&q=${engineBangs}${q}&format=json`
-    );
+    return fetchData(`${searxngDomain}${_key}&format=json`);
   };
 
   return useSWRInfinite<IResults>(
-    (idx, prev) => getKey(idx, prev, tab),
+    (idx, prev) =>
+      getKey(
+        idx,
+        prev,
+        tab,
+        q,
+        enginesGeneral,
+        enginesImages,
+        enginesVideos,
+        enginesNews
+      ),
     fetcher,
     {
       // populateCache
       revalidateOnMount: false,
       revalidateOnFocus: false,
       revalidateFirstPage: false,
+      keepPreviousData: false,
       // keepPreviousData: false,
     }
   );

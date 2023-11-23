@@ -17,6 +17,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useSearXNGStore } from "src/store/searxng";
 import { useForm } from "@mantine/form";
 import Link from "next/link";
+import useToast from "@hooks/use-toast";
 
 const SettingsSearXNG = () => {
   const { domain, setDomain } = useSearXNGStore((state) => ({
@@ -34,10 +35,11 @@ const SettingsSearXNG = () => {
     },
   });
 
-  const theme = useMantineTheme();
+  const { toast } = useToast();
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
+    toast.show({ message: "URL changed!", color: "green" });
   };
 
   return (

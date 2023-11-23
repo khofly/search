@@ -1,16 +1,9 @@
-import {
-  Divider,
-  Flex,
-  Image,
-  Paper,
-  Stack,
-  Switch,
-  Text,
-} from "@mantine/core";
+import { Divider, Flex, Paper, Stack, Text } from "@mantine/core";
 import { useTranslations } from "@store/global";
 import { IGeneralEngines, useSearchStore } from "@store/search";
-import { IconSearch } from "@tabler/icons-react";
+import { IconWorld } from "@tabler/icons-react";
 import React from "react";
+import EngineComponent from "../EngineComponent";
 
 const SettingsEnginesSearch = () => {
   const translate = useTranslations();
@@ -35,158 +28,97 @@ const SettingsEnginesSearch = () => {
   return (
     <Paper radius="md" withBorder>
       <Flex align="center" p="lg" mb={16}>
-        <IconSearch size={32} />
+        <IconWorld size={32} />
 
         <Text fz={26} fw={600} ml="sm">
-          {translate("pages.settings.engines.title")}
+          {translate("pages.settings.engines.title1")}
         </Text>
       </Flex>
 
       {/* Settings content */}
+      <Stack w="100%" align="start" px="lg">
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "google")}
+          iconAlt="Google logo"
+          iconSrc="/assets/google-icon.svg"
+          label="pages.settings.engines.engineGoogle"
+          onChange={(next) => handleChangeEngines("google", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "duckduckgo")}
+          iconAlt="DuckDuckGo logo"
+          iconSrc="/assets/ddg-icon.svg"
+          label="pages.settings.engines.engineDDG"
+          onChange={(next) => handleChangeEngines("duckduckgo", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "bing")}
+          iconAlt="Bing logo"
+          iconSrc="/assets/bing-icon.svg"
+          label="pages.settings.engines.engineBing"
+          onChange={(next) => handleChangeEngines("bing", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "brave")}
+          iconAlt="Brave logo"
+          iconSrc="/assets/brave-icon.svg"
+          label="pages.settings.engines.engineBrave"
+          onChange={(next) => handleChangeEngines("brave", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "qwant")}
+          iconAlt="Qwant logo"
+          iconSrc="/assets/qwant-icon.svg"
+          label="pages.settings.engines.engineQwant"
+          onChange={(next) => handleChangeEngines("qwant", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "yahoo")}
+          iconAlt="Yahoo logo"
+          iconSrc="/assets/yahoo-icon.svg"
+          label="pages.settings.engines.engineYahoo"
+          onChange={(next) => handleChangeEngines("yahoo", next)}
+        />
+      </Stack>
+
+      <Text fz={26} fw={600} p="lg" my="md">
+        {translate("pages.settings.engines.title2")}
+      </Text>
+
+      {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/google-icon.svg"}
-              w={20}
-              h={20}
-              alt="Google logo"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineGoogle")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesGeneral.find((e) => e === "google")}
-            onChange={(e) =>
-              handleChangeEngines("google", e.currentTarget.checked)
-            }
-          />
-        </Flex>
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "wikipedia")}
+          iconAlt="Wikipedia logo"
+          iconSrc="/assets/wikipedia-icon.svg"
+          label="pages.settings.engines.engineWikipedia"
+          onChange={(next) => handleChangeEngines("wikipedia", next)}
+        />
 
         <Divider my="sm" w="100%" />
 
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/ddg-icon.svg"}
-              w={20}
-              h={20}
-              alt="DuckDuckGo logo"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineDDG")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesGeneral.find((e) => e === "duckduckgo")}
-            onChange={(e) =>
-              handleChangeEngines("duckduckgo", e.currentTarget.checked)
-            }
-          />
-        </Flex>
-
-        <Divider my="sm" w="100%" />
-
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/bing-icon.svg"}
-              w={20}
-              h={20}
-              alt="Bing logo"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineBing")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesGeneral.find((e) => e === "bing")}
-            onChange={(e) =>
-              handleChangeEngines("bing", e.currentTarget.checked)
-            }
-          />
-        </Flex>
-
-        <Divider my="sm" w="100%" />
-
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/brave-icon.svg"}
-              w={20}
-              h={20}
-              alt="Brave logo"
-              fit="scale-down"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineBrave")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesGeneral.find((e) => e === "brave")}
-            onChange={(e) =>
-              handleChangeEngines("brave", e.currentTarget.checked)
-            }
-          />
-        </Flex>
-
-        <Divider my="sm" w="100%" />
-
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/qwant-icon.svg"}
-              w={20}
-              h={20}
-              alt="Qwant logo"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineQwant")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesGeneral.find((e) => e === "qwant")}
-            onChange={(e) =>
-              handleChangeEngines("qwant", e.currentTarget.checked)
-            }
-          />
-        </Flex>
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "wikidata")}
+          iconAlt="Wikidata logo"
+          iconSrc="/assets/wikidata-icon.svg"
+          label="pages.settings.engines.engineWikidata"
+          onChange={(next) => handleChangeEngines("wikidata", next)}
+        />
       </Stack>
     </Paper>
   );

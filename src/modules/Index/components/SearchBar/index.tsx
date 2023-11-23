@@ -28,6 +28,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { useSearchStore } from "@store/search";
+import { nprogress } from "@mantine/nprogress";
 
 const SearchBar = () => {
   const t = useTranslations();
@@ -51,6 +52,7 @@ const SearchBar = () => {
     // Prevent empty search
     if (!query.length) return;
 
+    nprogress.start();
     router.push(`/search?q=${encodeURIComponent(query)}`);
   };
 
@@ -120,6 +122,7 @@ const SearchBar = () => {
         data={data?.map((str) => ({ label: str, value: str }))}
         comboboxProps={{
           onOptionSubmit: (val) => handleSearch(val),
+          size: "md",
         }}
       />
 

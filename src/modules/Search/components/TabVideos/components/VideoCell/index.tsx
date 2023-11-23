@@ -26,7 +26,7 @@ const VideoCell: React.FC<Props> = ({ openVideoInView, videoData }) => {
         w="100%"
         h="auto"
         alt={title}
-        fit="contain"
+        fit="cover"
         radius="md"
         // unoptimized
       />

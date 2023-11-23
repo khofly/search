@@ -11,6 +11,7 @@ import { useTranslations } from "@store/global";
 import { IVideosEngines, useSearchStore } from "@store/search";
 import { IconPlayerPlay } from "@tabler/icons-react";
 import React from "react";
+import EngineComponent from "../EngineComponent";
 
 const SettingsEnginesVideos = () => {
   const translate = useTranslations();
@@ -33,7 +34,7 @@ const SettingsEnginesVideos = () => {
   };
 
   return (
-    <Paper radius="md" mt={60} withBorder>
+    <Paper radius="md" withBorder>
       <Flex align="center" p="lg" mb={16}>
         <IconPlayerPlay size={32} />
 
@@ -44,90 +45,33 @@ const SettingsEnginesVideos = () => {
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/google-icon.svg"}
-              w={20}
-              h={20}
-              alt="Google logo"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineGoogleVid")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesVideos.find((e) => e === "google")}
-            onChange={(e) =>
-              handleChangeEngines("google", e.currentTarget.checked)
-            }
-          />
-        </Flex>
+        <EngineComponent
+          checked={!!enginesVideos.find((e) => e === "google")}
+          iconAlt="Google logo"
+          iconSrc="/assets/google-icon.svg"
+          label="pages.settings.engines.engineGoogleVid"
+          onChange={(next) => handleChangeEngines("google", next)}
+        />
 
         <Divider my="sm" w="100%" />
 
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/ddg-icon.svg"}
-              w={22}
-              h={22}
-              alt="DuckDuckGo logo"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineDDGVid")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesVideos.find((e) => e === "duckduckgo")}
-            onChange={(e) =>
-              handleChangeEngines("duckduckgo", e.currentTarget.checked)
-            }
-          />
-        </Flex>
+        <EngineComponent
+          checked={!!enginesVideos.find((e) => e === "duckduckgo")}
+          iconAlt="DuckDuckGo logo"
+          iconSrc="/assets/ddg-icon.svg"
+          label="pages.settings.engines.engineDDGVid"
+          onChange={(next) => handleChangeEngines("duckduckgo", next)}
+        />
 
         <Divider my="sm" w="100%" />
 
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
-          <Flex align="center" gap="sm">
-            <Image
-              src={"/assets/qwant-icon.svg"}
-              w={20}
-              h={20}
-              alt="Qwant logo"
-            />
-
-            <Text size="md" fw={400}>
-              {translate("pages.settings.engines.engineQwantVid")}
-            </Text>
-          </Flex>
-
-          <Switch
-            checked={!!enginesVideos.find((e) => e === "qwant")}
-            onChange={(e) =>
-              handleChangeEngines("qwant", e.currentTarget.checked)
-            }
-          />
-        </Flex>
+        <EngineComponent
+          checked={!!enginesVideos.find((e) => e === "qwant")}
+          iconAlt="Qwant logo"
+          iconSrc="/assets/qwant-icon.svg"
+          label="pages.settings.engines.engineQwantVid"
+          onChange={(next) => handleChangeEngines("qwant", next)}
+        />
       </Stack>
     </Paper>
   );

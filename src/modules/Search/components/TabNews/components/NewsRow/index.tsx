@@ -3,16 +3,21 @@
 import { Anchor, Flex, Image, Text } from "@mantine/core";
 import React from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsGeneral } from "@ts/searxng.types";
+import { ISearXNGResultsNews } from "@ts/searxng.types";
 import { useSearchStore } from "@store/search";
 import clsx from "clsx";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
-const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
+dayjs.extend(relativeTime);
+
+const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
   title,
   url,
   parsed_url,
   content,
   engines,
+  publishedDate,
 }) => {
   const { displayFavicon } = useSearchStore((state) => ({
     displayFavicon: state.displayFavicon,
@@ -33,7 +38,7 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
       onClick={() => updateVisitedLinks(url)}
       rel="noreferrer noopener"
     >
-      <Flex className={classes.search_row} direction="column">
+      <Flex className={classes.news_row} direction="column">
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
@@ -57,10 +62,14 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
             [classes.text_title_visited]: visitedLinks.includes(url),
           })}
           size="xl"
-          mb={4}
           truncate="end"
         >
           {title}
+        </Text>
+
+        {/* Date */}
+        <Text size="sm" mb={4}>
+          {dayjs(publishedDate).fromNow()}
         </Text>
 
         {/* Website description */}
@@ -76,4 +85,4 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   );
 };
 
-export default SearchResultRow;
+export default NewsRow;

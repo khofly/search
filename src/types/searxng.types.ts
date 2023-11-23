@@ -90,3 +90,29 @@ export interface ISearXNGResultsVideos {
   suggestions: Array<any>;
   unresponsive_engines: Array<string[]>;
 }
+
+// News tab
+
+export interface ISearXNGResultsNews {
+  query: string;
+  number_of_results: number;
+  results: Array<{
+    title: string;
+    url: string;
+    template: string;
+    engine: string;
+    parsed_url: Array<string>;
+    engines: Array<string>;
+    positions: Array<number>;
+    content: string;
+    source: string;
+    score: number;
+    category: string;
+    publishedDate: string;
+  }>;
+  answers: Array<any>;
+  corrections: Array<any>;
+  infoboxes: Array<any>;
+  suggestions: Array<any>;
+  unresponsive_engines: Array<string[]>;
+}

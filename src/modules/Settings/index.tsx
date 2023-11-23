@@ -17,6 +17,7 @@ import SettingsInterface from "./components/Interface";
 import SettingsEnginesSearch from "./components/EnginesSearch";
 import SettingsEnginesImages from "./components/EnginesImages";
 import SettingsEnginesVideos from "./components/EnginesVideos";
+import EnginesTabs from "./components/EnginesTabs";
 
 const PageSettings = () => {
   return (
@@ -69,11 +70,7 @@ const PageSettings = () => {
         </Tabs.Panel>
 
         <Tabs.Panel value="engines">
-          <>
-            <SettingsEnginesSearch />
-            <SettingsEnginesImages />
-            <SettingsEnginesVideos />
-          </>
+          <EnginesTabs />
         </Tabs.Panel>
       </Tabs>
     </Container>

@@ -10,11 +10,22 @@ export type IGeneralEngines =
   | "duckduckgo"
   | "bing"
   | "brave"
-  | "qwant";
+  | "qwant"
+  | "yahoo"
+  | "wikipedia"
+  | "wikidata";
 
 export type IImagesEngines = "google" | "duckduckgo" | "qwant";
 
 export type IVideosEngines = "google" | "duckduckgo" | "qwant";
+
+export type INewsEngines =
+  | "google"
+  | "duckduckgo"
+  | "bing"
+  | "qwant"
+  | "yahoo"
+  | "wikinews";
 
 interface SearchState {
   enginesGeneral: IGeneralEngines[];
@@ -25,6 +36,9 @@ interface SearchState {
 
   enginesVideos: IImagesEngines[];
   setEnginesVideos: (next: IImagesEngines[]) => void;
+
+  enginesNews: INewsEngines[];
+  setEnginesNews: (next: INewsEngines[]) => void;
 
   autocompleteEngine: IAutocompleteEngines;
   setAutocompleteEngine: (next: IAutocompleteEngines) => void;
@@ -46,7 +60,7 @@ interface SearchState {
 export const useSearchStore = create<SearchState>()(
   persist(
     (set) => ({
-      enginesGeneral: ["duckduckgo"],
+      enginesGeneral: ["duckduckgo", "wikipedia"],
       setEnginesGeneral: (next) => set({ enginesGeneral: next }),
 
       enginesImages: ["duckduckgo", "qwant"],
@@ -54,6 +68,9 @@ export const useSearchStore = create<SearchState>()(
 
       enginesVideos: ["duckduckgo", "qwant"],
       setEnginesVideos: (next) => set({ enginesImages: next }),
+
+      enginesNews: ["google", "bing", "wikinews"],
+      setEnginesNews: (next) => set({ enginesNews: next }),
 
       autocompleteEngine: "google",
       setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),

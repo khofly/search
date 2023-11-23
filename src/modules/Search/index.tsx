@@ -1,12 +1,17 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
+
 import TabGeneral from "./components/TabGeneral";
-import TabMaps from "./components/TabMaps";
 import TabImages from "./components/TabImages";
 import TabVideos from "./components/TabVideos";
 import TabNews from "./components/TabNews";
 import { useSearchParams } from "next/navigation";
+
+const TabMapsWithoutSSR = dynamic(() => import("./components/TabMaps"), {
+  ssr: false,
+});
 
 const PageSearch = () => {
   const searchParams = useSearchParams();
@@ -18,7 +23,7 @@ const PageSearch = () => {
     images: <TabImages />,
     videos: <TabVideos />,
     news: <TabNews />,
-    maps: <TabMaps />,
+    maps: <TabMapsWithoutSSR />,
   }[selectedTab];
 
   return renderTab;

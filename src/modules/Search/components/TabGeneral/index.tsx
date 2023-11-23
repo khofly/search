@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import InstantAnswer from "../InstantAnswer";
 import SearchResultRow from "./components/SearchResultRow";
-import { Button, Divider, Stack, Text } from "@mantine/core";
+import { Button, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../ScrollToTop";
@@ -9,13 +9,10 @@ import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import SearchResultSkeleton from "./components/SearchResultSkeleton";
 import Suggestions from "./components/Suggestions";
-import { useNonInitialEffect } from "@hooks/use-non-initial-effect";
-import { useSearchParams } from "next/navigation";
+import Infobox from "./components/Infobox";
 
 const TabGeneral = () => {
-  const searchParams = useSearchParams();
-
-  const { data, error, isLoading, isValidating, setSize, size, mutate } =
+  const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
 
   useEffect(() => {
@@ -23,63 +20,78 @@ const TabGeneral = () => {
     if (!data?.length) mutate();
   }, []);
 
-  const q = searchParams.get("q");
-  useNonInitialEffect(() => {
-    if (!q) return;
-
-    setSize(1);
-    mutate();
-  }, [q]);
+  const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Stack className={classes.stack} py="xl">
-      <InstantAnswer />
+    <Flex align="flex-start">
+      {/* Search results */}
 
-      {data?.map((res, i) => {
-        if (!res) return;
-        return (
-          <Stack gap="lg" key={i}>
-            {i !== 0 && (
-              <Divider label={`Page ${i + 1}`} labelPosition="left" />
-            )}
+      <Stack className={classes.stack} py="xl">
+        <InstantAnswer />
 
-            {res?.results.map((r, i) => (
-              <SearchResultRow key={i} {...r} />
-            ))}
-          </Stack>
-        );
-      })}
+        {data?.map((res, i) => {
+          if (!res?.results) return;
+          return (
+            <Stack gap="lg" key={i}>
+              {i !== 0 && (
+                <Divider label={`Page ${i + 1}`} labelPosition="left" />
+              )}
 
-      {(isLoading || isValidating) &&
-        // Loading state
-        Array.from(Array(10).keys()).map((e, i) => (
-          <SearchResultSkeleton key={i} />
-        ))}
+              {res?.results.map((r, i) => (
+                <SearchResultRow key={i} {...r} />
+              ))}
+            </Stack>
+          );
+        })}
 
-      {error && (
-        // Error state
-        <Text>RIP results</Text>
-      )}
+        {(isLoading || isValidating) &&
+          // Loading state
+          Array.from(Array(10).keys()).map((e, i) => (
+            <SearchResultSkeleton key={i} />
+          ))}
 
-      {data?.[0]?.suggestions.length && !isLoading && !isValidating ? (
-        <Suggestions suggestions={data?.[0]?.suggestions} />
-      ) : null}
+        {error && (
+          // Error state
+          <Text>RIP results</Text>
+        )}
 
-      {!isLoading && !isValidating && data && data?.length >= 1 && (
-        <Button
-          variant="filled"
-          onClick={() => {
-            setSize(size + 1);
-          }}
-          size="md"
-          color="dark.5"
-        >
-          Load more
-        </Button>
-      )}
+        {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
+          <Suggestions suggestions={data?.[0]?.suggestions} />
+        ) : null}
 
-      <ScrollToTop />
-    </Stack>
+        {isRateLimit && (
+          // Rate limit
+          <Text>Too Many Requests</Text>
+        )}
+
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          !isRateLimit && (
+            <Button
+              variant="filled"
+              onClick={() => setSize(size + 1)}
+              size="md"
+              color="dark.5"
+            >
+              Load more
+            </Button>
+          )}
+
+        <ScrollToTop />
+      </Stack>
+
+      {/* Infoboxes */}
+
+      {!isLoading &&
+        !isValidating &&
+        !isRateLimit &&
+        data &&
+        data?.[0]?.infoboxes?.length >= 1 && (
+          <Infobox {...data[0].infoboxes[0]} />
+        )}
+    </Flex>
   );
 };
 

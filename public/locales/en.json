@@ -93,13 +93,18 @@
       },
 
       "engines": {
-        "title": "Search engines",
+        "title1": "Web engines",
+        "title2": "wiki stuff",
 
         "engineGoogle": "Google",
         "engineDDG": "DuckDuckGo",
         "engineQwant": "Qwant",
         "engineBing": "Bing",
         "engineBrave": "Brave",
+        "engineYahoo": "Yahoo!",
+
+        "engineWikipedia": "Wikipedia",
+        "engineWikidata": "Wikidata",
 
         "titleImg": "Image engines",
 
@@ -111,7 +116,18 @@
 
         "engineGoogleVid": "Google videos",
         "engineDDGVid": "DuckDuckGo videos",
-        "engineQwantVid": "Qwant videos"
+        "engineQwantVid": "Qwant videos",
+
+        "titleNews": "News engines",
+        "titleNews2": "wiki stuff",
+
+        "engineGoogleNews": "Google news",
+        "engineDDGNews": "DuckDuckGo news",
+        "engineBingNews": "Bing news",
+        "engineQwantNews": "Qwant news",
+        "engineYahooNews": "Yahoo! news",
+
+        "engineWikinews": "Wikinews"
       }
     }
   }

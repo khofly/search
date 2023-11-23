@@ -1,5 +1,6 @@
 .video_container {
   width: 100%;
+  height: fit-content;
   background-color: light-dark(
     var(--mantine-color-white),
     var(--mantine-color-dark-7)
@@ -13,5 +14,10 @@
       var(--mantine-color-white),
       var(--mantine-color-dark-6)
     );
+  }
+
+  img {
+    max-height: 120px;
+    height: 120px;
   }
 }
