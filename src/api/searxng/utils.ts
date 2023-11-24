@@ -40,35 +40,33 @@ const NEWS_BANGS = {
   wikinews: "!wn",
 };
 
-export const getEngineBangs = (
-  tab: ISearchTabs,
-  enginesGeneral: IGeneralEngines[],
-  enginesImages: IImagesEngines[],
-  enginesVideos: IVideosEngines[],
-  enginesNews: INewsEngines[]
-) => {
+export const getEngineBangs = (tab: ISearchTabs, enginesSelected: any[]) => {
   let bangs = "";
 
   if (tab === "general") {
-    enginesGeneral.map((eng) => {
+    enginesSelected.map((eng) => {
+      // @ts-ignore
       bangs = bangs + `${GENERAL_BANGS[eng]}%20`;
     });
   }
 
   if (tab === "images") {
-    enginesImages.map((eng) => {
+    enginesSelected.map((eng) => {
+      // @ts-ignore
       bangs = bangs + `${IMAGES_BANGS[eng]}%20`;
     });
   }
 
   if (tab === "videos") {
-    enginesVideos.map((eng) => {
+    enginesSelected.map((eng) => {
+      // @ts-ignore
       bangs = bangs + `${VIDEOS_BANGS[eng]}%20`;
     });
   }
 
   if (tab === "news") {
-    enginesNews.map((eng) => {
+    enginesSelected.map((eng) => {
+      // @ts-ignore
       bangs = bangs + `${NEWS_BANGS[eng]}%20`;
     });
   }

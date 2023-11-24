@@ -7,7 +7,7 @@ import packageJson from "package.json";
 
 const Footer = () => {
   return (
-    <Container size="lg" py="sm" className={classes.after_footer}>
+    <Container size="xl" py="sm" className={classes.after_footer}>
       <Text c="dimmed" size="sm">
         Version {packageJson.version} beta, powered by SearXNG
       </Text>

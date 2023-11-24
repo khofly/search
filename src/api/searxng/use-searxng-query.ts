@@ -17,20 +17,11 @@ const getKey = (
   previousPageData: any,
   tab: ISearchTabs,
   q: string,
-  enginesGeneral: IGeneralEngines[],
-  enginesImages: IImagesEngines[],
-  enginesVideos: IVideosEngines[],
-  enginesNews: INewsEngines[]
+  enginesSelected: string[]
 ) => {
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
 
-  const engineBangs = getEngineBangs(
-    tab,
-    enginesGeneral,
-    enginesImages,
-    enginesVideos,
-    enginesNews
-  );
+  const engineBangs = getEngineBangs(tab, enginesSelected);
 
   return `/search?q=${engineBangs}${q}&categories=${tab}&pageno=${
     pageIndex + 1
@@ -64,18 +55,16 @@ const useSearXNGSWR = <IResults>() => {
     return fetchData(`${searxngDomain}${_key}&format=json`);
   };
 
+  const enginesSelected = {
+    general: enginesGeneral,
+    images: enginesImages,
+    videos: enginesVideos,
+    news: enginesNews,
+    maps: [],
+  }[tab];
+
   return useSWRInfinite<IResults>(
-    (idx, prev) =>
-      getKey(
-        idx,
-        prev,
-        tab,
-        q,
-        enginesGeneral,
-        enginesImages,
-        enginesVideos,
-        enginesNews
-      ),
+    (idx, prev) => getKey(idx, prev, tab, q, enginesSelected),
     fetcher,
     {
       // populateCache

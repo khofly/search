@@ -1,0 +1,58 @@
+.map_controls {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  max-height: 100dvh;
+  width: 400px;
+  max-width: 100%;
+  transition: all 0.2s ease-in-out;
+  //   overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  .map_controls_head {
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-8)
+    );
+  }
+
+  &.map_controls_closed {
+    left: -400px;
+  }
+
+  .action_icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .map_input {
+    flex: 1;
+  }
+
+  .osm_results {
+    flex: 1;
+  }
+
+  .controls_toggle {
+    position: absolute;
+    z-index: 2;
+    width: 22px;
+    min-width: 22px;
+    height: 46px;
+    top: calc(50% - 23px);
+    right: -22px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    transition: all 0.2s ease-in-out;
+
+    &.controls_toggle_closed {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

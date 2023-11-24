@@ -7,7 +7,7 @@ import { IFC } from "@ts/global.types";
 import React, { Suspense, useEffect } from "react";
 
 import classes from "./styles.module.scss";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import clsx from "clsx";
 import WikiNavbar from "@components/Navbar/Wiki";
 import { useDisclosure } from "@mantine/hooks";
@@ -32,6 +32,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   }));
 
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
 
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
@@ -40,6 +42,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isIndex = pathname === "/";
 
   const isFooterOffset = isSearch || isWiki;
+
+  const isSearchMaps = isSearch && tab === "maps";
 
   const headerHeight = isSearch ? 100 : 70;
 
@@ -66,7 +70,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
       </Suspense>
 
       <AppShell
-        header={{ height: headerHeight, offset: true }}
+        header={{ height: headerHeight, offset: !isSearchMaps ? true : false }}
         footer={{ height: 60, offset: isFooterOffset ? false : true }}
         navbar={
           isWiki
@@ -87,9 +91,11 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           footer: classes.app_footer,
         }}
       >
-        <AppShell.Header>
-          <Header openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
-        </AppShell.Header>
+        {!isSearchMaps && (
+          <AppShell.Header>
+            <Header openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
+          </AppShell.Header>
+        )}
 
         <AppShell.Main>{children}</AppShell.Main>
 
