@@ -17,9 +17,9 @@ const Footer = () => {
           <Text>Wiki</Text>
         </Link>
 
-        <Link href="/rewards">
+        {/* <Link href="/rewards">
           <Text>Rewards</Text>
-        </Link>
+        </Link> */}
 
         <Link href="/changelog">
           <Text>Changelog</Text>

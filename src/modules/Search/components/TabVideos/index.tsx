@@ -1,26 +1,13 @@
-import { Button, Flex, SimpleGrid, Text } from "@mantine/core";
+import { Button, SimpleGrid, Text } from "@mantine/core";
 import { ISearXNGResultsVideos } from "@ts/searxng.types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import VideoCell from "./components/VideoCell";
 import VideoSkeleton from "./components/VideoSkeleton";
-import VideoView from "./components/VideoView";
-import { useDisclosure } from "@mantine/hooks";
 
 const TabVideos = () => {
   const { data, error, isLoading, isValidating, setSize, size, mutate } =
     useSearXNGSWR<ISearXNGResultsVideos>();
-
-  const [isOpenVideoView, { open: openVideoView, close: closeVideoView }] =
-    useDisclosure(false);
-  const [viewVideo, setViewVideo] = useState<
-    ISearXNGResultsVideos["results"][0] | null
-  >(null);
-
-  const openVideoInView = (img: ISearXNGResultsVideos["results"][0]) => {
-    setViewVideo(img);
-    openVideoView();
-  };
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -42,11 +29,7 @@ const TabVideos = () => {
         {data?.map((res) => {
           if (!res) return;
           return res?.results.map((img, i) => (
-            <VideoCell
-              key={i}
-              videoData={img}
-              openVideoInView={openVideoInView}
-            />
+            <VideoCell key={i} videoData={img} />
           ));
         })}
         {(isLoading || isValidating) &&
@@ -65,12 +48,6 @@ const TabVideos = () => {
           Load more
         </Button>
       )}
-
-      <VideoView
-        isOpen={isOpenVideoView}
-        handleClose={closeVideoView}
-        viewVideo={viewVideo}
-      />
     </>
   );
 };

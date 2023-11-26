@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { IAWrapper } from "..";
+import { IAWrapper } from "../wrapper";
 import { Button, Flex, Grid, Paper, Text, Transition } from "@mantine/core";
 
 import { BTN_VALUES_BASIC } from "./data";
@@ -119,7 +119,7 @@ const Calculator = () => {
   };
 
   return (
-    <>
+    <IAWrapper>
       <Paper p="xs" w="100%" h={100}>
         <Flex h="100%" justify="flex-end" align="flex-end" direction="column">
           <Text
@@ -142,11 +142,8 @@ const Calculator = () => {
           </Transition>
         </Flex>
       </Paper>
-
       {/* Scientific keyboard */}
-
       {/* Basic keyboard */}
-
       {BTN_VALUES_BASIC.map((gridBtnRow, i) => (
         <Grid key={i} grow gutter="xs" mt="xs">
           {gridBtnRow.map((gridBtn) => (
@@ -163,7 +160,7 @@ const Calculator = () => {
           ))}
         </Grid>
       ))}
-    </>
+    </IAWrapper>
   );
 };
 

@@ -23,23 +23,24 @@ import clsx from "clsx";
 import useNominatimSWR from "src/api/nominatim/use-nominatim-query";
 
 interface Props {
+  coords: { latitude: number; longitude: number };
   setCoords: Dispatch<{ latitude: number; longitude: number }>;
 }
 
-const MapControls: React.FC<Props> = ({ setCoords }) => {
+const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [isOpen, { toggle }] = useDisclosure(false);
+  const [isOpen, { toggle }] = useDisclosure(true);
   const [q, setQ] = useState(searchParams.get("q") || "");
 
-  const { data, isLoading, isValidating, mutate } = useNominatimSWR(q);
+  const { data, isMutating, trigger } = useNominatimSWR();
 
   const handleSearch = () => {
     // Prevent empty search
     if (!q.length) return;
 
-    mutate();
+    trigger(q);
   };
 
   const handleGoBack = () => {
@@ -55,8 +56,18 @@ const MapControls: React.FC<Props> = ({ setCoords }) => {
   useEffect(() => {
     const query = searchParams.get("q");
 
+    if (!data?.length && query?.length) trigger(query);
     if (query) setQ(query);
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!coords.latitude && !coords.longitude && data?.length) {
+      setCoords({
+        latitude: parseFloat(data[0].lat),
+        longitude: parseFloat(data[0].lon),
+      });
+    }
+  }, [data]);
 
   return (
     <Paper
@@ -101,10 +112,12 @@ const MapControls: React.FC<Props> = ({ setCoords }) => {
       </Flex>
 
       <ScrollArea className={classes.osm_results}>
-        {(isLoading || isValidating) && <Loader mt="lg" mx="auto" />}
+        {isMutating && <Loader mt="lg" mx="auto" />}
         {data &&
+          !isMutating &&
           data?.map((row, i) => (
             <NavLink
+              key={i}
               label={row.display_name}
               leftSection={<IconSearch size="1rem" stroke={1.5} />}
               onClick={(e) => handleUpdateMap(row.lat, row.lon)}

@@ -1,29 +1,62 @@
 @use "functions" as func;
 @use "variables" as vars;
 
-.stack {
-  width: func.to-rem(650px);
-  gap: var(--mantine-spacing-xl);
+@keyframes cd_shadow {
+  0% {
+    box-shadow: inset 0em 0em 1em 0.7em;
+    color: var(--mantine-color-green-6);
+  }
+  20% {
+    box-shadow: inset 0em 0em 1em 1.1em;
+    color: var(--mantine-color-blue-6);
+  }
+  40% {
+    box-shadow: inset 0em 0em 1em 0.9em;
+    color: var(--mantine-color-grape-6);
+  }
+  60% {
+    box-shadow: inset 0em 0em 1em 1.2em;
+    color: var(--mantine-color-yellow-5);
+  }
+  80% {
+    box-shadow: inset 0em 0em 1em 0.9em;
+    color: var(--mantine-color-red-6);
+  }
+}
 
-  // header padding 100 + logo size + group gap ( SearchSection )
-  margin-left: calc(
-    func.to-rem(100px) + func.to-rem(42px) + var(--mantine-spacing-md)
-  );
+.tab_general {
+  .stack {
+    width: func.to-rem(650px);
+    gap: var(--mantine-spacing-xl);
 
-  @media (max-width: vars.$mantine-breakpoint-md) {
-    // header padding md + logo size + group gap ( SearchSection )
+    // header padding 100 + logo size + group gap ( SearchSection )
     margin-left: calc(
-      var(--mantine-spacing-md) + func.to-rem(42px) + var(--mantine-spacing-md)
+      func.to-rem(100px) + func.to-rem(42px) + var(--mantine-spacing-md)
     );
+
+    @media (max-width: vars.$mantine-breakpoint-md) {
+      // header padding md + logo size + group gap ( SearchSection )
+      margin-left: calc(
+        var(--mantine-spacing-md) + func.to-rem(42px) +
+          var(--mantine-spacing-md)
+      );
+    }
+
+    @media (max-width: vars.$mantine-breakpoint-sm) {
+      width: 100%;
+
+      margin-left: 0;
+
+      padding: var(--mantine-spacing-md);
+
+      gap: var(--mantine-spacing-md);
+    }
   }
 
-  @media (max-width: vars.$mantine-breakpoint-sm) {
-    width: 100%;
-
-    margin-left: 0;
-
-    padding: var(--mantine-spacing-md);
-
-    gap: var(--mantine-spacing-md);
+  // Memes
+  &.tab_general_caramelldansen {
+    box-shadow: inset 0em 0em 1em 1em;
+    color: var(--mantine-color-green-6);
+    animation: cd_shadow 2.5s infinite;
   }
 }

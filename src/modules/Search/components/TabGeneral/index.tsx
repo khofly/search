@@ -10,8 +10,14 @@ import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import SearchResultSkeleton from "./components/SearchResultSkeleton";
 import Suggestions from "./components/Suggestions";
 import Infobox from "./components/Infobox";
+import Lyricsbox from "./components/Lyricsbox";
+import clsx from "clsx";
+import { useSearchParams } from "next/navigation";
+import Caramelldansen from "./components/Memes/Caramelldansen";
 
 const TabGeneral = () => {
+  const searchParams = useSearchParams();
+
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
 
@@ -23,7 +29,14 @@ const TabGeneral = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Flex align="flex-start">
+    <Flex
+      className={clsx(classes.tab_general, {
+        [classes.tab_general_caramelldansen]: searchParams
+          .get("q")
+          ?.includes("caramelldansen"),
+      })}
+      align="flex-start"
+    >
       {/* Search results */}
 
       <Stack className={classes.stack} py="xl">
@@ -84,13 +97,20 @@ const TabGeneral = () => {
 
       {/* Infoboxes */}
 
-      {!isLoading &&
-        !isValidating &&
-        !isRateLimit &&
-        data &&
-        data?.[0]?.infoboxes?.length >= 1 && (
-          <Infobox {...data[0].infoboxes[0]} />
-        )}
+      <Flex direction="column" gap="xl">
+        {!isLoading &&
+          !isValidating &&
+          !isRateLimit &&
+          data &&
+          data?.[0]?.infoboxes?.length >= 1 && (
+            <Infobox {...data[0].infoboxes[0]} />
+          )}
+
+        {<Lyricsbox />}
+      </Flex>
+
+      {/* Memes */}
+      <Caramelldansen />
     </Flex>
   );
 };

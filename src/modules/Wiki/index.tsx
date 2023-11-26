@@ -1,10 +1,12 @@
 "use client";
+import "@mantine/code-highlight/styles.css";
 
 import React from "react";
 import WikiSearchOverview from "./components/search-overview";
 import WikiIndex from "./components";
 import WikiWIP from "./components/wip";
 import WikiAuthOverview from "./components/auth-overview";
+import WikiSearchSearxng from "./components/search-searxng";
 
 interface Props {
   slug: Array<string>;
@@ -19,7 +21,7 @@ const Wiki: React.FC<Props> = ({ slug }) => {
     "auth/self-host": <WikiWIP />,
 
     "search/overview": <WikiSearchOverview />,
-    "search/searxng": <WikiWIP />,
+    "search/searxng": <WikiSearchSearxng />,
     "search/self-host": <WikiWIP />,
 
     "docs/overview": <WikiWIP />,

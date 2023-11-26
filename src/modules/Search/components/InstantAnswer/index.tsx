@@ -1,76 +1,43 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import React, { Dispatch, useState } from "react";
-
-import { Divider, Flex, Stack, Text, Transition } from "@mantine/core";
-import { IFC } from "@ts/global.types";
+import { useResponsive } from "@hooks/use-responsive";
 
 import CoinFlip from "./CoinFilp";
 import Calculator from "./Calculator";
-import { IconSelector } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-
-interface IAProps extends IFC {
-  visible: boolean;
-  setVisible: Dispatch<boolean>;
-}
-
-export const IAWrapper: React.FC<IAProps> = ({
-  visible,
-  setVisible,
-  children,
-}) => {
-  return (
-    <Stack pt={visible ? "lg" : 0} gap={0}>
-      <Transition transition="scale-y" duration={300} mounted={visible}>
-        {(transitionStyles) => <div style={transitionStyles}>{children}</div>}
-      </Transition>
-
-      <Flex mt="lg" align="center" justify="space-between">
-        <Text c="dimmed" size="sm">
-          This is an instant answer
-        </Text>
-
-        <Flex
-          align="center"
-          onClick={() => setVisible(!visible)}
-          style={{ cursor: "pointer" }}
-        >
-          <IconSelector style={getIconStyle(20)} stroke={1.5} />
-
-          <Text c="dimmed" size="sm" ml={4}>
-            Toggle
-          </Text>
-        </Flex>
-      </Flex>
-
-      <Divider mt="xs" />
-    </Stack>
-  );
-};
+import Lyrics from "./Lyrics";
+import Translate from "./Translate";
+import UUID from "./UUID";
+import Stopwatch from "./Stopwatch";
 
 const InstantAnswer = () => {
-  const [visible, setVisible] = useState(true);
-
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
-
-  let instantAnswer = null;
+  const isXl = useResponsive("min", "lg");
 
   // Instant answer - Calculator WIP
-  if (query?.toLowerCase().includes("calculator"))
-    instantAnswer = <Calculator />;
+  if (query?.toLowerCase().includes("calculator")) return <Calculator />;
 
   // Instant answer - CoinFlip
-  if (query?.toLowerCase().includes("coin flip"))
-    instantAnswer = <CoinFlip visible={visible} />;
+  if (query?.toLowerCase().includes("coin flip")) return <CoinFlip />;
 
-  return instantAnswer ? (
-    <IAWrapper visible={visible} setVisible={setVisible}>
-      {instantAnswer}
-    </IAWrapper>
-  ) : null;
+  // Instant answer - Translate WIP
+  if (query?.toLowerCase().includes("translate")) return <Translate />;
+
+  // Instant answer - UUID
+  if (query?.toLowerCase().includes("uuid")) return <UUID />;
+
+  // Instant answer - Stopwatch WIP
+  if (query?.toLowerCase().includes("uuid")) return <Stopwatch />;
+
+  // Instant answer - Lyrics by Genius
+  if (query?.toLowerCase().includes("lyrics") && !isXl) return <Lyrics />;
+
+  // Next release todo
+  // Instant answer - Weather
+  // Instant answer - Currency convert
+
+  return null;
 };
 
 export default InstantAnswer;
