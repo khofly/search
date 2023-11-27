@@ -1,6 +1,6 @@
 import { Client } from "genius-lyrics";
 
-export const dynamic = "force-dynamic"; // defaults to force-static
+// export const dynamic = "force-dynamic"; // defaults to force-static
 
 export async function GET(request: Request) {
   const client = new Client();

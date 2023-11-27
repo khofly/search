@@ -9,6 +9,7 @@ import Lyrics from "./Lyrics";
 import Translate from "./Translate";
 import UUID from "./UUID";
 import Stopwatch from "./Stopwatch";
+import Timer from "./Timer";
 
 const InstantAnswer = () => {
   const searchParams = useSearchParams();
@@ -27,8 +28,8 @@ const InstantAnswer = () => {
   // Instant answer - UUID
   if (query?.toLowerCase().includes("uuid")) return <UUID />;
 
-  // Instant answer - Stopwatch WIP
-  if (query?.toLowerCase().includes("uuid")) return <Stopwatch />;
+  // Instant answer - Timer WIP
+  if (query?.toLowerCase().includes("timer")) return <Timer />;
 
   // Instant answer - Lyrics by Genius
   if (query?.toLowerCase().includes("lyrics") && !isXl) return <Lyrics />;
@@ -36,6 +37,8 @@ const InstantAnswer = () => {
   // Next release todo
   // Instant answer - Weather
   // Instant answer - Currency convert
+  // Instant answer - Stopwatch WIP
+  // if (query?.toLowerCase().includes("stopwatch")) return <Stopwatch />;
 
   return null;
 };

@@ -1,3 +1,6 @@
+@use "functions" as func;
+@use "variables" as vars;
+
 .index_page {
   height: calc(100dvh - 70px - 60px);
 
@@ -8,5 +11,15 @@
 
   .flex {
     width: 100%;
+  }
+
+  .app_name {
+    font-size: func.to-rem(110px);
+  }
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    .app_name {
+      font-size: func.to-rem(60px);
+    }
   }
 }

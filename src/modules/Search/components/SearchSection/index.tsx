@@ -7,6 +7,7 @@ import {
   Group,
   Image,
   Tabs,
+  Text,
 } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 
@@ -26,11 +27,13 @@ import { ISearchTabs, useSearchStore } from "src/store/search";
 import Link from "next/link";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { useDebouncedValue } from "@mantine/hooks";
+import { useResponsive } from "@hooks/use-responsive";
 
 const SearchSection = () => {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const isSm = useResponsive("max", "sm");
 
   const { useAutocomplete } = useSearchStore((state) => ({
     useAutocomplete: state.useAutocomplete,
@@ -109,9 +112,15 @@ const SearchSection = () => {
             if (!val.length) reset();
           }}
           onKeyDown={(e) => {
-            if (e.code === "Enter") handleSearch(q);
+            if (e.key === "Enter") handleSearch(q);
           }}
-          // leftSection={<IconSearch style={getIconStyle(20)} stroke={1.5} />}
+          leftSection={
+            isSm && (
+              <Link className={classes.app_logo_mobile} href="/">
+                <IconTriangleFilled style={getIconStyle(22)} />
+              </Link>
+            )
+          }
           rightSection={
             <>
               <ActionIcon

@@ -44,4 +44,8 @@
     func.to-rem(1px) solid var(--mantine-color-gray-2),
     func.to-rem(1px) solid var(--mantine-color-dark-5)
   );
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    height: 80px;
+  }
 }

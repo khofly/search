@@ -23,7 +23,8 @@ const EngineComponent: React.FC<Props> = ({
   return (
     <Flex
       w="100%"
-      direction={{ base: "column", sm: "row" }}
+      // direction={{ base: "column", sm: "row" }}
+      direction="row"
       align="center"
       justify="space-between"
     >

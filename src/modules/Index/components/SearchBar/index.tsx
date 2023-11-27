@@ -68,7 +68,7 @@ const SearchBar = () => {
         className={classes.search_bar}
         placeholder={t("pages.index.search_placeholder")}
         radius="xl"
-        size="lg"
+        size={isXs ? "md" : "lg"}
         autoFocus={true}
         value={q}
         onChange={(val) => {
@@ -76,7 +76,7 @@ const SearchBar = () => {
           if (!val.length) reset();
         }}
         onKeyDown={(e) => {
-          if (e.code === "Enter") handleSearch(q);
+          if (e.key === "Enter") handleSearch(q);
         }}
         leftSection={
           !isXs &&
@@ -107,7 +107,7 @@ const SearchBar = () => {
             )}
 
             <ActionIcon
-              size={38}
+              size={isXs ? 32 : 38}
               radius="xl"
               color={"blue"}
               variant="filled"
@@ -117,7 +117,7 @@ const SearchBar = () => {
             </ActionIcon>
           </Flex>
         }
-        rightSectionWidth={isXs ? 50 : 100}
+        rightSectionWidth={isXs ? 40 : 100}
         // Autocomplete props
         data={data?.map((str) => ({ label: str, value: str }))}
         comboboxProps={{

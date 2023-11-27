@@ -41,50 +41,56 @@ const Translate = () => {
         <Button size="xs">Translate</Button>
       </Flex>
 
-      <Flex direction="row" align="flex-start" gap="sm">
-        {/* User input */}
-        <Flex className={classes.flex_side} direction="column">
-          <Select
-            data={LANG_DATA}
-            value={lang1}
-            onChange={(val) => setLang1(val || "")}
-            mb="md"
-          />
+      {/* Language select */}
+      <Flex direction="row" align="flex-start" justify="space-between" gap="sm">
+        <Select
+          className={classes.flex_side}
+          data={LANG_DATA}
+          value={lang1}
+          onChange={(val) => setLang1(val || "")}
+          mb="md"
+        />
 
-          <Textarea
-            classNames={{
-              input: classes.textarea,
-            }}
-            placeholder="Enter text"
-            variant="unstyled"
-            size="lg"
-          />
-        </Flex>
-
-        {/* Center */}
         <ActionIcon variant="subtle" onClick={handleSwapLanguages} mt={4}>
           <IconSwitchHorizontal />
         </ActionIcon>
 
-        {/* API output */}
-        <Flex className={classes.flex_side} direction="column">
-          <Select
-            data={LANG_DATA}
-            value={lang2}
-            onChange={(val) => setLang2(val || "")}
-            mb="md"
-          />
+        <Select
+          className={classes.flex_side}
+          data={LANG_DATA}
+          value={lang2}
+          onChange={(val) => setLang2(val || "")}
+          mb="md"
+        />
+      </Flex>
 
-          <Textarea
-            classNames={{
-              input: classes.textarea,
-            }}
-            placeholder="Translation"
-            variant="filled"
-            size="lg"
-            readOnly
-          />
-        </Flex>
+      <Flex
+        className={classes.flex_mobile}
+        align="flex-start"
+        justify="space-between"
+      >
+        {/* User input */}
+        <Textarea
+          classNames={{
+            root: classes.textarea,
+            input: classes.textarea,
+          }}
+          placeholder="Enter text"
+          variant="default"
+          size="md"
+        />
+
+        {/* API output */}
+        <Textarea
+          classNames={{
+            root: classes.textarea,
+            input: classes.textarea,
+          }}
+          placeholder="Translation"
+          variant="filled"
+          size="md"
+          readOnly
+        />
       </Flex>
     </IAWrapper>
   );

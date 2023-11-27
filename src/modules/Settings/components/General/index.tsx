@@ -6,6 +6,7 @@ import FaviconSwitch from "./FaviconSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
 import NewTabSwitch from "./NewTabSwitch";
+import classes from "./styles.module.scss";
 
 const SettingsGeneral = () => {
   const translate = useTranslations();
@@ -22,12 +23,7 @@ const SettingsGeneral = () => {
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
             <Text size="md" fw={400}>
               {translate("pages.settings.general.toggleFavicon")}
@@ -43,12 +39,7 @@ const SettingsGeneral = () => {
 
         <Divider my="sm" w="100%" />
 
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Text size="md" fw={400}>
             {translate("pages.settings.general.toggleAutocomplete")}
           </Text>
@@ -58,12 +49,7 @@ const SettingsGeneral = () => {
 
         <Divider my="sm" w="100%" />
 
-        <Flex
-          w="100%"
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="space-between"
-        >
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Text size="md" fw={400}>
             {translate("pages.settings.general.openInNewTabToggle")}
           </Text>

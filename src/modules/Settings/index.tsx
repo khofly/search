@@ -14,16 +14,13 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
 import SettingsTheme from "./components/Theme";
 import SettingsInterface from "./components/Interface";
-import SettingsEnginesSearch from "./components/EnginesSearch";
-import SettingsEnginesImages from "./components/EnginesImages";
-import SettingsEnginesVideos from "./components/EnginesVideos";
 import EnginesTabs from "./components/EnginesTabs";
 
 const PageSettings = () => {
   return (
     <Container className={classes.settings_page} size="lg" py={80}>
       <Tabs variant="default" defaultValue="interface">
-        <Tabs.List mb="lg">
+        <Tabs.List mb="lg" className={classes.tabs_scroll}>
           <Tabs.Tab
             value="interface"
             leftSection={<IconBrush style={getIconStyle(20)} />}

@@ -19,7 +19,7 @@ const PageIndex = () => {
           direction="column"
           pb={150}
         >
-          <Title size="5.5rem" mb="xl">
+          <Title className={classes.app_name} mb="xl">
             {t("_common.app_name")}
           </Title>
 

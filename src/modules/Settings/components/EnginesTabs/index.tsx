@@ -11,6 +11,7 @@ import SettingsEnginesSearch from "../EnginesSearch";
 import SettingsEnginesImages from "../EnginesImages";
 import SettingsEnginesVideos from "../EnginesVideos";
 import SettingsEnginesNews from "../EnginesNews";
+import classes from "../../styles.module.scss";
 
 const EnginesTabs = () => {
   return (
@@ -18,7 +19,7 @@ const EnginesTabs = () => {
       <Text my="lg">Currently used search engines</Text>
 
       <Tabs variant="default" defaultValue="general">
-        <Tabs.List mb="lg">
+        <Tabs.List mb="lg" className={classes.tabs_scroll}>
           <Tabs.Tab
             value="general"
             leftSection={<IconSearch style={getIconStyle(20)} />}

@@ -12,15 +12,19 @@ import { IAWrapper } from "../wrapper";
 
 const CoinFlip = () => {
   const [side, setSide] = useState<"heads" | "tails" | "">("");
+  const [count, setCount] = useState(0);
 
   const handleToss = () => {
-    const landedOn = cryptoRandomNumber(0, 1);
-    setSide(landedOn === 0 ? "heads" : "tails");
+    setCount(count + 1);
+    setSide("");
   };
 
-  // useEffect(() => {
-  //   if (!visible) setSide("");
-  // }, [visible]);
+  useEffect(() => {
+    if (!count) return;
+
+    const landedOn = cryptoRandomNumber(0, 1);
+    setSide(landedOn === 0 ? "heads" : "tails");
+  }, [count]);
 
   return (
     <IAWrapper>
