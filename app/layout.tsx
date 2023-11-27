@@ -32,11 +32,7 @@ export default function RootLayout({
         {/* OpenSearch XML */}
         <link
           rel="search"
-          href={
-            process.env.NODE_ENV === "production"
-              ? "/opensearch_prod.xml"
-              : "/opensearch_stag.xml"
-          }
+          href={"/opensearch_stag.xml"}
           type="application/opensearchdescription+xml"
           title="Search khofly.com"
         />
