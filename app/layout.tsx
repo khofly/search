@@ -29,6 +29,18 @@ export default function RootLayout({
 
         <ColorSchemeScript defaultColorScheme="dark" />
 
+        {/* OpenSearch XML */}
+        <link
+          rel="search"
+          href={
+            process.env.NODE_ENV === "production"
+              ? "/opensearch_prod.xml"
+              : "/opensearch_stag.xml"
+          }
+          type="application/opensearchdescription+xml"
+          title="Search khofly.com"
+        />
+
         {/* Leaflet stuff */}
         <link
           rel="stylesheet"

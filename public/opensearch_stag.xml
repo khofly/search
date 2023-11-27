@@ -1,0 +1,11 @@
+	
+
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Khofly</ShortName>
+  <Description>Khofly search</Description>
+  <Url type="text/html" method="get" template="https://staging.khofly.com/search?q={searchTerms}"/>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image height="32" width="32" type="image/x-icon">https://staging.khofly.com/favicon.ico</Image>
+  <moz:SearchForm>https://staging.khofly.com/search</moz:SearchForm>
+</OpenSearchDescription>
