@@ -8,10 +8,13 @@
   height: 150px;
   width: 100%;
 }
+.output_box {
+  width: 100%;
+}
 
 .flex_mobile {
   flex-direction: row;
-  gap: calc(24px + var(--mantine-spacing-sm) + var(--mantine-spacing-sm));
+  gap: calc(24px + var(--mantine-spacing-sm) + var(--mantine-spacing-sm) + 4px);
 
   @media (max-width: vars.$mantine-breakpoint-xs) {
     flex-direction: column;

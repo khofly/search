@@ -69,7 +69,6 @@ const SearchBar = () => {
         placeholder={t("pages.index.search_placeholder")}
         radius="xl"
         size={isXs ? "md" : "lg"}
-        autoFocus={true}
         value={q}
         onChange={(val) => {
           setQ(val);

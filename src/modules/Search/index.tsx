@@ -15,7 +15,7 @@ const TabMapsWithoutSSR = dynamic(() => import("./components/TabMaps"), {
 
 const PageSearch = () => {
   const searchParams = useSearchParams();
-  const selectedTab = searchParams.get("tab") || "general";
+  const tab = searchParams.get("tab") || "general";
 
   // Render tab
   const renderTab = {
@@ -24,7 +24,7 @@ const PageSearch = () => {
     videos: <TabVideos />,
     news: <TabNews />,
     maps: <TabMapsWithoutSSR />,
-  }[selectedTab];
+  }[tab];
 
   return renderTab;
 };

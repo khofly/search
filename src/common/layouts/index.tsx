@@ -10,7 +10,7 @@ import classes from "./styles.module.scss";
 import { usePathname, useSearchParams } from "next/navigation";
 import clsx from "clsx";
 import WikiNavbar from "@components/Navbar/Wiki";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useDocumentTitle } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
 import { useGlobalStore } from "@store/global";
@@ -34,6 +34,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
+  const q = searchParams.get("q");
 
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
@@ -46,6 +47,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isSearchMaps = isSearch && tab === "maps";
 
   const headerHeight = isSearch ? 100 : 70;
+
+  useDocumentTitle(isSearch ? `${q} at Khofly` : "Khofly");
 
   // Updates profile on session change
   useApiProfile();

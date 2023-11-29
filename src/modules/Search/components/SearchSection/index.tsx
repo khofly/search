@@ -105,7 +105,6 @@ const SearchSection = () => {
           placeholder={t("pages.search.search_placeholder")}
           radius="md"
           size="md"
-          autoFocus={true}
           value={q}
           onChange={(val) => {
             setQ(val);
