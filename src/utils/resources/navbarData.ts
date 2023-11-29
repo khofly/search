@@ -27,11 +27,7 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
     links: [
       { label: "Overview", link: "/wiki/search/overview", isWip: false },
       { label: "SearXNG", link: "/wiki/search/searxng", isWip: false },
-      {
-        label: "LibreTranslate",
-        link: "/wiki/search/libre-translate",
-        isWip: false,
-      },
+
       { label: "Self-Hosted", link: "/wiki/docs/self-host", isWip: true },
     ],
   },
