@@ -2,3 +2,7 @@ a {
   text-decoration: unset !important;
   color: unset !important;
 }
+
+.leaflet-attribution-flag {
+  width: 0px !important;
+}

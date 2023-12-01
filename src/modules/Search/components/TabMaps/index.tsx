@@ -18,6 +18,7 @@ const TabMaps = () => {
     let map = useMap();
 
     map.setView([latitude, longitude], map.getZoom());
+
     // Sets geographical center and zoom for the view of the map
     return null;
   }

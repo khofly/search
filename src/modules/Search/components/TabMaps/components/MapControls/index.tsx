@@ -1,11 +1,11 @@
 import {
   ActionIcon,
+  Center,
   Flex,
   Loader,
   NavLink,
   Paper,
   ScrollArea,
-  Stack,
   TextInput,
 } from "@mantine/core";
 import React, { Dispatch, useEffect, useState } from "react";
@@ -21,6 +21,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useDisclosure } from "@mantine/hooks";
 import clsx from "clsx";
 import useNominatimSWR from "src/api/nominatim/use-nominatim-query";
+import { useResponsive } from "@hooks/use-responsive";
 
 interface Props {
   coords: { latitude: number; longitude: number };
@@ -34,7 +35,9 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   const [isOpen, { toggle }] = useDisclosure(true);
   const [q, setQ] = useState(searchParams.get("q") || "");
 
-  const { data, isMutating, trigger } = useNominatimSWR();
+  const isXs = useResponsive("max", "xs");
+
+  const { data, isMutating, trigger, error } = useNominatimSWR();
 
   const handleSearch = () => {
     // Prevent empty search
@@ -51,6 +54,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
 
   const handleUpdateMap = (lat: string, lon: string) => {
     setCoords({ latitude: parseFloat(lat), longitude: parseFloat(lon) });
+    if (isXs) toggle();
   };
 
   useEffect(() => {
@@ -61,7 +65,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   }, [searchParams]);
 
   useEffect(() => {
-    if (!coords.latitude && !coords.longitude && data?.length) {
+    if (!coords.latitude && !coords.longitude && data?.length && !error) {
       setCoords({
         latitude: parseFloat(data[0].lat),
         longitude: parseFloat(data[0].lon),
@@ -76,6 +80,17 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
       })}
       radius={0}
     >
+      {/* Mobile slide controls */}
+      <Flex
+        className={classes.controls_slide}
+        onClick={toggle}
+        align="center"
+        justify="center"
+        p="xs"
+      >
+        <IconChevronLeft style={getIconStyle(22)} />
+      </Flex>
+
       <Flex className={classes.map_controls_head} p="xs" gap="xs">
         <ActionIcon
           className={classes.action_icon}
@@ -90,14 +105,16 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
           value={q}
           onChange={(e) => setQ(e.currentTarget.value)}
           size="md"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSearch();
+          }}
           rightSection={
             <>
               <ActionIcon
-                size="lg"
-                mr={6}
+                w={40}
+                h={40}
                 radius="sm"
-                // color={"blue"}
-                variant="transparent"
+                variant="blue"
                 onClick={() => handleSearch()}
               >
                 <IconSearch
@@ -112,9 +129,12 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
       </Flex>
 
       <ScrollArea className={classes.osm_results}>
-        {isMutating && <Loader mt="lg" mx="auto" />}
-        {data &&
-          !isMutating &&
+        {isMutating && (
+          <Center>
+            <Loader mt="lg" />
+          </Center>
+        )}
+        {data?.length && !error && !isMutating ? (
           data?.map((row, i) => (
             <NavLink
               key={i}
@@ -122,7 +142,10 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
               leftSection={<IconSearch size="1rem" stroke={1.5} />}
               onClick={(e) => handleUpdateMap(row.lat, row.lon)}
             />
-          ))}
+          ))
+        ) : (
+          <Center py="md">No results</Center>
+        )}
       </ScrollArea>
 
       {/* Toggle icon */}

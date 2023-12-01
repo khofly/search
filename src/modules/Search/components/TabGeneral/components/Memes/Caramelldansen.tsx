@@ -1,7 +1,7 @@
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
-const Audio = () => {
+const CaramelldansenAudio = () => {
   const searchParams = useSearchParams();
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -34,4 +34,4 @@ const Audio = () => {
   );
 };
 
-export default Audio;
+export default CaramelldansenAudio;

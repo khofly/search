@@ -41,7 +41,7 @@ const SearchBar = () => {
   const [openKeyboard, { toggle: toggleKeyboard }] = useDisclosure();
 
   const [q, setQ] = useState("");
-  const [debouncedQ] = useDebouncedValue(q, 400);
+  const [debouncedQ] = useDebouncedValue(q, 300);
 
   const isXs = useResponsive("max", "xs");
 
@@ -121,6 +121,9 @@ const SearchBar = () => {
         data={data?.map((str) => ({ label: str, value: str }))}
         comboboxProps={{
           onOptionSubmit: (val) => handleSearch(val),
+          onPositionChange: () => {
+            console.log("Pos change");
+          },
           size: "md",
         }}
       />

@@ -5,20 +5,18 @@ import {
   useCombobox,
 } from "@mantine/core";
 
-// import { USFlag, FlagProps } from 'mantine-flagpack';
+import { USFlag, FlagProps, GBFlag } from "mantine-flagpack";
 
 import { ITranslations, useGlobalStore, useTranslations } from "@store/global";
 
 import classes from "./styles.module.scss";
 import { DotNestedKeys, ILanguage } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { USFlag } from "./Flags";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;
   value: string;
-  // icon: React.FC<FlagProps>;
-  icon: React.FC<BoxComponentProps>;
+  icon: React.FC<FlagProps>;
 }
 
 const LANG_DATA: ILangData[] = [
@@ -42,8 +40,6 @@ const LanguageSelect = () => {
   });
 
   const handleChange = (next: ILanguage) => {
-    // router.push(router.pathname, router.pathname, { locale: newLocal });
-    // router.replace(pathname, { locale: val });
     changeLanguage(next);
     combobox.closeDropdown();
   };
@@ -51,42 +47,12 @@ const LanguageSelect = () => {
   const selected = LANG_DATA.find((l) => l.value === language) || LANG_DATA[1];
 
   const items = LANG_DATA.map((item) => (
-    // <Menu.Item
-    //   icon={<item.icon w={25} radius="xs" />}
-    //   onClick={() => changeLanguage(item.value)}
-    //   key={item.value}
-    //   pt={10}
-    //   pb={10}
-    // >
-    //   {translate(item.label)}
-    // </Menu.Item>
-    <Combobox.Option
-      // left={<item.icon w={flagW} h={flagH} radius="md" />}
-      value={item.value}
-      key={item.value}
-    >
+    <Combobox.Option value={item.value} key={item.value}>
       {translate(item.label)}
     </Combobox.Option>
   ));
 
   return (
-    // <Menu onOpen={() => setOpened(true)} onClose={() => setOpened(false)} radius="md" width="target">
-    //   <Menu.Target>
-    //     <UnstyledButton className={classes.control}>
-    //       <Group spacing="xs" style={{ flex: 1 }}>
-    //         <selected.icon w={27} radius="xs" />
-
-    //         <div className={classes.label} style={{ width: '70%' }}>
-    //           <Text truncate>{translate(selected.label)}</Text>
-    //         </div>
-    //       </Group>
-
-    //       <IconChevronDown size={18} className={classes.icon} />
-    //     </UnstyledButton>
-    //   </Menu.Target>
-    //   <Menu.Dropdown>{items}</Menu.Dropdown>
-    // </Menu>
-
     <Combobox
       store={combobox}
       onOptionSubmit={(val) => handleChange(val as ILanguage)}
@@ -96,7 +62,8 @@ const LanguageSelect = () => {
           w={200}
           leftSection={
             <selected.icon
-              style={{ width: 27, borderRadius: 12, display: "block" }}
+              style={getIconStyle(25)}
+              className={classes.flag_icon}
             />
           }
           leftSectionWidth={27 + 20}

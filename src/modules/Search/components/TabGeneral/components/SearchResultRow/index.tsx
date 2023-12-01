@@ -56,7 +56,6 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
           className={clsx(classes.text_title, {
             [classes.text_title_visited]: visitedLinks.includes(url),
           })}
-          size="xl"
           mb={4}
           truncate="end"
         >

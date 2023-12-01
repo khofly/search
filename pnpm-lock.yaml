@@ -47,6 +47,9 @@ dependencies:
   leaflet:
     specifier: ^1.9.4
     version: 1.9.4
+  mantine-flagpack:
+    specifier: ^4.0.0
+    version: 4.0.0(@mantine/core@7.2.2)(@mantine/hooks@7.2.2)(clsx@2.0.0)(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: 14.0.3
     version: 14.0.3(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
@@ -2082,6 +2085,22 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /mantine-flagpack@4.0.0(@mantine/core@7.2.2)(@mantine/hooks@7.2.2)(clsx@2.0.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qPV4XJt2YB11i0Ps+C+yV1ULEBEPvnkq6i4bw9cKxjJsVVGGSjWlefTU8MYslkS5+g44bptvDRpsj6bBSWOVtQ==}
+    peerDependencies:
+      '@mantine/core': '>=7.0.0'
+      '@mantine/hooks': '>=7.0.0'
+      clsx: 2.0.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@mantine/core': 7.2.2(@mantine/hooks@7.2.2)(@types/react@18.2.38)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.2.2(react@18.2.0)
+      clsx: 2.0.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}

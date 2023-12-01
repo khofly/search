@@ -3,6 +3,7 @@
 import {
   ActionIcon,
   Autocomplete,
+  Divider,
   Flex,
   Group,
   Image,
@@ -21,6 +22,7 @@ import {
   IconPlayerPlay,
   IconSearch,
   IconTriangleFilled,
+  IconX,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { ISearchTabs, useSearchStore } from "src/store/search";
@@ -53,6 +55,10 @@ const SearchSection = () => {
     const tab = searchParams.get("tab") || "general";
 
     router.push(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
+  };
+
+  const handleClear = () => {
+    setQ("");
   };
 
   const handleChangeTab = (tab: ISearchTabs) => {
@@ -121,23 +127,40 @@ const SearchSection = () => {
             )
           }
           rightSection={
-            <>
+            <Flex align="center" justify="flex-end" gap={4}>
+              {q.length >= 1 && (
+                <>
+                  <ActionIcon
+                    size="lg"
+                    radius="sm"
+                    color="gray.8"
+                    variant="transparent"
+                    onClick={handleClear}
+                  >
+                    <IconX style={getIconStyle(20)} stroke={1.5} />
+                  </ActionIcon>
+
+                  <Divider orientation="vertical" w={1} my={9} color="gray.7" />
+                </>
+              )}
+
               <ActionIcon
-                size="lg"
-                mr={6}
-                radius="sm"
-                // color={"blue"}
+                w={40}
+                h={40}
+                radius="md"
+                color="gray.4"
                 variant="transparent"
                 onClick={() => handleSearch(q)}
               >
                 <IconSearch
-                  style={getIconStyle(22)}
-                  stroke={1.5}
-                  color="white"
+                  style={getIconStyle(20)}
+                  stroke={2}
+                  // color="white"
                 />
               </ActionIcon>
-            </>
+            </Flex>
           }
+          rightSectionWidth={q.length >= 1 ? 83 : 40}
           // Autocomplete props
           data={data?.map((str) => ({ label: str, value: str }))}
           comboboxProps={{

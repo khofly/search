@@ -71,8 +71,8 @@ const ThemeSelect = () => {
           leftSection={
             <Image
               src={selected.image}
-              w={25}
-              h={25}
+              w={20}
+              h={20}
               alt={selected.label + " logo"}
             />
           }

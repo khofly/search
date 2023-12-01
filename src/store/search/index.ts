@@ -83,7 +83,7 @@ export const useSearchStore = create<SearchState>()(
       displayFavicon: false,
       setDisplayFavicon: (displayFavicon) => set({ displayFavicon }),
 
-      useAutocomplete: false,
+      useAutocomplete: true,
       setUseAutocomplete: (next) => set({ useAutocomplete: next }),
 
       openInNewTab: false,

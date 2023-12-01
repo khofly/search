@@ -1,3 +1,5 @@
+@use "variables" as vars;
+
 .map_controls {
   position: absolute;
   z-index: 2;
@@ -52,6 +54,50 @@
     &.controls_toggle_closed {
       svg {
         transform: rotate(180deg);
+      }
+    }
+  }
+
+  .controls_slide {
+    width: 100%;
+    cursor: grab;
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-8)
+    );
+
+    display: none;
+
+    svg {
+      transform: rotate(270deg);
+    }
+  }
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    top: unset;
+    bottom: 0;
+    height: 60dvh;
+    max-height: 60dvh;
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+
+    .controls_toggle {
+      display: none;
+    }
+
+    .controls_slide {
+      display: flex;
+    }
+
+    &.map_controls_closed {
+      left: unset;
+      bottom: calc(-60dvh + 44px);
+
+      .controls_slide {
+        svg {
+          transform: rotate(90deg);
+        }
       }
     }
   }

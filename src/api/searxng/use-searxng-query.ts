@@ -23,9 +23,9 @@ const getKey = (
 
   const engineBangs = getEngineBangs(tab, enginesSelected);
 
-  return `/search?q=${engineBangs}${q}&categories=${tab}&pageno=${
-    pageIndex + 1
-  }`; // SWR key
+  // SWR key
+  // prettier-ignore
+  return `/search?q=${engineBangs}${encodeURIComponent(q)}&categories=${tab}&pageno=${pageIndex + 1}`;
 };
 
 // Restart SearXNG

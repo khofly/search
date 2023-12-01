@@ -9,7 +9,7 @@ export async function GET(request: Request) {
 
   const q = searchParams.get("q") || "";
 
-  const searches = await client.songs.search(`${decodeURIComponent(q)}`);
+  const searches = await client.songs.search(q);
   const song = searches[0];
 
   const lyrics = await song?.lyrics();

@@ -8,6 +8,14 @@ import { useSearchStore } from "@store/search";
 import clsx from "clsx";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import {
+  IconCalendar,
+  IconCalendarMonth,
+  IconClock,
+} from "@tabler/icons-react";
+import { getIconStyle } from "@utils/functions/iconStyle";
+import { IconCalendarSad } from "@tabler/icons-react";
+import { IconCalendarFilled } from "@tabler/icons-react";
 
 dayjs.extend(relativeTime);
 
@@ -61,16 +69,20 @@ const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
           className={clsx(classes.text_title, {
             [classes.text_title_visited]: visitedLinks.includes(url),
           })}
-          size="xl"
+          mb={4}
           truncate="end"
         >
           {title}
         </Text>
 
         {/* Date */}
-        <Text size="sm" mb={4}>
-          {dayjs(publishedDate).fromNow()}
-        </Text>
+        <Flex align="center" mb={4}>
+          <IconClock style={getIconStyle(18)} />
+
+          <Text size="sm" ml={6}>
+            {dayjs(publishedDate).fromNow()}
+          </Text>
+        </Flex>
 
         {/* Website description */}
         <Text size="sm" c="dimmed">

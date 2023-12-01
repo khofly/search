@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import InstantAnswer from "../InstantAnswer";
 import SearchResultRow from "./components/SearchResultRow";
-import { Button, Divider, Flex, Stack, Text } from "@mantine/core";
+import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../ScrollToTop";
@@ -13,7 +13,7 @@ import Infobox from "./components/Infobox";
 import Lyricsbox from "./components/Lyricsbox";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
-import Caramelldansen from "./components/Memes/Caramelldansen";
+import CaramelldansenAudio from "./components/Memes/Caramelldansen";
 
 const TabGeneral = () => {
   const searchParams = useSearchParams();
@@ -81,6 +81,16 @@ const TabGeneral = () => {
           !isValidating &&
           data &&
           data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && (
+            <Center py="xs">No results, try with different query</Center>
+          )}
+
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length >= 1 &&
           !isRateLimit && (
             <Button
               variant="filled"
@@ -110,7 +120,7 @@ const TabGeneral = () => {
       </Flex>
 
       {/* Memes */}
-      <Caramelldansen />
+      <CaramelldansenAudio />
     </Flex>
   );
 };
