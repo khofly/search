@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 export type ISearchTabs = "general" | "images" | "videos" | "news" | "maps";
 
-export type IAutocompleteEngines = "google" | "duckduckgo";
+export type IAutocompleteEngines = "google" | "duckduckgo" | "brave" | "qwant";
 
 export type IGeneralEngines =
   | "google"
@@ -69,7 +69,7 @@ export const useSearchStore = create<SearchState>()(
       enginesVideos: ["duckduckgo", "qwant"],
       setEnginesVideos: (next) => set({ enginesImages: next }),
 
-      enginesNews: ["google", "bing", "wikinews"],
+      enginesNews: ["duckduckgo", "bing", "wikinews"],
       setEnginesNews: (next) => set({ enginesNews: next }),
 
       autocompleteEngine: "google",

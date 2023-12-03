@@ -30,6 +30,7 @@ import Link from "next/link";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useResponsive } from "@hooks/use-responsive";
+import NextLink from "@components/NextLink";
 
 const SearchSection = () => {
   const t = useTranslations();
@@ -86,7 +87,7 @@ const SearchSection = () => {
       h="100%"
       gap="md"
     >
-      <Link className={classes.app_logo} href="/">
+      <NextLink className={classes.app_logo} href="/">
         {searchParams.get("q")?.includes("doge") ? (
           <Image
             w={42}
@@ -98,7 +99,7 @@ const SearchSection = () => {
         ) : (
           <IconTriangleFilled style={getIconStyle(42)} />
         )}
-      </Link>
+      </NextLink>
 
       <Flex
         className={classes.flex}
@@ -121,9 +122,9 @@ const SearchSection = () => {
           }}
           leftSection={
             isSm && (
-              <Link className={classes.app_logo_mobile} href="/">
+              <NextLink className={classes.app_logo_mobile} href="/">
                 <IconTriangleFilled style={getIconStyle(22)} />
-              </Link>
+              </NextLink>
             )
           }
           rightSection={

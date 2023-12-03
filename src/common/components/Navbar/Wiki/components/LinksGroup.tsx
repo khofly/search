@@ -13,6 +13,7 @@ import { IconBarrierBlock, IconChevronRight } from "@tabler/icons-react";
 import classes from "./styles.module.scss";
 import Link from "next/link";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import NextLink from "@components/NextLink";
 
 export interface LinksGroupProps {
   icon: React.FC<any>;
@@ -32,7 +33,7 @@ const LinksGroup: React.FC<LinksGroupProps> = ({
   const [opened, setOpened] = useState(initiallyOpened || false);
 
   const items = (hasLinks ? links : []).map((link) => (
-    <Link className={classes.link} href={link.link} key={link.label}>
+    <NextLink className={classes.link} href={link.link} key={link.label}>
       <Flex align="center" gap="xs">
         {link.label}
 
@@ -43,7 +44,7 @@ const LinksGroup: React.FC<LinksGroupProps> = ({
           />
         )}
       </Flex>
-    </Link>
+    </NextLink>
   ));
 
   return (

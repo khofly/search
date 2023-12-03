@@ -16,6 +16,7 @@ import {
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { IconCalendarSad } from "@tabler/icons-react";
 import { IconCalendarFilled } from "@tabler/icons-react";
+import { useResponsive } from "@hooks/use-responsive";
 
 dayjs.extend(relativeTime);
 
@@ -39,11 +40,24 @@ const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
     })
   );
 
+  const isXs = useResponsive("max", "xs");
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+    ? "_blank"
+    : "_self";
+
   return (
     <Anchor
       href={url}
-      target={openInNewTab ? "_blank" : "_self"}
+      target={anchorTarget}
       onClick={() => updateVisitedLinks(url)}
+      onAuxClick={(e) => {
+        if (e.button === 1) {
+          // Middle mouse button has been clicked! Do what you will with it...
+          updateVisitedLinks(url);
+        }
+      }}
       rel="noreferrer noopener"
     >
       <Flex className={classes.news_row} direction="column">

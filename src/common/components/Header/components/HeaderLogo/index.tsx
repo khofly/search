@@ -1,7 +1,7 @@
+import NextLink from "@components/NextLink";
 import { Burger, Flex } from "@mantine/core";
 import { IconTriangleFilled } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import Link from "next/link";
 import React from "react";
 
 interface Props {
@@ -26,9 +26,9 @@ const HeaderLogo: React.FC<Props> = ({
         />
       )}
 
-      <Link href="/">
+      <NextLink href="/">
         <IconTriangleFilled style={getIconStyle(32)} />
-      </Link>
+      </NextLink>
     </Flex>
   );
 };

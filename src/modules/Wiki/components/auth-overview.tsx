@@ -1,6 +1,6 @@
+import NextLink from "@components/NextLink";
 import { IProfile } from "@khofly/core";
 import { Code, Container, Text, useMantineTheme } from "@mantine/core";
-import Link from "next/link";
 import React from "react";
 import { useGlobalStore } from "src/store/global";
 
@@ -41,9 +41,10 @@ const WikiAuthOverview = () => {
         >
           https://auth.khofly.com
         </Text>{" "}
-        ) so that the auth code isn&apos;t repeated for every app. To make this work
-        supabaseClient <Code>cookieOptions.domain</Code> option has to be set to
-        a top level domain, otherwise the session wouldn&apos;t be shared.
+        ) so that the auth code isn&apos;t repeated for every app. To make this
+        work supabaseClient <Code>cookieOptions.domain</Code> option has to be
+        set to a top level domain, otherwise the session wouldn&apos;t be
+        shared.
       </Text>
 
       <Text mt="md">
@@ -68,9 +69,9 @@ const WikiAuthOverview = () => {
 
       <Text mt="md">
         Every user can create their own team, amount of teams is based on user{" "}
-        <Link href="/rewards" style={{ color: theme.colors.blue["4"] }}>
+        <NextLink href="/rewards" style={{ color: theme.colors.blue["4"] }}>
           tier
-        </Link>
+        </NextLink>
         , this allows the users within a team to share documents, schedule
         meetings, etc.
       </Text>

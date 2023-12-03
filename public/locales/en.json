@@ -82,6 +82,8 @@
         "toggleAutocomplete": "Enable search autocomplete",
         "autocompleteEngineGoogle": "Google",
         "autocompleteEngineDDG": "DuckDuckGo",
+        "autocompleteEngineBrave": "Brave",
+        "autocompleteEngineQwant": "Qwant",
 
         "openInNewTabToggle": "Open links in new tab"
       },

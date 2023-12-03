@@ -33,6 +33,18 @@ const AutocompleteSwitch = () => {
               label: translate("pages.settings.general.autocompleteEngineDDG"),
               value: "duckduckgo",
             },
+            {
+              label: translate(
+                "pages.settings.general.autocompleteEngineBrave"
+              ),
+              value: "brave",
+            },
+            {
+              label: translate(
+                "pages.settings.general.autocompleteEngineQwant"
+              ),
+              value: "qwant",
+            },
           ]}
           value={autocompleteEngine}
           onChange={(val) => setAutocompleteEngine(val as IAutocompleteEngines)}

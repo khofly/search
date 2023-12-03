@@ -6,6 +6,7 @@ import classes from "./styles.module.scss";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import { useSearchStore } from "@store/search";
 import clsx from "clsx";
+import { useResponsive } from "@hooks/use-responsive";
 
 const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   title,
@@ -26,11 +27,24 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
     })
   );
 
+  const isXs = useResponsive("max", "xs");
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+    ? "_blank"
+    : "_self";
+
   return (
     <Anchor
       href={url}
-      target={openInNewTab ? "_blank" : "_self"}
+      target={anchorTarget}
       onClick={() => updateVisitedLinks(url)}
+      onAuxClick={(e) => {
+        if (e.button === 1) {
+          // Middle mouse button has been clicked! Do what you will with it...
+          updateVisitedLinks(url);
+        }
+      }}
       rel="noreferrer noopener"
     >
       <Flex className={classes.search_row} direction="column">

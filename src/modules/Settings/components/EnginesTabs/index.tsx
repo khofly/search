@@ -18,7 +18,7 @@ const EnginesTabs = () => {
     <>
       <Text my="lg">Currently used search engines</Text>
 
-      <Tabs variant="default" defaultValue="general">
+      <Tabs variant="default" defaultValue="general" keepMounted={false}>
         <Tabs.List mb="lg" className={classes.tabs_scroll}>
           <Tabs.Tab
             value="general"

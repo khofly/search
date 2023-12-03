@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Flex, Group, Menu, Text } from "@mantine/core";
+import { Anchor, Avatar, Flex, Group, Menu, Text } from "@mantine/core";
 
 import {
   IconRefresh,
@@ -62,7 +62,7 @@ const HeaderAvatar = () => {
 
       <Menu.Dropdown>
         <Menu.Item>
-          <Link href={profileUrl} target="_blank">
+          <Anchor href={profileUrl} target="_blank">
             <Group>
               <Avatar
                 radius="xl"
@@ -98,22 +98,20 @@ const HeaderAvatar = () => {
                 </Text>
               </div>
             </Group>
-          </Link>
+          </Anchor>
         </Menu.Item>
 
         <Menu.Divider />
 
-        <Menu.Label>{t("header.avatar.label_1")}</Menu.Label>
+        {/* <Menu.Label>{t("header.avatar.label_1")}</Menu.Label> */}
 
-        {false && (
-          <Link href="/doc/my">
+        {/* <Link href="/test">
             <Menu.Item leftSection={<IconFileText style={getIconStyle(20)} />}>
               Test
             </Menu.Item>
-          </Link>
-        )}
+          </Link> */}
 
-        <Menu.Divider />
+        {/* <Menu.Divider /> */}
 
         <Menu.Label>{t("header.avatar.label_2")}</Menu.Label>
 

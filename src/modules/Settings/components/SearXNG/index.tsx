@@ -18,6 +18,7 @@ import { useSearXNGStore } from "src/store/searxng";
 import { useForm } from "@mantine/form";
 import Link from "next/link";
 import useToast from "@hooks/use-toast";
+import NextLink from "@components/NextLink";
 
 const SettingsSearXNG = () => {
   const { domain, setDomain } = useSearXNGStore((state) => ({
@@ -73,7 +74,7 @@ const SettingsSearXNG = () => {
             Change this to your own url for better privacy & less load for
             default instance.{" "}
             <Text component="span" c="blue">
-              <Link href={"/wiki/search/searxng"}>Read more</Link>
+              <NextLink href={"/wiki/search/searxng"}>Read more</NextLink>
             </Text>
           </Text>
 

@@ -3,6 +3,7 @@ import { ISearXNGResultsVideos } from "@ts/searxng.types";
 import React from "react";
 import classes from "./styles.module.scss";
 import { useSearchStore } from "@store/search";
+import { useResponsive } from "@hooks/use-responsive";
 
 interface Props {
   videoData: ISearXNGResultsVideos["results"][0];
@@ -15,8 +16,15 @@ const VideoCell: React.FC<Props> = ({ videoData }) => {
     openInNewTab: state.openInNewTab,
   }));
 
+  const isXs = useResponsive("max", "xs");
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+    ? "_blank"
+    : "_self";
+
   return (
-    <Anchor href={url} target={openInNewTab ? "_blank" : "_self"}>
+    <Anchor href={url} target={anchorTarget}>
       <Flex
         className={classes.video_container}
         direction="column"

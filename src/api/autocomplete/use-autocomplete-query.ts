@@ -24,8 +24,15 @@ const useAutocompleteSWR = () => {
 
     let formattedRes = [];
 
-    if (["duckduckgo", "google"].includes(autocompleteEngine)) {
-      formattedRes = res.data[1].slice(0, 5);
+    if (["duckduckgo", "google", "brave"].includes(autocompleteEngine)) {
+      formattedRes = res?.data?.[1]?.slice(0, 5) || [];
+    }
+
+    if (["qwant"].includes(autocompleteEngine)) {
+      formattedRes =
+        res?.data?.items
+          ?.map((item: { value: string }) => item.value)
+          ?.slice(0, 5) || [];
     }
 
     return formattedRes as string[];

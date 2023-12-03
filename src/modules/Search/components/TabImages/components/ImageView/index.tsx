@@ -1,3 +1,4 @@
+import { useResponsive } from "@hooks/use-responsive";
 import useToast from "@hooks/use-toast";
 import {
   ActionIcon,
@@ -9,6 +10,7 @@ import {
   Text,
 } from "@mantine/core";
 import { useClipboard } from "@mantine/hooks";
+import { useSearchStore } from "@store/search";
 import {
   IconCopy,
   IconDownload,
@@ -28,10 +30,21 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
   const { copy } = useClipboard();
   const { toast } = useToast();
 
+  const { openInNewTab } = useSearchStore((state) => ({
+    openInNewTab: state.openInNewTab,
+  }));
+
   const handleCopyToClipboard = () => {
     copy(viewImage?.url);
     toast.show({ message: "URL Copied!" });
   };
+
+  const isXs = useResponsive("max", "xs");
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+    ? "_blank"
+    : "_self";
 
   return (
     <Drawer
@@ -56,7 +69,7 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
       <Image src={viewImage?.img_src} fit="contain" mt="lg" radius="md" />
 
       <Flex align="center" justify="flex-start" mt="xl" gap="xl">
-        <Anchor href={viewImage?.url} target="_self">
+        <Anchor href={viewImage?.url} target={anchorTarget}>
           <Flex direction="column" align="center" justify="center">
             <ActionIcon variant="light" aria-label="Settings" size="xl">
               <IconExternalLink
@@ -97,7 +110,7 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
           </ActionIcon>
 
           <Text mt={5} size="sm" c="dimmed">
-            Copy
+            Copy URL
           </Text>
         </Flex>
       </Flex>

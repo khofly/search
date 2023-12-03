@@ -1,9 +1,9 @@
-import { Text, Container, Group, ActionIcon } from "@mantine/core";
-import { IconBrandInstagram, IconBrandLinkedin } from "@tabler/icons-react";
-import Link from "next/link";
+import { Text, Container, Group } from "@mantine/core";
+
 import classes from "./styles.module.scss";
 
 import packageJson from "package.json";
+import NextLink from "@components/NextLink";
 
 const Footer = () => {
   return (
@@ -13,21 +13,21 @@ const Footer = () => {
       </Text>
 
       <Group gap="sm" justify="flex-end">
-        <Link href="/wiki">
+        <NextLink href="/wiki">
           <Text>Wiki</Text>
-        </Link>
+        </NextLink>
 
-        {/* <Link href="/rewards">
+        {/* <NextLink href="/rewards">
           <Text>Rewards</Text>
-        </Link> */}
+        </NextLink> */}
 
-        <Link href="/changelog">
+        <NextLink href="/changelog">
           <Text>Changelog</Text>
-        </Link>
+        </NextLink>
 
-        <Link href="/settings">
+        <NextLink href="/settings">
           <Text>Settings</Text>
-        </Link>
+        </NextLink>
       </Group>
     </Container>
   );

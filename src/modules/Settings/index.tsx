@@ -19,7 +19,7 @@ import EnginesTabs from "./components/EnginesTabs";
 const PageSettings = () => {
   return (
     <Container className={classes.settings_page} size="lg" py={80}>
-      <Tabs variant="default" defaultValue="interface">
+      <Tabs variant="default" defaultValue="interface" keepMounted={false}>
         <Tabs.List mb="lg" className={classes.tabs_scroll}>
           <Tabs.Tab
             value="interface"

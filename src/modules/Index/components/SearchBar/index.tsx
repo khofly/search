@@ -46,7 +46,13 @@ const SearchBar = () => {
   const isXs = useResponsive("max", "xs");
 
   // Autocomplete API
-  const { data, isMutating, trigger, reset } = useAutocompleteSWR();
+  const {
+    data: autocompleteData,
+    isMutating,
+    trigger,
+    reset,
+  } = useAutocompleteSWR();
+  console.log(autocompleteData);
 
   const handleSearch = (query: string) => {
     // Prevent empty search
@@ -118,12 +124,9 @@ const SearchBar = () => {
         }
         rightSectionWidth={isXs ? 40 : 100}
         // Autocomplete props
-        data={data?.map((str) => ({ label: str, value: str }))}
+        data={autocompleteData?.map((str) => ({ label: str, value: str }))}
         comboboxProps={{
           onOptionSubmit: (val) => handleSearch(val),
-          onPositionChange: () => {
-            console.log("Pos change");
-          },
           size: "md",
         }}
       />
