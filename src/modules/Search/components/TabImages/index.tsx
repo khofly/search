@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from "@mantine/core";
+import { Button, Center, Flex, Text } from "@mantine/core";
 import { ISearXNGResultsImages } from "@ts/searxng.types";
 import React, { useEffect, useState } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
@@ -28,6 +28,8 @@ const TabImages = () => {
     if (!data?.length) mutate();
   }, []);
 
+  const isRateLimit = data?.includes("Too Many Requests" as any);
+
   return (
     <>
       {error && (
@@ -56,18 +58,25 @@ const TabImages = () => {
           // Loading state
           Array.from(Array(30).keys()).map((e, i) => <ImageSkeleton key={i} />)}
       </Flex>
-      {!isLoading && data && data?.length >= 1 && (
-        <Button
-          variant="filled"
-          onClick={() => {
-            setSize(size + 1);
-          }}
-          size="md"
-          color="dark.5"
-        >
-          Load more
-        </Button>
-      )}
+
+      {!isLoading &&
+        data &&
+        data?.length >= 1 &&
+        data?.[0]?.results?.length >= 1 &&
+        !isRateLimit && (
+          <Center py="xl">
+            <Button
+              variant="filled"
+              onClick={() => {
+                setSize(size + 1);
+              }}
+              size="lg"
+              color="dark.5"
+            >
+              Load more
+            </Button>
+          </Center>
+        )}
 
       <ImageView
         isOpen={isOpenImageView}

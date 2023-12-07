@@ -25,23 +25,25 @@ const AutocompleteSwitch = () => {
           data={[
             {
               label: translate(
-                "pages.settings.general.autocompleteEngineGoogle"
+                "pages.settings.general.autocomplete_engine_google"
               ),
               value: "google",
             },
             {
-              label: translate("pages.settings.general.autocompleteEngineDDG"),
+              label: translate(
+                "pages.settings.general.autocomplete_engine_DDG"
+              ),
               value: "duckduckgo",
             },
             {
               label: translate(
-                "pages.settings.general.autocompleteEngineBrave"
+                "pages.settings.general.autocomplete_engine_brave"
               ),
               value: "brave",
             },
             {
               label: translate(
-                "pages.settings.general.autocompleteEngineQwant"
+                "pages.settings.general.autocomplete_engine_qwant"
               ),
               value: "qwant",
             },

@@ -1,7 +1,7 @@
 "use client";
 
 import classes from "./styles.module.scss";
-import { Anchor, Button, Group } from "@mantine/core";
+import { Anchor, Button, Group, Text } from "@mantine/core";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -58,6 +58,23 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
           openNavbar={openNavbar}
           toggleNavbar={toggleNavbar}
         />
+      )}
+
+      {/* Page titles */}
+      {isWiki && (
+        <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
+          / Wiki
+        </Text>
+      )}
+      {isSettings && (
+        <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
+          / Settings
+        </Text>
+      )}
+      {isChangelog && (
+        <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
+          / Changelog
+        </Text>
       )}
 
       <div className={classes.divider}></div>

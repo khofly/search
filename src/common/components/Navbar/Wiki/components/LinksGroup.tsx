@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Group,
   Box,
@@ -14,26 +14,39 @@ import classes from "./styles.module.scss";
 import Link from "next/link";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import NextLink from "@components/NextLink";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 export interface LinksGroupProps {
   icon: React.FC<any>;
   label: string;
-  initiallyOpened?: boolean;
   links?: { label: string; link: string; isWip: boolean }[];
 }
 
 const LinksGroup: React.FC<LinksGroupProps> = ({
   icon: Icon,
   label,
-  initiallyOpened,
   links,
 }) => {
   const theme = useMantineTheme();
   const hasLinks = Array.isArray(links);
-  const [opened, setOpened] = useState(initiallyOpened || false);
+  const [opened, setOpened] = useState(false);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const shouldOpen = !!links?.find((link) => pathname === link.link);
+    if (shouldOpen) setOpened(shouldOpen);
+  }, []);
 
   const items = (hasLinks ? links : []).map((link) => (
-    <NextLink className={classes.link} href={link.link} key={link.label}>
+    <NextLink
+      className={clsx(classes.link, {
+        [classes.link_active]: pathname === link.link,
+      })}
+      href={link.link}
+      key={link.label}
+    >
       <Flex align="center" gap="xs">
         {link.label}
 

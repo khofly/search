@@ -58,6 +58,26 @@ const SettingsEnginesImages = () => {
         <Divider my="sm" w="100%" />
 
         <EngineComponent
+          checked={!!enginesImages.find((e) => e === "bing")}
+          iconAlt="Bing logo"
+          iconSrc="/assets/bing-icon.svg"
+          label="pages.settings.engines.engineBingImg"
+          onChange={(next) => handleChangeEngines("bing", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesImages.find((e) => e === "brave")}
+          iconAlt="Brave logo"
+          iconSrc="/assets/brave-icon.svg"
+          label="pages.settings.engines.engineBraveImg"
+          onChange={(next) => handleChangeEngines("brave", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
           checked={!!enginesImages.find((e) => e === "qwant")}
           iconAlt="Qwant logo"
           iconSrc="/assets/qwant-icon.svg"

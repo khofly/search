@@ -13,8 +13,13 @@ interface ILangData {
 
 const THEME_DATA: ILangData[] = [
   {
-    label: "pages.settings.interface.selectThemeOptions.mantine",
-    value: "Mantine",
+    label: "pages.settings.interface.selectThemeOptions.mantine_old",
+    value: "Mantine-Old",
+    image: "/assets/mantine.png",
+  },
+  {
+    label: "pages.settings.interface.selectThemeOptions.mantine_new",
+    value: "Mantine-New",
     image: "/assets/mantine.png",
   },
   {

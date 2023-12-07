@@ -42,7 +42,8 @@
 
         "selectTheme": "Theme select",
         "selectThemeOptions": {
-          "mantine": "Mantine",
+          "mantine_old": "Mantine Old",
+          "mantine_new": "Mantine New",
           "material": "Material",
           "catppuccin": "Catppuccin",
           "rosepine": "Rosé Pine",
@@ -77,15 +78,22 @@
       "general": {
         "title": "General settings",
 
-        "toggleFavicon": "Display website favicon",
+        "toggle_favicon": "Display website favicon",
 
-        "toggleAutocomplete": "Enable search autocomplete",
-        "autocompleteEngineGoogle": "Google",
-        "autocompleteEngineDDG": "DuckDuckGo",
-        "autocompleteEngineBrave": "Brave",
-        "autocompleteEngineQwant": "Qwant",
+        "toggle_autocomplete": "Enable search autocomplete",
+        "autocomplete_engine_google": "Google",
+        "autocomplete_engine_DDG": "DuckDuckGo",
+        "autocomplete_engine_brave": "Brave",
+        "autocomplete_engine_qwant": "Qwant",
 
-        "openInNewTabToggle": "Open links in new tab"
+        "toggle_open_in_new_tab": "Open links in new tab",
+
+        "toggle_ia": "Enable Instant Answers",
+
+        "set_as_default": "Set Khofly as default search engine",
+        "set_as_default_btn": "Set default",
+
+        "learn_more": "Learn more"
       },
 
       "theme": {
@@ -113,12 +121,16 @@
         "engineGoogleImg": "Google images",
         "engineDDGImg": "DuckDuckGo images",
         "engineQwantImg": "Qwant images",
+        "engineBingImg": "Bing images",
+        "engineBraveImg": "Brave images",
 
         "titleVid": "Video engines",
 
         "engineGoogleVid": "Google videos",
         "engineDDGVid": "DuckDuckGo videos",
         "engineQwantVid": "Qwant videos",
+        "engineBingVid": "Bing videos",
+        "engineBraveVid": "Brave videos",
 
         "titleNews": "News engines",
         "titleNews2": "wiki stuff",

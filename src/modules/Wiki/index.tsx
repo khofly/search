@@ -7,6 +7,8 @@ import WikiIndex from "./components";
 import WikiWIP from "./components/wip";
 import WikiAuthOverview from "./components/auth-overview";
 import WikiSearchSearxng from "./components/search-searxng";
+import WikiSearchInstantAnswer from "./components/search-instant-answer";
+import WikiSearchSetDefault from "./components/search-set-default";
 
 interface Props {
   slug: Array<string>;
@@ -22,6 +24,8 @@ const Wiki: React.FC<Props> = ({ slug }) => {
 
     "search/overview": <WikiSearchOverview />,
     "search/searxng": <WikiSearchSearxng />,
+    "search/instant-answers": <WikiSearchInstantAnswer />,
+    "search/set-default": <WikiSearchSetDefault />,
     "search/self-host": <WikiWIP />,
 
     "docs/overview": <WikiWIP />,

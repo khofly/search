@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Search - general, images, videos, news
+- Search - general, images, videos, news, maps
 - Supabase - User authentication
 - Look & Feel customization
 - Multi-language support
-- Instant answers ( coin flip, calculator )
+- Multiple instant answers

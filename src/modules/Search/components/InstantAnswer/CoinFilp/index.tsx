@@ -28,14 +28,13 @@ const CoinFlip = () => {
 
   return (
     <IAWrapper>
-      <Center>
+      <Center className={classes.coin_wrapper} onClick={handleToss}>
         <Paper
           className={clsx(
             classes.coin,
             { [classes.heads_win]: side === "heads" },
             { [classes.tails_win]: side === "tails" }
           )}
-          onClick={handleToss}
           withBorder
         >
           <div className={classes.side_heads}>

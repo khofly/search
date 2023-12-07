@@ -58,6 +58,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     if (!["/search"].includes(pathname)) {
       resetVisitedLinks();
     }
+
+    if (openNavbar) toggleNavbar();
   }, [pathname]);
 
   return (
@@ -78,8 +80,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
         navbar={
           isWiki
             ? {
-                width: { sm: isWiki ? 200 : 0, md: isWiki ? 300 : 0 },
-                breakpoint: "md",
+                width: { xs: isWiki ? 200 : 0, sm: isWiki ? 300 : 0 },
+                breakpoint: "sm",
                 collapsed: { mobile: !openNavbar, desktop: false },
               }
             : undefined

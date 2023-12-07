@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Stack, Text } from "@mantine/core";
+import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 import WikiWIP from "@module/Wiki/components/wip";
 import { ISearXNGResultsNews } from "@ts/searxng.types";
 import React, { useEffect } from "react";
@@ -60,6 +60,16 @@ const TabNews = () => {
           !isValidating &&
           data &&
           data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && (
+            <Center py="xs">No results, try with different query</Center>
+          )}
+
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length >= 1 &&
           !isRateLimit && (
             <Button
               variant="filled"

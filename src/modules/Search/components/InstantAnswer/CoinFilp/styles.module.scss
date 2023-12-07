@@ -18,6 +18,10 @@
   }
 }
 
+.coin_wrapper {
+  cursor: pointer;
+}
+
 .coin {
   position: relative;
   width: func.to-rem(150px);

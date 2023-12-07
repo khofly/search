@@ -1,5 +1,5 @@
 import NextLink from "@components/NextLink";
-import { Burger, Flex } from "@mantine/core";
+import { Burger, Flex, Text } from "@mantine/core";
 import { IconTriangleFilled } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import React from "react";

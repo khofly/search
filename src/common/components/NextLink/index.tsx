@@ -7,6 +7,7 @@ import React from "react";
 interface Props extends LinkProps, IFC {
   className?: string | undefined;
   style?: React.CSSProperties | undefined;
+  target?: React.HTMLAttributeAnchorTarget;
 }
 
 const NextLink: React.FC<Props> = ({ children, ...linkProps }) => {
@@ -20,7 +21,11 @@ const NextLink: React.FC<Props> = ({ children, ...linkProps }) => {
   };
 
   return (
-    <Link {...linkProps} onClick={handleClick}>
+    <Link
+      {...linkProps}
+      onClick={handleClick}
+      target={linkProps?.target || "_self"}
+    >
       {children}
     </Link>
   );

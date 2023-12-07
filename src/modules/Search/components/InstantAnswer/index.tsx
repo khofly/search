@@ -8,31 +8,39 @@ import Calculator from "./Calculator";
 import Lyrics from "./Lyrics";
 import Translate from "./Translate";
 import UUID from "./UUID";
-import Stopwatch from "./Stopwatch";
 import Timer from "./Timer";
+import { shouldDisplayIA } from "./utils";
+import { useSearchStore } from "@store/search";
 
 const InstantAnswer = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const isXl = useResponsive("min", "lg");
 
+  const { useInstantAnswers } = useSearchStore((state) => ({
+    useInstantAnswers: state.useInstantAnswers,
+  }));
+
+  // Instant Answers disabled in settings
+  if (!useInstantAnswers) return null;
+
   // Instant answer - Calculator WIP
-  if (query?.toLowerCase().includes("calculator")) return <Calculator />;
+  if (shouldDisplayIA(query, ["calc", "calculator"])) return <Calculator />;
 
   // Instant answer - CoinFlip
-  if (query?.toLowerCase().includes("coin flip")) return <CoinFlip />;
+  if (shouldDisplayIA(query, ["coinflip", "coin flip"])) return <CoinFlip />;
 
   // Instant answer - Translate WIP
-  if (query?.toLowerCase().includes("translate")) return <Translate />;
+  if (shouldDisplayIA(query, ["translate"])) return <Translate />;
 
   // Instant answer - UUID
-  if (query?.toLowerCase().includes("uuid")) return <UUID />;
+  if (shouldDisplayIA(query, ["uuid"])) return <UUID />;
 
   // Instant answer - Timer WIP
-  if (query?.toLowerCase().includes("timer")) return <Timer />;
+  if (shouldDisplayIA(query, ["timer"])) return <Timer />;
 
   // Instant answer - Lyrics by Genius
-  if (query?.toLowerCase().includes("lyrics") && !isXl) return <Lyrics />;
+  if (shouldDisplayIA(query, ["lyrics"]) && !isXl) return <Lyrics />;
 
   // Next release todo
   // Instant answer - Weather

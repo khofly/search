@@ -6,7 +6,11 @@ import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 import classes from "./styles.module.scss";
 import { IAWrapper } from "../wrapper";
 
-const Lyrics = () => {
+interface Props {
+  initialQ?: string;
+}
+
+const Lyrics: React.FC<Props> = ({ initialQ }) => {
   const searchParams = useSearchParams();
 
   const { data, trigger } = useLyricsSWR();
@@ -14,6 +18,11 @@ const Lyrics = () => {
   const q = searchParams.get("q");
 
   useEffect(() => {
+    if (initialQ) {
+      trigger(initialQ);
+      return;
+    }
+
     if (q) trigger(q.replace("lyrics", ""));
   }, [q]);
 

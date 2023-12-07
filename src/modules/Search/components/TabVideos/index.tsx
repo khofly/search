@@ -1,4 +1,4 @@
-import { Button, SimpleGrid, Text } from "@mantine/core";
+import { Button, Center, SimpleGrid, Text } from "@mantine/core";
 import { ISearXNGResultsVideos } from "@ts/searxng.types";
 import React, { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
@@ -36,17 +36,20 @@ const TabVideos = () => {
           // Loading state
           Array.from(Array(30).keys()).map((e, i) => <VideoSkeleton key={i} />)}
       </SimpleGrid>
+
       {!isLoading && data && data?.length >= 1 && (
-        <Button
-          variant="filled"
-          onClick={() => {
-            setSize(size + 1);
-          }}
-          size="md"
-          color="dark.5"
-        >
-          Load more
-        </Button>
+        <Center py="xl">
+          <Button
+            variant="filled"
+            onClick={() => {
+              setSize(size + 1);
+            }}
+            size="lg"
+            color="dark.5"
+          >
+            Load more
+          </Button>
+        </Center>
       )}
     </>
   );

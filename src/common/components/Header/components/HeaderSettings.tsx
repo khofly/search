@@ -14,7 +14,7 @@ const HeaderSettings = () => {
         size={rem(36)}
         mr="md"
       >
-        <IconSettings2 style={getIconStyle(28)} />
+        <IconSettings2 style={getIconStyle(24)} />
       </ActionIcon>
     </NextLink>
   );

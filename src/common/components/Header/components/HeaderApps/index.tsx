@@ -30,7 +30,7 @@ const HeaderApps = () => {
         size={rem(36)}
         mr="md"
       >
-        <IconApps style={getIconStyle(28)} />
+        <IconApps style={getIconStyle(24)} />
       </ActionIcon>
 
       <Dialog

@@ -14,6 +14,7 @@ import { IconMinus, IconPalette, IconPlus } from "@tabler/icons-react";
 import { useGlobalStore, useTranslations } from "@store/global";
 
 import classes from "../../styles.module.scss";
+
 import { useEffect, useState } from "react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
@@ -38,7 +39,7 @@ const SettingsTheme = () => {
   }, []);
 
   return (
-    <Paper radius="md" mt={60} withBorder>
+    <Paper className={classes.hide_mobile} radius="md" mt={60} withBorder>
       <Flex align="center" p="lg" mb={16}>
         <IconPalette size={32} />
 

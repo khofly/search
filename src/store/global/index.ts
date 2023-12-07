@@ -40,7 +40,7 @@ export const useGlobalStore = create<GlobalState>()(
           content: require(`../../../public/locales/${locale}.json`),
         }),
 
-      appTheme: "Mantine",
+      appTheme: "Mantine-Old",
       setAppTheme: (appTheme) => set({ appTheme }),
     }),
     {

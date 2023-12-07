@@ -4,7 +4,12 @@ export interface IFC {
 
 export type ILanguage = "en";
 
-export type IAppTheme = "Mantine" | "Catppuccin-Mocha" | "Rose-Pine" | "Custom";
+export type IAppTheme =
+  | "Mantine-Old"
+  | "Mantine-New"
+  | "Catppuccin-Mocha"
+  | "Rose-Pine"
+  | "Custom";
 
 // For translations
 

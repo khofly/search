@@ -7,6 +7,12 @@
   display: flex;
   align-items: center;
 
+  .route_label {
+    // @media (max-width: vars.$mantine-breakpoint-xs) {
+    //   display: none;
+    // }
+  }
+
   .divider {
     flex: 1;
   }

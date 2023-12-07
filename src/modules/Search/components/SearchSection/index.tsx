@@ -10,7 +10,7 @@ import {
   Tabs,
   Text,
 } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import classes from "./styles.module.scss";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -37,6 +37,7 @@ const SearchSection = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const isSm = useResponsive("max", "sm");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const { useAutocomplete } = useSearchStore((state) => ({
     useAutocomplete: state.useAutocomplete,
@@ -55,6 +56,8 @@ const SearchSection = () => {
     if (!query.length) return;
     const tab = searchParams.get("tab") || "general";
 
+    // Unfocus input on search
+    inputRef.current?.blur();
     router.push(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
 
@@ -108,6 +111,7 @@ const SearchSection = () => {
         h="100%"
       >
         <Autocomplete
+          ref={inputRef}
           className={classes.search_bar}
           placeholder={t("pages.search.search_placeholder")}
           radius="md"
