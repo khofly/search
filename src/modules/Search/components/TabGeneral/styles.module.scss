@@ -25,6 +25,9 @@
 }
 
 .tab_general {
+  // Header offset
+  padding-top: 100px;
+
   .stack {
     width: func.to-rem(650px);
     gap: var(--mantine-spacing-xl);
@@ -59,4 +62,8 @@
     color: var(--mantine-color-green-6);
     animation: cd_shadow 2.5s infinite;
   }
+}
+
+.search_options_general {
+  margin-top: calc(-1 * var(--mantine-spacing-xl));
 }

@@ -37,6 +37,12 @@ export type INewsEngines =
   | "yahoo"
   | "wikinews";
 
+export type ISearchLang = "all" | "auto" | string;
+
+export type ISafeSearch = 0 | 1 | 2;
+
+export type IDateRange = "all" | "day" | "month" | "year";
+
 interface SearchState {
   enginesGeneral: IGeneralEngines[];
   setEnginesGeneral: (next: IGeneralEngines[]) => void;
@@ -52,6 +58,16 @@ interface SearchState {
 
   autocompleteEngine: IAutocompleteEngines;
   setAutocompleteEngine: (next: IAutocompleteEngines) => void;
+
+  // Search options
+  isSearchOptionsOpen: boolean;
+  setIsSearchOptionsOpen: (next: boolean) => void;
+  searchLanguage: ISearchLang;
+  setSearchLanguage: (next: ISearchLang) => void;
+  safeSearch: ISafeSearch;
+  setSafeSearch: (next: ISafeSearch) => void;
+  dateRange: IDateRange;
+  setDateRange: (next: IDateRange) => void;
 
   visitedLinks: string[];
   updateVisitedLinks: (next: string) => void;
@@ -88,6 +104,16 @@ export const useSearchStore = create<SearchState>()(
       autocompleteEngine: "google",
       setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
 
+      // Search options
+      isSearchOptionsOpen: false,
+      setIsSearchOptionsOpen: (next) => set({ isSearchOptionsOpen: next }),
+      searchLanguage: "all",
+      setSearchLanguage: (next) => set({ searchLanguage: next }),
+      safeSearch: 0,
+      setSafeSearch: (next) => set({ safeSearch: next }),
+      dateRange: "all",
+      setDateRange: (next) => set({ dateRange: next }),
+
       visitedLinks: [],
       updateVisitedLinks: (next) =>
         set((state) => ({ visitedLinks: [...state.visitedLinks, next] })),
@@ -108,7 +134,6 @@ export const useSearchStore = create<SearchState>()(
     {
       name: "search-store", // name of the item in the storage (must be unique)
       partialize: (state) => ({
-        visitedLinks: state.visitedLinks,
         displayFavicon: state.displayFavicon,
         openInNewTab: state.openInNewTab,
         useAutocomplete: state.useAutocomplete,

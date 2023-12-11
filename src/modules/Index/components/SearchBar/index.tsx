@@ -3,6 +3,7 @@
 import {
   ActionIcon,
   Autocomplete,
+  Button,
   Flex,
   Loader,
   Menu,
@@ -13,6 +14,7 @@ import {
   IconArrowRight,
   IconKeyboard,
   IconListSearch,
+  IconMicrophone,
   IconSearch,
 } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
@@ -52,7 +54,6 @@ const SearchBar = () => {
     trigger,
     reset,
   } = useAutocompleteSWR();
-  console.log(autocompleteData);
 
   const handleSearch = (query: string) => {
     // Prevent empty search
@@ -117,12 +118,14 @@ const SearchBar = () => {
               color={"blue"}
               variant="filled"
               onClick={() => handleSearch(q)}
+              disabled={!q}
             >
               <IconArrowRight style={getIconStyle(22)} stroke={1.5} />
             </ActionIcon>
           </Flex>
         }
         rightSectionWidth={isXs ? 40 : 100}
+        maxLength={250}
         // Autocomplete props
         data={autocompleteData?.map((str) => ({ label: str, value: str }))}
         comboboxProps={{

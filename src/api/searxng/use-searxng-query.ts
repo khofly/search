@@ -7,6 +7,9 @@ import {
   ISearchTabs,
   useSearchStore,
   INewsEngines,
+  ISafeSearch,
+  ISearchLang,
+  IDateRange,
 } from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
@@ -17,15 +20,26 @@ const getKey = (
   previousPageData: any,
   tab: ISearchTabs,
   q: string,
-  enginesSelected: string[]
+  enginesSelected: string[],
+  safeSearch: ISafeSearch,
+  dateRange: IDateRange,
+  searchLanguage: ISearchLang
 ) => {
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
 
   const engineBangs = getEngineBangs(tab, enginesSelected);
 
+  const catgParam = `&categories=${tab}`;
+  const pageParam = `&pageno=${pageIndex + 1}`;
+  const safeParam = `&safesearch=${safeSearch}`;
+  const dateParam = dateRange === "all" ? "" : `&time_range=${dateRange}`;
+  const langParam =
+    searchLanguage === "all" ? "" : `&language=${searchLanguage}`;
+
   // SWR key
-  // prettier-ignore
-  return `/search?q=${engineBangs}${encodeURIComponent(q)}&categories=${tab}&pageno=${pageIndex + 1}`;
+  return `/search?q=${engineBangs}${encodeURIComponent(
+    q
+  )}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
 };
 
 // Restart SearXNG
@@ -39,13 +53,23 @@ const useSearXNGSWR = <IResults>() => {
     domain: state.domain,
   }));
 
-  const { enginesGeneral, enginesImages, enginesVideos, enginesNews } =
-    useSearchStore((state) => ({
-      enginesGeneral: state.enginesGeneral,
-      enginesImages: state.enginesImages,
-      enginesVideos: state.enginesVideos,
-      enginesNews: state.enginesNews,
-    }));
+  const {
+    enginesGeneral,
+    enginesImages,
+    enginesVideos,
+    enginesNews,
+    safeSearch,
+    dateRange,
+    searchLanguage,
+  } = useSearchStore((state) => ({
+    enginesGeneral: state.enginesGeneral,
+    enginesImages: state.enginesImages,
+    enginesVideos: state.enginesVideos,
+    enginesNews: state.enginesNews,
+    safeSearch: state.safeSearch,
+    dateRange: state.dateRange,
+    searchLanguage: state.searchLanguage,
+  }));
 
   const searchParams = useSearchParams();
   const q = (searchParams.get("q") as string) || "";
@@ -64,7 +88,17 @@ const useSearXNGSWR = <IResults>() => {
   }[tab];
 
   return useSWRInfinite<IResults>(
-    (idx, prev) => getKey(idx, prev, tab, q, enginesSelected),
+    (idx, prev) =>
+      getKey(
+        idx,
+        prev,
+        tab,
+        q,
+        enginesSelected,
+        safeSearch,
+        dateRange,
+        searchLanguage
+      ),
     fetcher,
     {
       // populateCache

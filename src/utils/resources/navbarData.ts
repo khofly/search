@@ -32,7 +32,7 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
     label: "Search",
     icon: IconSearch,
     links: [
-      { label: "Overview", link: "/wiki/search/overview", isWip: false },
+      { label: "Overview", link: "/wiki/search/overview", isWip: true },
       { label: "SearXNG", link: "/wiki/search/searxng", isWip: false },
       {
         label: "Instant Answer",

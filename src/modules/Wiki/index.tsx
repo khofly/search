@@ -22,7 +22,7 @@ const Wiki: React.FC<Props> = ({ slug }) => {
     "auth/overview": <WikiAuthOverview />,
     "auth/self-host": <WikiWIP />,
 
-    "search/overview": <WikiSearchOverview />,
+    "search/overview": <WikiWIP />,
     "search/searxng": <WikiSearchSearxng />,
     "search/instant-answers": <WikiSearchInstantAnswer />,
     "search/set-default": <WikiSearchSetDefault />,

@@ -51,7 +51,6 @@ const VirtualKeyboard: React.FC<Props> = ({ value, onChange, toggle }) => {
   const divH = 250;
   const keyGap = 6;
   const keySize = 30;
-  console.log("Rerender");
 
   const pos = useDrag(divRef, divW, divH);
 

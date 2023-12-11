@@ -7,6 +7,7 @@ import classes from "./styles.module.scss";
 import ImageSkeleton from "./components/ImageSkeleton";
 import { useDisclosure } from "@mantine/hooks";
 import ImageView from "./components/ImageView";
+import SearchOptions from "../SearchOptions";
 
 const TabImages = () => {
   const { data, error, isLoading, isValidating, mutate, setSize, size } =
@@ -31,11 +32,15 @@ const TabImages = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <>
+    <Flex className={classes.tab_images} direction="column">
+      {/* Search Options */}
+      <SearchOptions className={classes.search_options_images} />
+
       {error && (
         // Error state
         <Text>RIP images</Text>
       )}
+
       <Flex
         className={classes.image_gallery}
         wrap="wrap"
@@ -54,7 +59,7 @@ const TabImages = () => {
           ));
         })}
 
-        {(isLoading || isValidating || true) &&
+        {(isLoading || isValidating) &&
           // Loading state
           Array.from(Array(30).keys()).map((e, i) => <ImageSkeleton key={i} />)}
       </Flex>
@@ -83,7 +88,7 @@ const TabImages = () => {
         handleClose={closeImageView}
         viewImage={viewImage}
       />
-    </>
+    </Flex>
   );
 };
 

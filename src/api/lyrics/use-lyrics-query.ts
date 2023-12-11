@@ -4,9 +4,6 @@ import useSWRMutation from "swr/mutation";
 const useLyricsSWR = () => {
   const { fetchData } = useFetch();
 
-  // const searchParams = useSearchParams();
-  // const q = (searchParams.get("q") as string) || "";
-
   const fetcher = (key: string, { arg }: { arg: string }) => {
     return fetchData(`${key}?q=${encodeURIComponent(arg)}`, {
       headers: {

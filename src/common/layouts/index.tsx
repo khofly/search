@@ -10,7 +10,7 @@ import classes from "./styles.module.scss";
 import { usePathname, useSearchParams } from "next/navigation";
 import clsx from "clsx";
 import WikiNavbar from "@components/Navbar/Wiki";
-import { useDisclosure, useDocumentTitle } from "@mantine/hooks";
+import { useDisclosure, useDocumentTitle, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
 import { useGlobalStore } from "@store/global";
@@ -31,6 +31,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     resetVisitedLinks: state.resetVisitedLinks,
   }));
 
+  const pinned = useHeadroom({ fixedAt: 120 });
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
@@ -47,6 +49,9 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isSearchMaps = isSearch && tab === "maps";
 
   const headerHeight = isSearch ? 100 : 70;
+
+  const isHeaderCollapsed = isSearch && !pinned;
+  const isHeaderOffset = !isSearch;
 
   useDocumentTitle(isSearch ? `${q} at Khofly` : "Khofly");
 
@@ -75,7 +80,11 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
       </Suspense>
 
       <AppShell
-        header={{ height: headerHeight, offset: !isSearchMaps ? true : false }}
+        header={{
+          height: headerHeight,
+          offset: isHeaderOffset,
+          collapsed: isHeaderCollapsed,
+        }}
         footer={{ height: 60, offset: isFooterOffset ? false : true }}
         navbar={
           isWiki

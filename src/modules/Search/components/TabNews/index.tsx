@@ -8,6 +8,7 @@ import classes from "./styles.module.scss";
 import NewsRow from "./components/NewsRow";
 import SearchResultSkeleton from "../TabGeneral/components/SearchResultSkeleton";
 import ScrollToTop from "../ScrollToTop";
+import SearchOptions from "../SearchOptions";
 
 const TabNews = () => {
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
@@ -21,10 +22,12 @@ const TabNews = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Flex align="flex-start">
+    <Flex className={classes.tag_news} align="flex-start">
       {/* Search results */}
-
       <Stack className={classes.stack} py="xl">
+        {/* Search Options */}
+        <SearchOptions className={classes.search_options_news} />
+
         {data?.map((res, i) => {
           if (!res?.results) return;
           return (

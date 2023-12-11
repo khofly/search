@@ -134,18 +134,21 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
             <Loader mt="lg" />
           </Center>
         )}
-        {data?.length && !error && !isMutating ? (
-          data?.map((row, i) => (
-            <NavLink
-              key={i}
-              label={row.display_name}
-              leftSection={<IconSearch size="1rem" stroke={1.5} />}
-              onClick={(e) => handleUpdateMap(row.lat, row.lon)}
-            />
-          ))
-        ) : (
-          <Center py="md">No results</Center>
+
+        {!isMutating && data && data?.length < 1 && (
+          <Center py="xs">No results, try with different query</Center>
         )}
+
+        {data?.length && !error && !isMutating
+          ? data?.map((row, i) => (
+              <NavLink
+                key={i}
+                label={row.display_name}
+                leftSection={<IconSearch size="1rem" stroke={1.5} />}
+                onClick={(e) => handleUpdateMap(row.lat, row.lon)}
+              />
+            ))
+          : null}
       </ScrollArea>
 
       {/* Toggle icon */}

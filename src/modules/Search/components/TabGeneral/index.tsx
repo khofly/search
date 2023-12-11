@@ -14,6 +14,7 @@ import Lyricsbox from "./components/Lyricsbox";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
 import CaramelldansenAudio from "./components/Memes/Caramelldansen";
+import SearchOptions from "../SearchOptions";
 
 const TabGeneral = () => {
   const searchParams = useSearchParams();
@@ -38,8 +39,10 @@ const TabGeneral = () => {
       align="flex-start"
     >
       {/* Search results */}
-
       <Stack className={classes.stack} py="xl">
+        {/* Search Options */}
+        <SearchOptions className={classes.search_options_general} />
+
         <InstantAnswer />
 
         {data?.map((res, i) => {

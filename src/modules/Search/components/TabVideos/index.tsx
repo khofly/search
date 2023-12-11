@@ -1,9 +1,12 @@
-import { Button, Center, SimpleGrid, Text } from "@mantine/core";
+import { Button, Center, Flex, SimpleGrid, Text } from "@mantine/core";
 import { ISearXNGResultsVideos } from "@ts/searxng.types";
 import React, { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import VideoCell from "./components/VideoCell";
 import VideoSkeleton from "./components/VideoSkeleton";
+
+import classes from "./styles.module.scss";
+import SearchOptions from "../SearchOptions";
 
 const TabVideos = () => {
   const { data, error, isLoading, isValidating, setSize, size, mutate } =
@@ -15,11 +18,15 @@ const TabVideos = () => {
   }, []);
 
   return (
-    <>
+    <Flex className={classes.tab_videos} direction="column">
+      {/* Search Options */}
+      <SearchOptions className={classes.search_options_videos} />
+
       {error && (
         // Error state
         <Text>RIP images</Text>
       )}
+
       <SimpleGrid
         cols={{ base: 2, sm: 3, md: 5, lg: 7 }}
         spacing={{ base: 10, sm: "xl" }}
@@ -51,7 +58,7 @@ const TabVideos = () => {
           </Button>
         </Center>
       )}
-    </>
+    </Flex>
   );
 };
 
