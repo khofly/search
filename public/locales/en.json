@@ -96,6 +96,10 @@
         "learn_more": "Learn more"
       },
 
+      "categories": {
+        "title": "Search categories"
+      },
+
       "theme": {
         "title": "Customize theme",
         "description": "Apply current theme changes",
@@ -103,8 +107,11 @@
       },
 
       "engines": {
+        "titleWithout": "other stuff",
+
         "title1": "Web engines",
         "title2": "wiki stuff",
+        "title3": "web",
 
         "engineGoogle": "Google",
         "engineDDG": "DuckDuckGo",
@@ -117,6 +124,7 @@
         "engineWikidata": "Wikidata",
 
         "titleImg": "Image engines",
+        "titleImg1": "web",
 
         "engineGoogleImg": "Google images",
         "engineDDGImg": "DuckDuckGo images",
@@ -125,6 +133,7 @@
         "engineBraveImg": "Brave images",
 
         "titleVid": "Video engines",
+        "titleVid1": "web",
 
         "engineGoogleVid": "Google videos",
         "engineDDGVid": "DuckDuckGo videos",
@@ -134,14 +143,48 @@
 
         "titleNews": "News engines",
         "titleNews2": "wiki stuff",
+        "titleNews3": "web news",
 
         "engineGoogleNews": "Google news",
         "engineDDGNews": "DuckDuckGo news",
         "engineBingNews": "Bing news",
+        "engineBraveNews": "Brave news",
         "engineQwantNews": "Qwant news",
         "engineYahooNews": "Yahoo! news",
+        "enginePresearchNews": "Presearch news",
 
-        "engineWikinews": "Wikinews"
+        "engineWikinews": "Wikinews",
+
+        "titleMusic": "Music engines",
+        "titleMusic2": "lyrics",
+        "titleMusic3": "radio search",
+
+        "engineGeniusMusic": "Genius",
+        "engineRBMusic": "Radio Browser",
+        "engineBandcampMusic": "Bandcamp",
+        "engineMixcloudMusic": "Mixcloud",
+        "enginePipedMusic": "Piped.Music",
+        "engineSCMusic": "Soundcloud",
+        "engineYTMusic": "YouTube",
+
+        "titleIT": "IT engines",
+        "titleIT2": "q&a",
+        "titleIT3": "repos",
+        "titleIT4": "software wikis",
+        "titleIT5": "packages",
+
+        "engineDockerHubIT": "Docker hub",
+        "engineNPMIT": "NPM",
+        "enginePypiIT": "PyPI",
+        "engineAUIT": "Ask Ubuntu",
+        "engineSOIT": "StackOverflow",
+        "engineSUIT": "Superuser",
+        "engineCodebergIT": "Codeberg",
+        "engineGHIT": "GitHub",
+        "engineGLIT": "GitLab",
+        "engineArchIT": "Arch Wiki",
+        "engineGentooIT": "Gentoo",
+        "engineMDNIT": "MDN"
       }
     }
   }

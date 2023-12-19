@@ -10,14 +10,14 @@ import Translate from "./Translate";
 import UUID from "./UUID";
 import Timer from "./Timer";
 import { shouldDisplayIA } from "./utils";
-import { useSearchStore } from "@store/search";
+import { useGeneralStore } from "@store/general";
 
 const InstantAnswer = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const isXl = useResponsive("min", "lg");
 
-  const { useInstantAnswers } = useSearchStore((state) => ({
+  const { useInstantAnswers } = useGeneralStore((state) => ({
     useInstantAnswers: state.useInstantAnswers,
   }));
 

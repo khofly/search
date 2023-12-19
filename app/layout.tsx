@@ -54,7 +54,9 @@ export default function RootLayout({
 
 // Meta tags
 export const metadata: Metadata = {
-  title: "Khofly",
+  title: !+process.env.NEXT_PUBLIC_IS_SELF_HOST!
+    ? "Khofly"
+    : process.env.NEXT_PUBLIC_APP_NAME,
   description:
     "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
   keywords:

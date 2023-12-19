@@ -1,5 +1,5 @@
+import { useGeneralStore } from "@store/general";
 import useFetch from "../use-fetch";
-import { useSearchStore } from "@store/search";
 import useSWRMutation from "swr/mutation";
 
 // Restart SearXNG
@@ -9,7 +9,7 @@ import useSWRMutation from "swr/mutation";
 const useAutocompleteSWR = () => {
   const { fetchData } = useFetch();
 
-  const { autocompleteEngine } = useSearchStore((state) => ({
+  const { autocompleteEngine } = useGeneralStore((state) => ({
     autocompleteEngine: state.autocompleteEngine,
   }));
 

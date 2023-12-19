@@ -12,7 +12,7 @@ const HeaderSettings = () => {
         className={classes.action_icon}
         variant="subtle"
         size={rem(36)}
-        mr="md"
+        ml="md"
       >
         <IconSettings2 style={getIconStyle(24)} />
       </ActionIcon>

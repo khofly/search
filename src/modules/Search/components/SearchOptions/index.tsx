@@ -1,5 +1,5 @@
 import { Collapse, Flex, Select, Transition } from "@mantine/core";
-import { IDateRange, ISearchLang, useSearchStore } from "@store/search";
+import { IDateRange, ISearchLang, useGeneralStore } from "@store/general";
 import React from "react";
 
 interface Props {
@@ -15,7 +15,7 @@ const SearchOptions: React.FC<Props> = ({ className }) => {
     setSearchLanguage,
     dateRange,
     setDateRange,
-  } = useSearchStore((state) => ({
+  } = useGeneralStore((state) => ({
     isSearchOptionsOpen: state.isSearchOptionsOpen,
     searchLanguage: state.searchLanguage,
     setSearchLanguage: state.setSearchLanguage,

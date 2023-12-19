@@ -48,6 +48,7 @@ const HeaderAvatar = () => {
           style={{ cursor: "pointer" }}
           color="blue"
           src={avatarUrl}
+          ml="md"
           // placeholder=""
           // styles={{
           //   root: {

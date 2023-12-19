@@ -4,9 +4,9 @@ import { Anchor, Flex, Image, Text } from "@mantine/core";
 import React from "react";
 import classes from "./styles.module.scss";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
-import { useSearchStore } from "@store/search";
 import clsx from "clsx";
 import { useResponsive } from "@hooks/use-responsive";
+import { useGeneralStore } from "@store/general";
 
 const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   title,
@@ -15,17 +15,13 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   content,
   engines,
 }) => {
-  const { displayFavicon } = useSearchStore((state) => ({
-    displayFavicon: state.displayFavicon,
-  }));
-
-  const { visitedLinks, updateVisitedLinks, openInNewTab } = useSearchStore(
-    (state) => ({
+  const { visitedLinks, updateVisitedLinks, openInNewTab, displayFavicon } =
+    useGeneralStore((state) => ({
       visitedLinks: state.visitedLinks,
       updateVisitedLinks: state.updateVisitedLinks,
       openInNewTab: state.openInNewTab,
-    })
-  );
+      displayFavicon: state.displayFavicon,
+    }));
 
   const isXs = useResponsive("max", "xs");
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs

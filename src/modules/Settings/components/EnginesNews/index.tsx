@@ -1,4 +1,4 @@
-import { Divider, Flex, Paper, Stack, Text } from "@mantine/core";
+import { Divider, Flex, Paper, Space, Stack, Text } from "@mantine/core";
 import { useTranslations } from "@store/global";
 import { INewsEngines, useSearchStore } from "@store/search";
 import { IconNews } from "@tabler/icons-react";
@@ -36,16 +36,17 @@ const SettingsEnginesNews = () => {
       </Flex>
 
       {/* Settings content */}
-      <Stack w="100%" align="start" px="lg">
-        <EngineComponent
-          checked={!!enginesNews.find((e) => e === "google")}
-          iconAlt="Google logo"
-          iconSrc="/assets/google-icon.svg"
-          label="pages.settings.engines.engineGoogleNews"
-          onChange={(next) => handleChangeEngines("google", next)}
+      <Stack w="100%" align="start" px="lg" gap={6}>
+        <Divider
+          label={
+            <Text fw={500} c="teal">
+              {translate("pages.settings.engines.titleNews3")}
+            </Text>
+          }
+          labelPosition="left"
+          mb="sm"
+          w="100%"
         />
-
-        <Divider my="sm" w="100%" />
 
         <EngineComponent
           checked={!!enginesNews.find((e) => e === "duckduckgo")}
@@ -58,11 +59,69 @@ const SettingsEnginesNews = () => {
         <Divider my="sm" w="100%" />
 
         <EngineComponent
+          checked={!!enginesNews.find((e) => e === "presearch")}
+          iconAlt="Presearch logo"
+          iconSrc="/assets/presearch-icon.svg"
+          label="pages.settings.engines.enginePresearchNews"
+          onChange={(next) => handleChangeEngines("presearch", next)}
+        />
+
+        <Divider
+          label={
+            <Text fw={500} c="teal">
+              {translate("pages.settings.engines.titleNews2")}
+            </Text>
+          }
+          labelPosition="left"
+          my="sm"
+          w="100%"
+        />
+
+        <EngineComponent
+          checked={!!enginesNews.find((e) => e === "wikinews")}
+          iconAlt="Wikipedia logo"
+          iconSrc="/assets/wikinews-icon.svg"
+          label="pages.settings.engines.engineWikinews"
+          onChange={(next) => handleChangeEngines("wikinews", next)}
+        />
+
+        <Divider
+          label={
+            <Text fw={500} c="teal">
+              {translate("pages.settings.engines.titleWithout")}
+            </Text>
+          }
+          labelPosition="left"
+          my="sm"
+          w="100%"
+        />
+
+        <EngineComponent
           checked={!!enginesNews.find((e) => e === "bing")}
           iconAlt="Bing logo"
           iconSrc="/assets/bing-icon.svg"
           label="pages.settings.engines.engineBingNews"
           onChange={(next) => handleChangeEngines("bing", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesNews.find((e) => e === "brave")}
+          iconAlt="Brave logo"
+          iconSrc="/assets/brave-icon.svg"
+          label="pages.settings.engines.engineBraveNews"
+          onChange={(next) => handleChangeEngines("brave", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesNews.find((e) => e === "google")}
+          iconAlt="Google logo"
+          iconSrc="/assets/google-icon.svg"
+          label="pages.settings.engines.engineGoogleNews"
+          onChange={(next) => handleChangeEngines("google", next)}
         />
 
         <Divider my="sm" w="100%" />
@@ -84,22 +143,11 @@ const SettingsEnginesNews = () => {
           label="pages.settings.engines.engineYahooNews"
           onChange={(next) => handleChangeEngines("yahoo", next)}
         />
+
+        <Divider my="sm" w="100%" />
       </Stack>
 
-      <Text fz={26} fw={600} p="lg" my="md">
-        {translate("pages.settings.engines.title2")}
-      </Text>
-
-      {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" mb="xl">
-        <EngineComponent
-          checked={!!enginesNews.find((e) => e === "wikinews")}
-          iconAlt="Wikipedia logo"
-          iconSrc="/assets/wikinews-icon.svg"
-          label="pages.settings.engines.engineWikinews"
-          onChange={(next) => handleChangeEngines("wikinews", next)}
-        />
-      </Stack>
+      <Space h="xl" />
     </Paper>
   );
 };

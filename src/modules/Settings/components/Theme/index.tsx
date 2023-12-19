@@ -39,7 +39,7 @@ const SettingsTheme = () => {
   }, []);
 
   return (
-    <Paper className={classes.hide_mobile} radius="md" mt={60} withBorder>
+    <Paper className={classes.hide_mobile} radius="md" mt={40} withBorder>
       <Flex align="center" p="lg" mb={16}>
         <IconPalette size={32} />
 

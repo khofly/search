@@ -1,9 +1,14 @@
 import { Tabs, Text } from "@mantine/core";
 import {
+  IconCpu,
+  IconFiles,
+  IconMusic,
   IconNews,
   IconPhoto,
   IconPlayerPlay,
+  IconSchool,
   IconSearch,
+  IconUsers,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import React from "react";
@@ -12,6 +17,8 @@ import SettingsEnginesImages from "../EnginesImages";
 import SettingsEnginesVideos from "../EnginesVideos";
 import SettingsEnginesNews from "../EnginesNews";
 import classes from "../../styles.module.scss";
+import SettingsEnginesMusic from "../EnginesMusic";
+import SettingsEnginesIT from "../EnginesIT";
 
 const EnginesTabs = () => {
   return (
@@ -44,6 +51,36 @@ const EnginesTabs = () => {
           >
             News
           </Tabs.Tab>
+          <Tabs.Tab
+            value="music"
+            leftSection={<IconMusic style={getIconStyle(20)} />}
+          >
+            Music
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="it"
+            leftSection={<IconCpu style={getIconStyle(20)} />}
+          >
+            IT
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="science"
+            leftSection={<IconSchool style={getIconStyle(20)} />}
+          >
+            Science
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="files"
+            leftSection={<IconFiles style={getIconStyle(20)} />}
+          >
+            Files
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="social-media"
+            leftSection={<IconUsers style={getIconStyle(20)} />}
+          >
+            Social Media
+          </Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="general">
@@ -60,6 +97,14 @@ const EnginesTabs = () => {
 
         <Tabs.Panel value="news">
           <SettingsEnginesNews />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="music">
+          <SettingsEnginesMusic />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="it">
+          <SettingsEnginesIT />
         </Tabs.Panel>
       </Tabs>
     </>

@@ -6,6 +6,7 @@ import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
 import {
   IconBrush,
+  IconEngine,
   IconLink,
   IconSearch,
   IconSettings2,
@@ -15,8 +16,14 @@ import SettingsGeneral from "./components/General";
 import SettingsTheme from "./components/Theme";
 import SettingsInterface from "./components/Interface";
 import EnginesTabs from "./components/EnginesTabs";
+import SettingsCategories from "./components/Categories";
+import { useGlobalStore } from "@store/global";
 
 const PageSettings = () => {
+  const { appTheme } = useGlobalStore((state) => ({
+    appTheme: state.appTheme,
+  }));
+
   return (
     <Container className={classes.settings_page} size="lg" py={80}>
       <Tabs variant="default" defaultValue="interface" keepMounted={false}>
@@ -41,7 +48,7 @@ const PageSettings = () => {
           </Tabs.Tab>
           <Tabs.Tab
             value="engines"
-            leftSection={<IconSearch style={getIconStyle(20)} />}
+            leftSection={<IconEngine style={getIconStyle(20)} />}
           >
             Engines
           </Tabs.Tab>
@@ -50,12 +57,13 @@ const PageSettings = () => {
         <Tabs.Panel value="interface">
           <>
             <SettingsInterface />
-            <SettingsTheme />
+            {appTheme === "Custom" && <SettingsTheme />}
           </>
         </Tabs.Panel>
 
         <Tabs.Panel value="general">
           <>
+            <SettingsCategories />
             <SettingsGeneral />
           </>
         </Tabs.Panel>

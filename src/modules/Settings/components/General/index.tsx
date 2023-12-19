@@ -22,7 +22,7 @@ const SettingsGeneral = () => {
   const translate = useTranslations();
 
   return (
-    <Paper radius="md" withBorder>
+    <Paper radius="md" withBorder mt={40}>
       <Flex align="center" p="lg" mb={16}>
         <IconSettings size={32} />
 
@@ -72,6 +72,26 @@ const SettingsGeneral = () => {
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Text size="md" fw={400}>
             {translate("pages.settings.general.toggle_ia")}
+          </Text>
+
+          <IASwitch />
+        </Flex>
+
+        <Divider my="sm" w="100%" />
+
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
+          <Text size="md" fw={400}>
+            WIP: Show engines for each search result
+          </Text>
+
+          <IASwitch />
+        </Flex>
+
+        <Divider my="sm" w="100%" />
+
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
+          <Text size="md" fw={400}>
+            WIP: display images in general search
           </Text>
 
           <IASwitch />

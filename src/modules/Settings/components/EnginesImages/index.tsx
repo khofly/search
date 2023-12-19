@@ -1,4 +1,4 @@
-import { Divider, Flex, Paper, Stack, Text } from "@mantine/core";
+import { Divider, Flex, Paper, Space, Stack, Text } from "@mantine/core";
 import { useTranslations } from "@store/global";
 import { IImagesEngines, useSearchStore } from "@store/search";
 import { IconPhoto } from "@tabler/icons-react";
@@ -36,26 +36,17 @@ const SettingsEnginesImages = () => {
       </Flex>
 
       {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" mb="xl">
-        <EngineComponent
-          checked={!!enginesImages.find((e) => e === "google")}
-          iconAlt="Google logo"
-          iconSrc="/assets/google-icon.svg"
-          label="pages.settings.engines.engineGoogleImg"
-          onChange={(next) => handleChangeEngines("google", next)}
+      <Stack w="100%" align="start" px="lg" gap={6}>
+        <Divider
+          label={
+            <Text fw={500} c="teal">
+              {translate("pages.settings.engines.titleImg1")}
+            </Text>
+          }
+          labelPosition="left"
+          mb="sm"
+          w="100%"
         />
-
-        <Divider my="sm" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesImages.find((e) => e === "duckduckgo")}
-          iconAlt="DuckDuckGo logo"
-          iconSrc="/assets/ddg-icon.svg"
-          label="pages.settings.engines.engineDDGImg"
-          onChange={(next) => handleChangeEngines("duckduckgo", next)}
-        />
-
-        <Divider my="sm" w="100%" />
 
         <EngineComponent
           checked={!!enginesImages.find((e) => e === "bing")}
@@ -78,13 +69,37 @@ const SettingsEnginesImages = () => {
         <Divider my="sm" w="100%" />
 
         <EngineComponent
+          checked={!!enginesImages.find((e) => e === "duckduckgo")}
+          iconAlt="DuckDuckGo logo"
+          iconSrc="/assets/ddg-icon.svg"
+          label="pages.settings.engines.engineDDGImg"
+          onChange={(next) => handleChangeEngines("duckduckgo", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesImages.find((e) => e === "google")}
+          iconAlt="Google logo"
+          iconSrc="/assets/google-icon.svg"
+          label="pages.settings.engines.engineGoogleImg"
+          onChange={(next) => handleChangeEngines("google", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
           checked={!!enginesImages.find((e) => e === "qwant")}
           iconAlt="Qwant logo"
           iconSrc="/assets/qwant-icon.svg"
           label="pages.settings.engines.engineQwantImg"
           onChange={(next) => handleChangeEngines("qwant", next)}
         />
+
+        <Divider my="sm" w="100%" />
       </Stack>
+
+      <Space h="xl" />
     </Paper>
   );
 };

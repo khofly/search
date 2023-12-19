@@ -2,6 +2,7 @@ import { Flex, Image, Switch, Text } from "@mantine/core";
 import { ITranslations, useTranslations } from "@store/global";
 import { DotNestedKeys } from "@ts/global.types";
 import React from "react";
+import classes from "./styles.module.scss";
 
 interface Props {
   iconSrc: string;
@@ -28,8 +29,20 @@ const EngineComponent: React.FC<Props> = ({
       align="center"
       justify="space-between"
     >
-      <Flex align="center" gap="sm">
-        <Image src={iconSrc} w={20} h={20} alt={iconAlt} />
+      <Flex
+        align="center"
+        gap="sm"
+        onClick={() => onChange(!checked)}
+        className={classes.engine_component}
+      >
+        <Image
+          src={iconSrc}
+          w={20}
+          h={20}
+          alt={iconAlt}
+          fit="contain"
+          fallbackSrc="https://placehold.co/200x200?text=Placeholder"
+        />
 
         <Text size="md" fw={400}>
           {translate(label)}

@@ -25,17 +25,16 @@ import VirtualKeyboard from "../VirtualKeyboard";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "src/store/global";
 
-import { showNotification } from "@mantine/notifications";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
-import { useSearchStore } from "@store/search";
 import { nprogress } from "@mantine/nprogress";
+import { useGeneralStore } from "@store/general";
 
 const SearchBar = () => {
   const t = useTranslations();
 
-  const { useAutocomplete } = useSearchStore((state) => ({
+  const { useAutocomplete } = useGeneralStore((state) => ({
     useAutocomplete: state.useAutocomplete,
   }));
 

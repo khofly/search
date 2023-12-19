@@ -2,8 +2,8 @@ import { Anchor, Flex, Image, Text } from "@mantine/core";
 import { ISearXNGResultsVideos } from "@ts/searxng.types";
 import React from "react";
 import classes from "./styles.module.scss";
-import { useSearchStore } from "@store/search";
 import { useResponsive } from "@hooks/use-responsive";
+import { useGeneralStore } from "@store/general";
 
 interface Props {
   videoData: ISearXNGResultsVideos["results"][0];
@@ -12,7 +12,7 @@ interface Props {
 const VideoCell: React.FC<Props> = ({ videoData }) => {
   const { parsed_url, title, thumbnail, url } = videoData;
 
-  const { openInNewTab } = useSearchStore((state) => ({
+  const { openInNewTab } = useGeneralStore((state) => ({
     openInNewTab: state.openInNewTab,
   }));
 

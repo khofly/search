@@ -1,46 +1,86 @@
+import { ICategories } from "@store/general";
 import {
   IGeneralEngines,
+  IITEngines,
   IImagesEngines,
+  IMusicEngines,
   INewsEngines,
-  ISearchTabs,
   IVideosEngines,
 } from "@store/search";
 
-const GENERAL_BANGS = {
-  google: "!go",
-  duckduckgo: "!ddg",
+const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
   bing: "!bi",
-  qwant: "!qw",
   brave: "!br",
+  duckduckgo: "!ddg",
+  google: "!go",
+  qwant: "!qw",
   yahoo: "!yh",
 
   wikipedia: "!wp",
   wikidata: "!wd",
 };
 
-const IMAGES_BANGS = {
-  google: "!goi",
+const IMAGES_BANGS: { [key in IImagesEngines]: string } = {
+  bing: "!bii",
+  brave: "!brimg",
   duckduckgo: "!ddi",
+  google: "!goi",
   qwant: "!qwi",
 };
 
-const VIDEOS_BANGS = {
-  google: "!gov",
+const VIDEOS_BANGS: { [key in IVideosEngines]: string } = {
+  bing: "!biv",
+  brave: "!brvid",
   duckduckgo: "!ddv",
+  google: "!gov",
   qwant: "!qwv",
 };
 
-const NEWS_BANGS = {
-  google: "!gon",
+const NEWS_BANGS: { [key in INewsEngines]: string } = {
   duckduckgo: "!ddn",
-  bing: "!bin",
-  qwant: "!qwn",
-  yahoo: "!yhn",
+  presearch: "!psnews",
 
   wikinews: "!wn",
+
+  bing: "!bin",
+  brave: "!brnews",
+  google: "!gon",
+  qwant: "!qwn",
+  yahoo: "!yhn",
 };
 
-export const getEngineBangs = (tab: ISearchTabs, enginesSelected: any[]) => {
+const MUSIC_BANGS: { [key in IMusicEngines]: string } = {
+  genius: "!gen",
+
+  radiobrowser: "!rb",
+
+  bandcamp: "!bc",
+  mixcloud: "!mc",
+  pipedmusic: "!ppdm",
+  soundcloud: "!sc",
+  youtube: "!yt",
+};
+
+const IT_BANGS: { [key in IITEngines]: string } = {
+  dockerhub: "!dh",
+  npm: "!npm",
+  pypi: "!pypi",
+
+  askubuntu: "!ubuntu",
+  stackoverflow: "!st",
+  superuser: "!su",
+
+  codeberg: "!cb",
+  github: "!gh",
+  gitlab: "!gl",
+
+  archwiki: "!al",
+  gentoo: "!ge",
+
+  mdn: "!mdn",
+};
+
+export const getEngineBangs = (tab: ICategories, enginesSelected: any[]) => {
   let bangs = "";
 
   if (tab === "general") {
@@ -68,6 +108,20 @@ export const getEngineBangs = (tab: ISearchTabs, enginesSelected: any[]) => {
     enginesSelected.map((eng) => {
       // @ts-ignore
       bangs = bangs + `${NEWS_BANGS[eng]}%20`;
+    });
+  }
+
+  if (tab === "music") {
+    enginesSelected.map((eng) => {
+      // @ts-ignore
+      bangs = bangs + `${MUSIC_BANGS[eng]}%20`;
+    });
+  }
+
+  if (tab === "it") {
+    enginesSelected.map((eng) => {
+      // @ts-ignore
+      bangs = bangs + `${IT_BANGS[eng]}%20`;
     });
   }
 

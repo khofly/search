@@ -17,6 +17,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { IconCalendarSad } from "@tabler/icons-react";
 import { IconCalendarFilled } from "@tabler/icons-react";
 import { useResponsive } from "@hooks/use-responsive";
+import { useGeneralStore } from "@store/general";
 
 dayjs.extend(relativeTime);
 
@@ -28,17 +29,13 @@ const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
   engines,
   publishedDate,
 }) => {
-  const { displayFavicon } = useSearchStore((state) => ({
-    displayFavicon: state.displayFavicon,
-  }));
-
-  const { visitedLinks, updateVisitedLinks, openInNewTab } = useSearchStore(
-    (state) => ({
+  const { visitedLinks, updateVisitedLinks, openInNewTab, displayFavicon } =
+    useGeneralStore((state) => ({
       visitedLinks: state.visitedLinks,
       updateVisitedLinks: state.updateVisitedLinks,
       openInNewTab: state.openInNewTab,
-    })
-  );
+      displayFavicon: state.displayFavicon,
+    }));
 
   const isXs = useResponsive("max", "xs");
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs

@@ -1,10 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export type ISearchTabs = "general" | "images" | "videos" | "news" | "maps";
-
-export type IAutocompleteEngines = "google" | "duckduckgo" | "brave" | "qwant";
-
 export type IGeneralEngines =
   | "google"
   | "duckduckgo"
@@ -33,15 +29,34 @@ export type INewsEngines =
   | "google"
   | "duckduckgo"
   | "bing"
+  | "brave"
   | "qwant"
   | "yahoo"
+  | "presearch"
   | "wikinews";
 
-export type ISearchLang = "all" | "auto" | string;
+export type IMusicEngines =
+  | "genius"
+  | "radiobrowser"
+  | "bandcamp"
+  | "mixcloud"
+  | "pipedmusic"
+  | "soundcloud"
+  | "youtube";
 
-export type ISafeSearch = 0 | 1 | 2;
-
-export type IDateRange = "all" | "day" | "month" | "year";
+export type IITEngines =
+  | "dockerhub"
+  | "npm"
+  | "pypi"
+  | "askubuntu"
+  | "stackoverflow"
+  | "superuser"
+  | "codeberg"
+  | "github"
+  | "gitlab"
+  | "archwiki"
+  | "gentoo"
+  | "mdn";
 
 interface SearchState {
   enginesGeneral: IGeneralEngines[];
@@ -56,34 +71,11 @@ interface SearchState {
   enginesNews: INewsEngines[];
   setEnginesNews: (next: INewsEngines[]) => void;
 
-  autocompleteEngine: IAutocompleteEngines;
-  setAutocompleteEngine: (next: IAutocompleteEngines) => void;
+  enginesMusic: IMusicEngines[];
+  setEnginesMusic: (next: IMusicEngines[]) => void;
 
-  // Search options
-  isSearchOptionsOpen: boolean;
-  setIsSearchOptionsOpen: (next: boolean) => void;
-  searchLanguage: ISearchLang;
-  setSearchLanguage: (next: ISearchLang) => void;
-  safeSearch: ISafeSearch;
-  setSafeSearch: (next: ISafeSearch) => void;
-  dateRange: IDateRange;
-  setDateRange: (next: IDateRange) => void;
-
-  visitedLinks: string[];
-  updateVisitedLinks: (next: string) => void;
-  resetVisitedLinks: () => void;
-
-  displayFavicon: boolean;
-  setDisplayFavicon: (next: boolean) => void;
-
-  useAutocomplete: boolean;
-  setUseAutocomplete: (next: boolean) => void;
-
-  useInstantAnswers: boolean;
-  setUseInstantAnswers: (next: boolean) => void;
-
-  openInNewTab: boolean;
-  setOpenInNewTab: (next: boolean) => void;
+  enginesIT: IITEngines[];
+  setEnginesIT: (next: IITEngines[]) => void;
 }
 
 export const useSearchStore = create<SearchState>()(
@@ -101,46 +93,21 @@ export const useSearchStore = create<SearchState>()(
       enginesNews: ["duckduckgo", "bing", "wikinews"],
       setEnginesNews: (next) => set({ enginesNews: next }),
 
-      autocompleteEngine: "google",
-      setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
+      enginesMusic: ["radiobrowser", "soundcloud", "youtube"],
+      setEnginesMusic: (next) => set({ enginesMusic: next }),
 
-      // Search options
-      isSearchOptionsOpen: false,
-      setIsSearchOptionsOpen: (next) => set({ isSearchOptionsOpen: next }),
-      searchLanguage: "all",
-      setSearchLanguage: (next) => set({ searchLanguage: next }),
-      safeSearch: 0,
-      setSafeSearch: (next) => set({ safeSearch: next }),
-      dateRange: "all",
-      setDateRange: (next) => set({ dateRange: next }),
-
-      visitedLinks: [],
-      updateVisitedLinks: (next) =>
-        set((state) => ({ visitedLinks: [...state.visitedLinks, next] })),
-      resetVisitedLinks: () => set({ visitedLinks: [] }),
-
-      displayFavicon: false,
-      setDisplayFavicon: (displayFavicon) => set({ displayFavicon }),
-
-      useAutocomplete: true,
-      setUseAutocomplete: (next) => set({ useAutocomplete: next }),
-
-      useInstantAnswers: true,
-      setUseInstantAnswers: (next) => set({ useInstantAnswers: next }),
-
-      openInNewTab: false,
-      setOpenInNewTab: (next) => set({ openInNewTab: next }),
+      enginesIT: ["dockerhub", "stackoverflow", "github", "archwiki"],
+      setEnginesIT: (next) => set({ enginesIT: next }),
     }),
     {
       name: "search-store", // name of the item in the storage (must be unique)
       partialize: (state) => ({
-        displayFavicon: state.displayFavicon,
-        openInNewTab: state.openInNewTab,
-        useAutocomplete: state.useAutocomplete,
-        autocompleteEngine: state.autocompleteEngine,
         enginesGeneral: state.enginesGeneral,
         enginesImages: state.enginesImages,
         enginesVideos: state.enginesVideos,
+        enginesNews: state.enginesNews,
+        enginesMusic: state.enginesMusic,
+        enginesIT: state.enginesIT,
       }),
     }
   )

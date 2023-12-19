@@ -13,21 +13,22 @@ import WikiNavbar from "@components/Navbar/Wiki";
 import { useDisclosure, useDocumentTitle, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
-import { useGlobalStore } from "@store/global";
+import { useGlobalStore, useTranslations } from "@store/global";
 import { NavigationProgress } from "@mantine/nprogress";
 import NProgress from "@module/NProgress";
 import { useApiProfile } from "src/api/profile/use-api-profile";
 import { useApiTier } from "src/api/tier/use-api-tier";
-import { useSearchStore } from "@store/search";
+import { useGeneralStore } from "@store/general";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
+  const t = useTranslations();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
   const { appTheme } = useGlobalStore((state) => ({
     appTheme: state.appTheme,
   }));
 
-  const { resetVisitedLinks } = useSearchStore((state) => ({
+  const { resetVisitedLinks } = useGeneralStore((state) => ({
     resetVisitedLinks: state.resetVisitedLinks,
   }));
 
@@ -53,7 +54,10 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isHeaderCollapsed = isSearch && !pinned;
   const isHeaderOffset = !isSearch;
 
-  useDocumentTitle(isSearch ? `${q} at Khofly` : "Khofly");
+  const appName = !+process.env.NEXT_PUBLIC_IS_SELF_HOST!
+    ? t("_common.app_name")
+    : process.env.NEXT_PUBLIC_APP_NAME;
+  useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
 
   // Updates profile on session change
   useApiProfile();

@@ -81,13 +81,15 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       {isSearch && <HeaderSettings />}
 
-      <HeaderApps />
+      {!+process.env.NEXT_PUBLIC_IS_SELF_HOST! && <HeaderApps />}
 
-      {profile ? (
+      {!!+process.env.NEXT_PUBLIC_IS_SELF_HOST! ? null : profile ? (
         <HeaderAvatar />
       ) : (
         <Anchor className={classes.auth_button} href={authUrl} target="_self">
-          <Button size="sm">{t("header.sign_in")}</Button>
+          <Button size="sm" ml="md">
+            {t("header.sign_in")}
+          </Button>
         </Anchor>
       )}
     </Group>

@@ -1,13 +1,13 @@
 import NextLink from "@components/NextLink";
 import { Flex, Switch, Text } from "@mantine/core";
+import { useGeneralStore } from "@store/general";
 import { useTranslations } from "@store/global";
-import { useSearchStore } from "@store/search";
 import React from "react";
 
 const IASwitch = () => {
   const translate = useTranslations();
 
-  const { useInstantAnswers, setUseInstantAnswers } = useSearchStore(
+  const { useInstantAnswers, setUseInstantAnswers } = useGeneralStore(
     (state) => ({
       useInstantAnswers: state.useInstantAnswers,
       setUseInstantAnswers: state.setUseInstantAnswers,

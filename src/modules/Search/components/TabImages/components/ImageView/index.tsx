@@ -10,7 +10,7 @@ import {
   Text,
 } from "@mantine/core";
 import { useClipboard } from "@mantine/hooks";
-import { useSearchStore } from "@store/search";
+import { useGeneralStore } from "@store/general";
 import {
   IconCopy,
   IconDownload,
@@ -30,7 +30,7 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
   const { copy } = useClipboard();
   const { toast } = useToast();
 
-  const { openInNewTab } = useSearchStore((state) => ({
+  const { openInNewTab } = useGeneralStore((state) => ({
     openInNewTab: state.openInNewTab,
   }));
 

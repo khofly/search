@@ -20,7 +20,9 @@ const PageIndex = () => {
           pb={150}
         >
           <Title className={classes.app_name} mb="xl">
-            {t("_common.app_name")}
+            {!+process.env.NEXT_PUBLIC_IS_SELF_HOST!
+              ? t("_common.app_name")
+              : process.env.NEXT_PUBLIC_APP_NAME}
           </Title>
 
           <SearchBar />

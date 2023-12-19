@@ -1,9 +1,9 @@
 import { Switch } from "@mantine/core";
-import { useSearchStore } from "@store/search";
+import { useGeneralStore } from "@store/general";
 import React from "react";
 
 const FaviconSwitch = () => {
-  const { displayFavicon, setDisplayFavicon } = useSearchStore((state) => ({
+  const { displayFavicon, setDisplayFavicon } = useGeneralStore((state) => ({
     displayFavicon: state.displayFavicon,
     setDisplayFavicon: state.setDisplayFavicon,
   }));

@@ -1,9 +1,9 @@
 import { Switch } from "@mantine/core";
-import { useSearchStore } from "@store/search";
+import { useGeneralStore } from "@store/general";
 import React from "react";
 
 const NewTabSwitch = () => {
-  const { openInNewTab, setOpenInNewTab } = useSearchStore((state) => ({
+  const { openInNewTab, setOpenInNewTab } = useGeneralStore((state) => ({
     openInNewTab: state.openInNewTab,
     setOpenInNewTab: state.setOpenInNewTab,
   }));

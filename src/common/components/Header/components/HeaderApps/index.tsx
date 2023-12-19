@@ -28,7 +28,7 @@ const HeaderApps = () => {
         onClick={toggle}
         variant="subtle"
         size={rem(36)}
-        mr="md"
+        ml="md"
       >
         <IconApps style={getIconStyle(24)} />
       </ActionIcon>

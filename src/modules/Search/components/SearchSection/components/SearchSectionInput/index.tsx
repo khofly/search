@@ -13,12 +13,12 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import React, { useEffect, useRef, useState } from "react";
 
 import classes from "./styles.module.scss";
-import { useSearchStore } from "@store/search";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useResponsive } from "@hooks/use-responsive";
 import { useTranslations } from "@store/global";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
+import { useGeneralStore } from "@store/general";
 
 const SearchSectionInput = () => {
   const t = useTranslations();
@@ -31,7 +31,7 @@ const SearchSectionInput = () => {
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const { useAutocomplete } = useSearchStore((state) => ({
+  const { useAutocomplete } = useGeneralStore((state) => ({
     useAutocomplete: state.useAutocomplete,
   }));
 
@@ -55,6 +55,7 @@ const SearchSectionInput = () => {
 
   const handleClear = () => {
     setQ("");
+    reset();
   };
 
   const comboboxOptions =

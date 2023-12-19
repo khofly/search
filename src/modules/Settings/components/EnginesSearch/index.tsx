@@ -1,4 +1,4 @@
-import { Divider, Flex, Paper, Stack, Text } from "@mantine/core";
+import { Divider, Flex, Paper, Space, Stack, Text } from "@mantine/core";
 import { useTranslations } from "@store/global";
 import { IGeneralEngines, useSearchStore } from "@store/search";
 import { IconWorld } from "@tabler/icons-react";
@@ -36,26 +36,17 @@ const SettingsEnginesSearch = () => {
       </Flex>
 
       {/* Settings content */}
-      <Stack w="100%" align="start" px="lg">
-        <EngineComponent
-          checked={!!enginesGeneral.find((e) => e === "google")}
-          iconAlt="Google logo"
-          iconSrc="/assets/google-icon.svg"
-          label="pages.settings.engines.engineGoogle"
-          onChange={(next) => handleChangeEngines("google", next)}
+      <Stack w="100%" align="start" px="lg" gap={6}>
+        <Divider
+          label={
+            <Text fw={500} c="teal">
+              {translate("pages.settings.engines.titleImg1")}
+            </Text>
+          }
+          labelPosition="left"
+          mb="sm"
+          w="100%"
         />
-
-        <Divider my="sm" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesGeneral.find((e) => e === "duckduckgo")}
-          iconAlt="DuckDuckGo logo"
-          iconSrc="/assets/ddg-icon.svg"
-          label="pages.settings.engines.engineDDG"
-          onChange={(next) => handleChangeEngines("duckduckgo", next)}
-        />
-
-        <Divider my="sm" w="100%" />
 
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "bing")}
@@ -78,6 +69,26 @@ const SettingsEnginesSearch = () => {
         <Divider my="sm" w="100%" />
 
         <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "duckduckgo")}
+          iconAlt="DuckDuckGo logo"
+          iconSrc="/assets/ddg-icon.svg"
+          label="pages.settings.engines.engineDDG"
+          onChange={(next) => handleChangeEngines("duckduckgo", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "google")}
+          iconAlt="Google logo"
+          iconSrc="/assets/google-icon.svg"
+          label="pages.settings.engines.engineGoogle"
+          onChange={(next) => handleChangeEngines("google", next)}
+        />
+
+        <Divider my="sm" w="100%" />
+
+        <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "qwant")}
           iconAlt="Qwant logo"
           iconSrc="/assets/qwant-icon.svg"
@@ -94,14 +105,18 @@ const SettingsEnginesSearch = () => {
           label="pages.settings.engines.engineYahoo"
           onChange={(next) => handleChangeEngines("yahoo", next)}
         />
-      </Stack>
 
-      <Text fz={26} fw={600} p="lg" my="md">
-        {translate("pages.settings.engines.title2")}
-      </Text>
+        <Divider
+          label={
+            <Text fw={500} c="teal">
+              {translate("pages.settings.engines.title2")}
+            </Text>
+          }
+          labelPosition="left"
+          my="sm"
+          w="100%"
+        />
 
-      {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" mb="xl">
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "wikipedia")}
           iconAlt="Wikipedia logo"
@@ -119,7 +134,11 @@ const SettingsEnginesSearch = () => {
           label="pages.settings.engines.engineWikidata"
           onChange={(next) => handleChangeEngines("wikidata", next)}
         />
+
+        <Divider my="sm" w="100%" />
       </Stack>
+
+      <Space h="xl" />
     </Paper>
   );
 };

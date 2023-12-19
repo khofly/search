@@ -1,24 +1,21 @@
 import useFetch from "../use-fetch";
 import { useSearXNGStore } from "@store/searxng";
-import {
-  IGeneralEngines,
-  IImagesEngines,
-  IVideosEngines,
-  ISearchTabs,
-  useSearchStore,
-  INewsEngines,
-  ISafeSearch,
-  ISearchLang,
-  IDateRange,
-} from "@store/search";
+import { useSearchStore } from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
 import { useSearchParams } from "next/navigation";
+import {
+  ICategories,
+  IDateRange,
+  ISafeSearch,
+  ISearchLang,
+  useGeneralStore,
+} from "@store/general";
 
 const getKey = (
   pageIndex: number,
   previousPageData: any,
-  tab: ISearchTabs,
+  tab: ICategories,
   q: string,
   enginesSelected: string[],
   safeSearch: ISafeSearch,
@@ -58,22 +55,28 @@ const useSearXNGSWR = <IResults>() => {
     enginesImages,
     enginesVideos,
     enginesNews,
-    safeSearch,
-    dateRange,
-    searchLanguage,
+    enginesMusic,
+    enginesIT,
   } = useSearchStore((state) => ({
     enginesGeneral: state.enginesGeneral,
     enginesImages: state.enginesImages,
     enginesVideos: state.enginesVideos,
     enginesNews: state.enginesNews,
-    safeSearch: state.safeSearch,
-    dateRange: state.dateRange,
-    searchLanguage: state.searchLanguage,
+    enginesMusic: state.enginesMusic,
+    enginesIT: state.enginesIT,
   }));
+
+  const { safeSearch, dateRange, searchLanguage } = useGeneralStore(
+    (state) => ({
+      safeSearch: state.safeSearch,
+      dateRange: state.dateRange,
+      searchLanguage: state.searchLanguage,
+    })
+  );
 
   const searchParams = useSearchParams();
   const q = (searchParams.get("q") as string) || "";
-  const tab = (searchParams.get("tab") as ISearchTabs) || "general";
+  const tab = (searchParams.get("tab") as ICategories) || "general";
 
   const fetcher = (_key: string) => {
     return fetchData(`${searxngDomain}${_key}&format=json`);
@@ -85,6 +88,11 @@ const useSearXNGSWR = <IResults>() => {
     videos: enginesVideos,
     news: enginesNews,
     maps: [],
+    music: enginesMusic,
+    it: enginesIT,
+    science: [],
+    files: [],
+    "social-media": [],
   }[tab];
 
   return useSWRInfinite<IResults>(

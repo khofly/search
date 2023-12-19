@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Flex, Group, Image } from "@mantine/core";
 import React from "react";
 
@@ -11,8 +12,14 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 import NextLink from "@components/NextLink";
 
-import SearchSectionTabs from "./components/SearchSectionTabs";
 import SearchSectionInput from "./components/SearchSectionInput";
+
+const SearchSectionTabsWithoutSSR = dynamic(
+  () => import(`./components/SearchSectionTabs`),
+  {
+    ssr: false,
+  }
+);
 
 const SearchSection = () => {
   const searchParams = useSearchParams();
@@ -48,7 +55,7 @@ const SearchSection = () => {
         <SearchSectionInput />
 
         {/* Search Tabs */}
-        <SearchSectionTabs />
+        <SearchSectionTabsWithoutSSR />
       </Flex>
     </Group>
   );
