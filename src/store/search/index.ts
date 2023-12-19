@@ -58,6 +58,18 @@ export type IITEngines =
   | "gentoo"
   | "mdn";
 
+export type IScienceEngines =
+  | "arxiv"
+  | "crossref"
+  | "googlescholar"
+  | "archive"
+  | "pubmed"
+  | "semanticscholar"
+  | "wikispecies"
+  | "openairedatasets"
+  | "openairepublications"
+  | "pdbe";
+
 interface SearchState {
   enginesGeneral: IGeneralEngines[];
   setEnginesGeneral: (next: IGeneralEngines[]) => void;
@@ -76,6 +88,9 @@ interface SearchState {
 
   enginesIT: IITEngines[];
   setEnginesIT: (next: IITEngines[]) => void;
+
+  enginesScience: IScienceEngines[];
+  setEnginesScience: (next: IScienceEngines[]) => void;
 }
 
 export const useSearchStore = create<SearchState>()(
@@ -98,6 +113,9 @@ export const useSearchStore = create<SearchState>()(
 
       enginesIT: ["dockerhub", "stackoverflow", "github", "archwiki"],
       setEnginesIT: (next) => set({ enginesIT: next }),
+
+      enginesScience: ["arxiv", "googlescholar", "pubmed", "pdbe"],
+      setEnginesScience: (next) => set({ enginesScience: next }),
     }),
     {
       name: "search-store", // name of the item in the storage (must be unique)
@@ -108,6 +126,7 @@ export const useSearchStore = create<SearchState>()(
         enginesNews: state.enginesNews,
         enginesMusic: state.enginesMusic,
         enginesIT: state.enginesIT,
+        enginesScience: state.enginesScience,
       }),
     }
   )

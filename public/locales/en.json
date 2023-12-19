@@ -184,7 +184,22 @@
         "engineGLIT": "GitLab",
         "engineArchIT": "Arch Wiki",
         "engineGentooIT": "Gentoo",
-        "engineMDNIT": "MDN"
+        "engineMDNIT": "MDN",
+
+        "titleScience": "Science engines",
+        "titleScience2": "publications",
+        "titleScience3": "wiki stuff",
+
+        "engineArxivScience": "arXiv",
+        "engineCrossrefScience": "Crossref",
+        "engineGoogleScholarScience": "Google Scholar",
+        "engineIASScience": "Internet Archive Scholar",
+        "enginePubMedScience": "PubMed",
+        "engineSemanticScholarScience": "Semantic Scholar",
+        "engineWikispeciesScience": "Wikispecies",
+        "engineOADatasetsScience": "OpenAIRE datasets",
+        "engineOAPublicationsScience": "OpenAIRE publications",
+        "enginePDBeScience": "PDBe"
       }
     }
   }

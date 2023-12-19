@@ -19,6 +19,7 @@ import SettingsEnginesNews from "../EnginesNews";
 import classes from "../../styles.module.scss";
 import SettingsEnginesMusic from "../EnginesMusic";
 import SettingsEnginesIT from "../EnginesIT";
+import SettingsEnginesScience from "../EnginesScience";
 
 const EnginesTabs = () => {
   return (
@@ -105,6 +106,10 @@ const EnginesTabs = () => {
 
         <Tabs.Panel value="it">
           <SettingsEnginesIT />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="science">
+          <SettingsEnginesScience />
         </Tabs.Panel>
       </Tabs>
     </>

@@ -8,6 +8,7 @@ import {
   IconBrush,
   IconEngine,
   IconLink,
+  IconRadar,
   IconSearch,
   IconSettings2,
 } from "@tabler/icons-react";
@@ -48,7 +49,7 @@ const PageSettings = () => {
           </Tabs.Tab>
           <Tabs.Tab
             value="engines"
-            leftSection={<IconEngine style={getIconStyle(20)} />}
+            leftSection={<IconRadar style={getIconStyle(20)} />}
           >
             Engines
           </Tabs.Tab>

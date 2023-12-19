@@ -74,7 +74,7 @@ const SettingsCategories = () => {
       <Stack w="100%" align="start" px="lg" mb="xl">
         <Text>Currently enabled search categories</Text>
 
-        <Flex align="center" gap={4}>
+        <Flex align="center" gap={4} wrap="wrap">
           {items}
         </Flex>
       </Stack>
