@@ -4,6 +4,7 @@ import { IGeneralEngines, useSearchStore } from "@store/search";
 import { IconWorld } from "@tabler/icons-react";
 import React from "react";
 import EngineComponent from "../EngineComponent";
+import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesSearch = () => {
   const translate = useTranslations();
@@ -54,6 +55,7 @@ const SettingsEnginesSearch = () => {
           iconSrc="/assets/bing-icon.svg"
           label="pages.settings.engines.engineBing"
           onChange={(next) => handleChangeEngines("bing", next)}
+          hoverData={HOVER_DATA["bing"]}
         />
 
         <Divider my="sm" w="100%" />

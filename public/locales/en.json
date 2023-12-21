@@ -199,7 +199,27 @@
         "engineWikispeciesScience": "Wikispecies",
         "engineOADatasetsScience": "OpenAIRE datasets",
         "engineOAPublicationsScience": "OpenAIRE publications",
-        "enginePDBeScience": "PDBe"
+        "enginePDBeScience": "PDBe",
+
+        "titleFiles": "Files engines",
+        "titleFiles2": "apps",
+
+        "engineAPKMirrorFiles": "APKMirror",
+        "engineFdriodFiles": "F-Droid",
+        "engine1337xFiles": "1337x",
+        "engineAnnasFiles": "Anna's Archive",
+        "engineBt4gFiles": "bt4g",
+        "engineNyaaFiles": "Nyaa",
+        "enginePiratebayFiles": "The Pirate Bay",
+
+        "titleSocial": "Social Media engines",
+
+        "engineLemmyCommentsSM": "Lemmy Comments",
+        "engineLemmyCommunitiesSM": "Lemmy Communities",
+        "engineLemmyPostsSM": "Lemmy Posts",
+        "engineLemmyUsersSM": "Lemmy Users",
+        "engineMastodonHashtagsSM": "Mastodon Hashtags",
+        "engineMastodonUsersSM": "Mastodon Users"
       }
     }
   }

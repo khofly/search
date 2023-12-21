@@ -70,6 +70,23 @@ export type IScienceEngines =
   | "openairepublications"
   | "pdbe";
 
+export type IFilesEngines =
+  | "apkmirror"
+  | "fdroid"
+  | "1337x"
+  | "annas"
+  | "bt4g"
+  | "nyaa"
+  | "piratebay";
+
+export type ISocialMediaEngines =
+  | "lemmycomments"
+  | "lemmycommunities"
+  | "lemmyposts"
+  | "lemmyusers"
+  | "mastodonhashtags"
+  | "mastodonusers";
+
 interface SearchState {
   enginesGeneral: IGeneralEngines[];
   setEnginesGeneral: (next: IGeneralEngines[]) => void;
@@ -91,6 +108,12 @@ interface SearchState {
 
   enginesScience: IScienceEngines[];
   setEnginesScience: (next: IScienceEngines[]) => void;
+
+  enginesFiles: IFilesEngines[];
+  setEnginesFiles: (next: IFilesEngines[]) => void;
+
+  enginesSocialMedia: ISocialMediaEngines[];
+  setEnginesSocialMedia: (next: ISocialMediaEngines[]) => void;
 }
 
 export const useSearchStore = create<SearchState>()(
@@ -116,6 +139,19 @@ export const useSearchStore = create<SearchState>()(
 
       enginesScience: ["arxiv", "googlescholar", "pubmed", "pdbe"],
       setEnginesScience: (next) => set({ enginesScience: next }),
+
+      enginesFiles: ["fdroid", "bt4g", "piratebay"],
+      setEnginesFiles: (next) => set({ enginesFiles: next }),
+
+      enginesSocialMedia: [
+        "lemmycomments",
+        "lemmycommunities",
+        "lemmyposts",
+        "lemmyusers",
+        "mastodonhashtags",
+        "mastodonusers",
+      ],
+      setEnginesSocialMedia: (next) => set({ enginesSocialMedia: next }),
     }),
     {
       name: "search-store", // name of the item in the storage (must be unique)
@@ -127,6 +163,8 @@ export const useSearchStore = create<SearchState>()(
         enginesMusic: state.enginesMusic,
         enginesIT: state.enginesIT,
         enginesScience: state.enginesScience,
+        enginesFiles: state.enginesFiles,
+        enginesSocialMedia: state.enginesSocialMedia,
       }),
     }
   )

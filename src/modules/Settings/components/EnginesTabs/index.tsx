@@ -20,6 +20,8 @@ import classes from "../../styles.module.scss";
 import SettingsEnginesMusic from "../EnginesMusic";
 import SettingsEnginesIT from "../EnginesIT";
 import SettingsEnginesScience from "../EnginesScience";
+import SettingsEnginesFiles from "../EnginesFiles";
+import SettingsEnginesSocialMedia from "../EnginesSocialMedia";
 
 const EnginesTabs = () => {
   return (
@@ -110,6 +112,14 @@ const EnginesTabs = () => {
 
         <Tabs.Panel value="science">
           <SettingsEnginesScience />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="files">
+          <SettingsEnginesFiles />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="social-media">
+          <SettingsEnginesSocialMedia />
         </Tabs.Panel>
       </Tabs>
     </>
